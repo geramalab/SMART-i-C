@@ -34,11 +34,11 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
-        /* Header Navigation Top Bar */
+        /* Header Navigation Top Bar dengan 2 Logo */
         .top-bar {
             background-color: #0b2545;
             color: #ffffff;
-            padding: 15px;
+            padding: 12px 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -47,9 +47,26 @@
             z-index: 100;
         }
 
+        .header-logo-left {
+            width: 38px;
+            height: auto;
+            filter: drop-shadow(0 0 4px rgba(255,255,255,0.3));
+        }
+
+        .top-bar-center {
+            text-align: center;
+        }
+
         .top-bar-title {
-            font-size: 16px;
-            font-weight: 700;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: #ffd700;
+        }
+
+        .top-bar-sub {
+            font-size: 9px;
+            opacity: 0.9;
             letter-spacing: 0.5px;
         }
 
@@ -81,16 +98,24 @@
         }
 
         .hero-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 800;
             margin-bottom: 8px;
             color: #ffd700;
+            line-height: 1.3;
         }
 
         .hero-sub {
-            font-size: 12px;
+            font-size: 11px;
             opacity: 0.9;
             line-height: 1.4;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px;
         }
 
         .action-grid {
@@ -115,13 +140,15 @@
         .btn-action-card .label { font-size: 13px; font-weight: 700; color: #134074; }
 
         .section-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 800;
             color: #0b2545;
             margin-bottom: 12px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
+        /* Panduan Tahap Kebersihan dengan Ikon Kacak 3D */
         .guide-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -129,18 +156,19 @@
         }
 
         .guide-card {
-            border-radius: 10px;
-            padding: 10px;
+            border-radius: 12px;
+            padding: 12px 8px;
             text-align: center;
             font-size: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
         }
 
-        .guide-clean { background: #e6f9ed; border: 1px solid #b7ebc6; color: #0e6251; }
-        .guide-med { background: #fff8e6; border: 1px solid #ffe5b4; color: #7d6608; }
-        .guide-dirty { background: #fde8e8; border: 1px solid #f8b4b4; color: #78281f; }
+        .guide-clean { background: #e6f9ed; border: 1.5px solid #2ec4b6; color: #0e6251; }
+        .guide-med { background: #fff8e6; border: 1.5px solid #ff9f1c; color: #7d6608; }
+        .guide-dirty { background: #fde8e8; border: 1.5px solid #e71d36; color: #78281f; }
 
-        .guide-card .emoji { font-size: 20px; margin-bottom: 4px; }
-        .guide-card .title { font-weight: 800; font-size: 11px; margin-bottom: 2px; }
+        .guide-card .emoji-icon { font-size: 28px; margin-bottom: 6px; display: block; }
+        .guide-card .title { font-weight: 800; font-size: 11px; margin-bottom: 3px; }
 
         /* SCREEN 2: KAMERA STYLES */
         .camera-box {
@@ -177,14 +205,16 @@
             text-align: center;
             margin-bottom: 15px;
             color: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .bg-clean { background: linear-gradient(135deg, #2ec4b6 0%, #0f9f90 100%); }
         .bg-med { background: linear-gradient(135deg, #ff9f1c 0%, #e67e22 100%); }
         .bg-dirty { background: linear-gradient(135deg, #e71d36 0%, #c0392b 100%); }
 
-        .result-status { font-size: 28px; font-weight: 900; letter-spacing: 1px; margin: 5px 0; }
-        .result-confidence { font-size: 13px; opacity: 0.9; }
+        .result-emoji-big { font-size: 55px; margin-bottom: 5px; }
+        .result-status { font-size: 26px; font-weight: 900; letter-spacing: 1px; margin: 2px 0; }
+        .result-confidence { font-size: 13px; opacity: 0.95; font-weight: 600; }
 
         .advice-box {
             background: #f8f9fa;
@@ -194,6 +224,7 @@
             margin-bottom: 20px;
             font-size: 12px;
             color: #495057;
+            line-height: 1.4;
         }
 
         /* SCREEN 4: DASHBOARD STYLES */
@@ -292,32 +323,41 @@
             color: #a0aec0;
             margin-top: 15px;
             padding-bottom: 10px;
+            font-weight: 700;
         }
     </style>
 </head>
 <body>
 
     <div class="app-container">
-        <!-- TOP BAR -->
+        <!-- TOP BAR DENGAN DUA LOGO (SMART i-C & SKPJ) -->
         <div class="top-bar">
-            <div class="top-bar-title" id="page-title">Smart Classroom AI</div>
+            <!-- Logo SMART i-C di Kiri -->
+            <img src="logo-smart-ic.png" alt="SMART i-C" class="header-logo-left" onerror="this.style.display='none'">
+            
+            <div class="top-bar-center">
+                <div class="top-bar-title">SMART i-C</div>
+                <div class="top-bar-sub">SK PETRAJAYA KUCHING</div>
+            </div>
+
+            <!-- Logo SKPJ di Kanan -->
             <img src="logo-skpj.png" alt="SKPJ" class="school-badge" onerror="this.style.display='none'">
         </div>
 
         <!-- ================= SCREEN 1: LAMAN UTAMA ================= -->
         <div class="screen active" id="screen-1">
             <div class="hero-banner">
-                <div class="hero-title">Kelas Bersih, Minda Ceria, Masa Depan Cemerlang</div>
-                <div class="hero-sub">AI mengesan tahap kebersihan kelas melalui gambar secara pantas dan tepat.</div>
+                <div class="hero-title">Kelas Bersih, Minda Ceria,<br>Masa Depan Cemerlang</div>
+                <div class="hero-sub" style="margin-top: 6px;">AI mengesan tahap kebersihan kelas melalui gambar secara pantas dan tepat.</div>
             </div>
 
             <div class="card" style="margin-bottom: 15px;">
                 <div class="section-title">📍 Pilih Bilik Darjah</div>
-                <select id="select-kelas" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1;" onchange="semakPilihanKelas(this)">
+                <select id="select-kelas" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600;" onchange="semakPilihanKelas(this)">
                     <option value="Kelas 1 Alpha">Kelas 1 Alpha</option>
                     <option value="Kelas 2 Beta">Kelas 2 Beta</option>
                     <option value="Makmal Sains">Makmal Sains</option>
-                    <option value="ADD_NEW_CLASS">➕ [ Tambah Kelas Baharu... ]</option>
+                    <option value="ADD_NEW_CLASS" style="color: #134074; font-weight: bold;">➕ [ Tambah Kelas Baharu... ]</option>
                 </select>
             </div>
 
@@ -335,19 +375,19 @@
             <div class="section-title">Panduan Tahap Kebersihan</div>
             <div class="guide-grid">
                 <div class="guide-card guide-clean">
-                    <div class="emoji">😃</div>
+                    <span class="emoji-icon">🟢😁</span>
                     <div class="title">BERSIH</div>
                     <div>Kelas kemas & tiada sampah</div>
                 </div>
                 <div class="guide-card guide-med">
-                    <div class="emoji">😐</div>
+                    <span class="emoji-icon">🟠😐</span>
                     <div class="title">SEDERHANA</div>
-                    <div>Sedikit sampah / meja berselerak</div>
+                    <div>Sedikit sampah / kurang kemas</div>
                 </div>
                 <div class="guide-card guide-dirty">
-                    <div class="emoji">☹️</div>
+                    <span class="emoji-icon">🔴☹️</span>
                     <div class="title">KOTOR</div>
-                    <div>Banyak sampah & lantai kotor</div>
+                    <div>Banyak sampah & berselerak</div>
                 </div>
             </div>
         </div>
@@ -371,7 +411,8 @@
             <div class="section-title">Analisis Selesai</div>
             
             <div class="result-badge-card bg-clean" id="result-card-bg">
-                <div style="font-size: 12px; text-transform: uppercase;">Tahap Kebersihan</div>
+                <div class="result-emoji-big" id="res-emoji">😄</div>
+                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Tahap Kebersihan</div>
                 <div class="result-status" id="res-status-text">BERSIH</div>
                 <div class="result-confidence">Keyakinan AI: <span id="res-conf-val">0%</span></div>
             </div>
@@ -391,14 +432,17 @@
             
             <div class="score-summary-grid">
                 <div class="score-card guide-clean">
+                    <div style="font-size: 22px;">🟢😃</div>
                     <div class="num" id="count-clean">3</div>
                     <div class="lbl">Bersih</div>
                 </div>
                 <div class="score-card guide-med">
+                    <div style="font-size: 22px;">🟠😐</div>
                     <div class="num" id="count-med">1</div>
                     <div class="lbl">Sederhana</div>
                 </div>
                 <div class="score-card guide-dirty">
+                    <div style="font-size: 22px;">🔴☹️</div>
                     <div class="num" id="count-dirty">1</div>
                     <div class="lbl">Kotor</div>
                 </div>
@@ -462,7 +506,6 @@
             renderDashboard();
         };
 
-        /* Navigation Management */
         function navigasiKe(screenNum) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -472,14 +515,9 @@
                 document.getElementById('nav-' + screenNum).classList.add('active');
             }
 
-            // Set Title
-            const titles = { 1: "Laman Utama", 2: "Ambil Gambar Kelas", 3: "Keputusan AI", 4: "Dashboard & Rekod" };
-            document.getElementById('page-title').innerText = titles[screenNum];
-
             if(screenNum === 4) { renderDashboard(); }
         }
 
-        /* Camera & AI Execution */
         async function mulaKamera() {
             document.getElementById("btn-start-cam").innerText = "Memuatkan AI...";
             const modelURL = URL_MODEL_TM + "model.json";
@@ -523,11 +561,11 @@
             currentStatus = highest.className;
             currentConfidence = (highest.probability * 100).toFixed(1);
 
-            // Update UI Screen 3
             const bgCard = document.getElementById("result-card-bg");
             const statusTxt = document.getElementById("res-status-text");
             const confTxt = document.getElementById("res-conf-val");
             const adviceTxt = document.getElementById("res-advice-text");
+            const emojiTxt = document.getElementById("res-emoji");
 
             statusTxt.innerText = currentStatus.toUpperCase();
             confTxt.innerText = currentConfidence + "%";
@@ -535,19 +573,21 @@
             let lower = currentStatus.toLowerCase();
             if(lower.includes("bersih") && !lower.includes("sederhana")) {
                 bgCard.className = "result-badge-card bg-clean";
+                emojiTxt.innerText = "😃✨";
                 adviceTxt.innerText = "Tahniah! Kelas anda dalam keadaan bersih dan kemas.";
             } else if(lower.includes("sederhana")) {
                 bgCard.className = "result-badge-card bg-med";
+                emojiTxt.innerText = "😐🧹";
                 adviceTxt.innerText = "Kutip sedikit sampah di lantai & susun semula meja/kursi.";
             } else {
                 bgCard.className = "result-badge-card bg-dirty";
+                emojiTxt.innerText = "☹️⚠️";
                 adviceTxt.innerText = "Sila sapu lantai dan bersihkan sampah dengan kadar segera.";
             }
 
             navigasiKe(3);
         }
 
-        /* Save Record & Update Dashboard */
         async function simpanKeSheets() {
             const kelas = document.getElementById("select-kelas").value;
             const btn = document.getElementById("btn-save-sheets");
@@ -564,7 +604,6 @@
                     body: JSON.stringify(payload)
                 });
 
-                // Add to Internal Array
                 historyData.unshift({ kelas: kelas, status: currentStatus, keyakinan: currentConfidence + "%", tarikh: "Hari Ini" });
                 alert("BERJAYA! Data disimpan ke Sheets & Dashboard.");
                 navigasiKe(4);
@@ -576,7 +615,6 @@
             }
         }
 
-        /* Render Dashboard (Screen 4) */
         function renderDashboard() {
             let clean = 0, med = 0, dirty = 0;
             const logContainer = document.getElementById("history-log-container");
@@ -584,14 +622,15 @@
 
             historyData.forEach(item => {
                 let lower = item.status.toLowerCase();
-                if(lower.includes("bersih") && !lower.includes("sederhana")) clean++;
-                else if(lower.includes("sederhana")) med++;
-                else dirty++;
+                let iconStatus = "🟢😃";
+                if(lower.includes("bersih") && !lower.includes("sederhana")) { clean++; iconStatus = "🟢😃"; }
+                else if(lower.includes("sederhana")) { med++; iconStatus = "🟠😐"; }
+                else { dirty++; iconStatus = "🔴☹️"; }
 
                 let div = document.createElement("div");
                 div.className = "log-list-item";
                 div.innerHTML = `<div><b>${item.kelas}</b><br><span style="color:#718096">${item.tarikh}</span></div>
-                                 <div style="text-align:right"><b>${item.status}</b><br><span style="color:#134074">${item.keyakinan}</span></div>`;
+                                 <div style="text-align:right"><b>${iconStatus} ${item.status}</b><br><span style="color:#134074">${item.keyakinan}</span></div>`;
                 logContainer.appendChild(div);
             });
 
@@ -599,7 +638,6 @@
             document.getElementById("count-med").innerText = med;
             document.getElementById("count-dirty").innerText = dirty;
 
-            // Render Chart.js
             const ctx = document.getElementById('weeklyChart').getContext('2d');
             if(window.myWeeklyChart) window.myWeeklyChart.destroy();
             
