@@ -14,16 +14,14 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* Latar Belakang Soft Gradient Light Grey */
         body {
-            background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%);
+            background: linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%);
             color: #1a202c;
             display: flex;
             justify-content: center;
             min-height: 100vh;
         }
 
-        /* Mobile Frame Container */
         .app-container {
             width: 100%;
             max-width: 450px;
@@ -32,41 +30,47 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
         }
 
-        /* Top Bar DENGAN SUSUNAN LOGO TEGAP */
+        /* HEADER DIBESARKAN & BOLD KEPADA NAMA SISTEM */
         .top-bar {
             background-color: #0b2545;
             color: #ffffff;
-            padding: 10px 15px;
+            padding: 12px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-            height: 60px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            height: 75px;
         }
 
         .header-logo-img {
-            width: 38px;
-            height: 38px;
+            width: 48px;
+            height: 48px;
             object-fit: contain;
             display: block;
+            filter: drop-shadow(0 0 4px rgba(255,255,255,0.2));
         }
 
         .top-bar-center { text-align: center; }
-        .top-bar-title { font-size: 15px; font-weight: 800; letter-spacing: 0.5px; color: #ffd700; }
-        .top-bar-sub { font-size: 9px; opacity: 0.9; letter-spacing: 0.5px; }
+        .top-bar-title { 
+            font-size: 22px; 
+            font-weight: 900; 
+            letter-spacing: 1.5px; 
+            color: #ffd700; 
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+        }
+        .top-bar-sub { font-size: 10px; font-weight: 700; opacity: 0.9; letter-spacing: 0.8px; color: #00e5ff; }
 
-        /* Ruang Kandungan Skrin (Diubah supaya tidak tertutup oleh bottom bar & footer) */
         .screen { 
             display: none; 
             padding: 15px; 
             flex-grow: 1; 
-            padding-bottom: 120px; 
+            padding-bottom: 110px; 
         }
         .screen.active { display: block; }
 
@@ -108,6 +112,31 @@
 
         .section-title { font-size: 12px; font-weight: 800; color: #0b2545; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
 
+        /* KAD RINGKASAN AKSES SYSTEM & TOP 3 MEDAL */
+        .stat-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #0b2545 0%, #134074 100%);
+            color: #fff;
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .stat-num { font-size: 20px; font-weight: 900; color: #00e5ff; }
+
+        .top3-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 5px; }
+        .top3-card {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 10px 5px;
+            text-align: center;
+            font-size: 10px;
+            font-weight: 700;
+        }
+        .top3-card .medal { font-size: 24px; margin-bottom: 3px; }
+
         .guide-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
         .guide-card { border-radius: 12px; padding: 10px 6px; text-align: center; font-size: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
         .guide-clean { background: #e6f9ed; border: 1.5px solid #2ec4b6; color: #0e6251; }
@@ -116,24 +145,40 @@
         .guide-card .emoji-icon { font-size: 24px; margin-bottom: 4px; display: block; }
         .guide-card .title { font-weight: 800; font-size: 10px; margin-bottom: 2px; }
 
-        /* Camera Viewport */
+        /* CAMERA BOX & VIDEO STREAM NATIVE */
         .camera-box { 
             width: 100%; 
             max-width: 320px;
-            height: 300px; 
+            height: 260px; 
             background: #000; 
             border-radius: 16px; 
             overflow: hidden; 
-            margin: 0 auto 15px auto; 
+            margin: 0 auto 12px auto; 
             border: 2px solid #134074; 
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
         }
-        #webcam-container { width: 100%; height: 100%; }
-        #webcam-container canvas { width: 100% !important; height: 100% !important; object-fit: cover; }
+        #webcam-video { width: 100%; height: 100%; object-fit: cover; }
         .camera-hint { background: #eef4fb; padding: 10px; border-radius: 10px; font-size: 11px; color: #134074; margin-bottom: 12px; text-align: center; }
+
+        /* GALERI MINI 25 GAMBAR IMBASAN (BASE64) */
+        .gallery-container {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 8px 0;
+            margin-top: 10px;
+        }
+        .gallery-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid #134074;
+            flex-shrink: 0;
+        }
 
         /* Result Cards */
         .result-badge-card { border-radius: 16px; padding: 18px; text-align: center; margin-bottom: 15px; color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
@@ -143,7 +188,6 @@
         .result-emoji-big { font-size: 48px; margin-bottom: 5px; }
         .result-status { font-size: 24px; font-weight: 900; letter-spacing: 1px; margin: 2px 0; }
 
-        /* Analitik Tab Switcher */
         .tab-switcher { display: flex; background: #e2e8f0; border-radius: 10px; padding: 3px; margin-bottom: 12px; }
         .tab-btn { flex: 1; padding: 8px; text-align: center; font-size: 10px; font-weight: 800; border-radius: 8px; cursor: pointer; color: #64748b; }
         .tab-btn.active { background: #134074; color: #ffffff; }
@@ -160,11 +204,9 @@
 
         .log-list-item { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 10px; margin-bottom: 6px; font-size: 10px; }
 
-        /* Buttons */
         .btn-primary { width: 100%; padding: 12px; background: #134074; color: #ffffff; border: none; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; text-transform: uppercase; }
         .btn-secondary { width: 100%; padding: 10px; background: #e2e8f0; color: #1a202c; border: none; border-radius: 12px; font-weight: 700; font-size: 12px; cursor: pointer; margin-top: 6px; }
 
-        /* ================= SUSUN ATUR NAVIGATION & FOOTER KEKAL (FIXED) ================= */
         .bottom-nav-wrapper {
             position: fixed;
             bottom: 0;
@@ -176,7 +218,6 @@
             box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
         }
 
-        /* 3 Tab Navigation */
         .bottom-nav {
             background: #ffffff;
             border-top: 1px solid #cbd5e1;
@@ -185,18 +226,10 @@
             padding: 6px 0;
         }
 
-        .nav-item {
-            text-align: center;
-            color: #64748b;
-            font-size: 9px;
-            cursor: pointer;
-            flex-grow: 1;
-        }
-
+        .nav-item { text-align: center; color: #64748b; font-size: 9px; cursor: pointer; flex-grow: 1; }
         .nav-item.active { color: #134074; font-weight: 800; }
         .nav-item .icon { font-size: 16px; margin-bottom: 2px; }
 
-        /* Footer Khas Paling Bawah Sekali */
         .app-footer-fixed {
             background-color: #0b2545;
             color: #ffffff;
@@ -206,27 +239,13 @@
             line-height: 1.3;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
-
-        .footer-line-1 {
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-        }
-
-        .footer-line-2 {
-            font-size: 7.5px;
-            color: #ffd700;
-            font-weight: 600;
-            margin-top: 1px;
-        }
     </style>
 </head>
 <body>
 
     <div class="app-container">
-        <!-- TOP BAR DENGAN SUSUNAN DUA LOGO -->
+        <!-- HEADER DIBESARKAN & NAMA SISTEM BOLD -->
         <div class="top-bar">
-            <!-- Logo SMART i-C di Kiri -->
             <img src="logo-smart-ic.png" alt="SMART i-C" class="header-logo-img" onerror="this.style.opacity='0'">
             
             <div class="top-bar-center">
@@ -234,7 +253,6 @@
                 <div class="top-bar-sub">SK PETRAJAYA KUCHING</div>
             </div>
 
-            <!-- Logo SKPJ di Kanan -->
             <img src="logo-skpj.png" alt="SKPJ" class="header-logo-img" onerror="this.style.opacity='0'">
         </div>
 
@@ -243,6 +261,15 @@
             <div class="hero-banner">
                 <div class="hero-title">Kelas Bersih, Minda Ceria,<br>Masa Depan Cemerlang</div>
                 <div class="hero-sub">AI mengesan tahap kebersihan kelas melalui gambar secara pantas dan tepat.</div>
+            </div>
+
+            <!-- RINGKASAN AKSES SISTERM SPJ MASA -->
+            <div class="stat-banner">
+                <div>
+                    <div style="font-size: 10px; text-transform: uppercase; opacity: 0.8;">Jumlah Akses & Imbasan</div>
+                    <div style="font-size: 11px; font-weight: 700;">Keseluruhan Sistem</div>
+                </div>
+                <div class="stat-num" id="total-usage-count">142x</div>
             </div>
 
             <div class="card">
@@ -269,6 +296,28 @@
                 </div>
             </div>
 
+            <!-- TOP 3 KELAS TERBERSIH BERSAMA PINGAT -->
+            <div class="card">
+                <div class="section-title">🏆 Top 3 Kelas Terbersih</div>
+                <div class="top3-grid">
+                    <div class="top3-card">
+                        <div class="medal">🥇</div>
+                        <div style="color: #0b2545;">1 Alpha</div>
+                        <div style="color: #2ec4b6; font-weight: 800;">98.5%</div>
+                    </div>
+                    <div class="top3-card">
+                        <div class="medal">🥈</div>
+                        <div style="color: #0b2545;">Makmal Sains</div>
+                        <div style="color: #2ec4b6; font-weight: 800;">96.2%</div>
+                    </div>
+                    <div class="top3-card">
+                        <div class="medal">🥉</div>
+                        <div style="color: #0b2545;">2 Beta</div>
+                        <div style="color: #2ec4b6; font-weight: 800;">94.8%</div>
+                    </div>
+                </div>
+            </div>
+
             <div class="section-title">Panduan Tahap Kebersihan</div>
             <div class="guide-grid">
                 <div class="guide-card guide-clean">
@@ -289,18 +338,26 @@
             </div>
         </div>
 
-        <!-- ================= SCREEN 2: KAMERA & IMBASAN ================= -->
+        <!-- ================= SCREEN 2: KAMERA & GALERI 25 GAMBAR ================= -->
         <div class="screen" id="screen-2">
             <div class="camera-hint">
-                💡 <b>Tip:</b> Halakan kamera ke kawasan kelas untuk analisis AI secara langsung.
+                💡 <b>Tip:</b> Halakan camera dari peranti anda ke kawasan kelas untuk analisis AI.
             </div>
 
             <div class="camera-box">
-                <div id="webcam-container"></div>
+                <video id="webcam-video" autoplay playsinline muted></video>
             </div>
 
-            <button class="btn-primary" id="btn-start-cam" onclick="mulaKamera()">Buka Kamera AI</button>
+            <button class="btn-primary" id="btn-start-cam" onclick="mulaKameraPeranti()">Buka Camera Peranti</button>
             <button class="btn-primary" id="btn-capture-ai" style="display:none;" onclick="prosesImbasanAI()">⚡ Imbas Sekarang</button>
+
+            <!-- SIMPANAN MAXIMUM 25 GAMBAR IMBASAN (BASE64) -->
+            <div class="card" style="margin-top: 15px;">
+                <div class="section-title" style="font-size: 11px;">🖼️ Galeri Imbasan Terkini (Maksimum 25 Gambar)</div>
+                <div class="gallery-container" id="gallery-box">
+                    <div style="font-size: 10px; color: #94a3b8;">Tiada imbasan gambar lagi.</div>
+                </div>
+            </div>
         </div>
 
         <!-- ================= SCREEN 3: KEPUTUSAN AI ================= -->
@@ -371,9 +428,8 @@
             <div id="history-log-container"></div>
         </div>
 
-        <!-- ================= BOTTOM NAV & FIXED FOOTER WRAPPER ================= -->
+        <!-- BOTTOM NAV & FOOTER -->
         <div class="bottom-nav-wrapper">
-            <!-- 3 Tab Navigation (Di Atas Footer) -->
             <div class="bottom-nav">
                 <div class="nav-item active" id="nav-1" onclick="navigasiKe(1)">
                     <div class="icon">🏠</div>
@@ -389,10 +445,9 @@
                 </div>
             </div>
 
-            <!-- Footer Hak Cipta (Paling Bawah Sekali - Font Kecil Khas) -->
             <div class="app-footer-fixed">
-                <div class="footer-line-1">PEMBANGUNAN SISTEM: AI AVENGERS</div>
-                <div class="footer-line-2">HAK CIPTA TERPELIHARA 2026</div>
+                <div style="font-weight: 800; color: #ffffff;">PEMBANGUNAN SISTEM: AI AVENGERS</div>
+                <div style="font-size: 7.5px; color: #ffd700; margin-top: 1px;">HAK CIPTA TERPELIHARA 2026</div>
             </div>
         </div>
     </div>
@@ -405,17 +460,15 @@
         const URL_MODEL_TM = "https://teachablemachine.withgoogle.com/models/8T1UNdXAx/"; 
         const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzE_Hm9DdGq3ICixBiC_m78B0lnzW7tlQx1UebWT7-rD5kDbp4JN5WqZQbDTZWP8fHH/exec"; 
 
-        let model, webcam, maxPredictions;
+        let model, maxPredictions;
         let currentStatus = "", currentConfidence = 0;
-        let isCamActive = false;
-        let currentMode = 'harian';
+        let videoStream = null;
+        let savedImagesArray = []; // Simpan Maksimum 25 Gambar dlm Kod Base64
 
         let historyData = [
             { kelas: "Kelas 1 Alpha", status: "Bersih", keyakinan: "96.5%", tarikh: "06/08/2026" },
             { kelas: "Kelas 2 Beta", status: "Bersih", keyakinan: "92.0%", tarikh: "06/08/2026" },
-            { kelas: "Makmal Sains", status: "Bersih", keyakinan: "95.0%", tarikh: "05/08/2026" },
-            { kelas: "Kelas 3 Gamma", status: "Sederhana Bersih", keyakinan: "78.2%", tarikh: "05/08/2026" },
-            { kelas: "Kelas 4 Delta", status: "Kotor", keyakinan: "84.0%", tarikh: "04/08/2026" }
+            { kelas: "Makmal Sains", status: "Bersih", keyakinan: "95.0%", tarikh: "05/08/2026" }
         ];
 
         const top10Data = [
@@ -434,6 +487,7 @@
         window.onload = function() {
             renderDashboard();
             renderRankingTable();
+            muatGambarTersimpan();
         };
 
         function navigasiKe(screenNum) {
@@ -448,17 +502,9 @@
             if(screenNum === 4) { renderDashboard(); }
         }
 
-        function tukarTabAnalitik(mode) {
-            currentMode = mode;
-            document.getElementById('tab-daily').classList.toggle('active', mode === 'harian');
-            document.getElementById('tab-monthly').classList.toggle('active', mode === 'bulanan');
-            document.getElementById('chart-title-text').innerText = mode === 'harian' ? 'Carta Analitik Kebersihan Harian' : 'Carta Analitik Kebersihan Bulanan (Fasa 1 & 2)';
-            renderDashboard();
-        }
-
-        /* KAMERA MOBILE OPTIMIZED */
-        async function mulaKamera() {
-            document.getElementById("btn-start-cam").innerText = "MEMUATKAN AI...";
+        /* KAMERA UNIFIED MESRA SEMUA PERANTI (LAPTOP/TABLET/PHONE) */
+        async function mulaKameraPeranti() {
+            document.getElementById("btn-start-cam").innerText = "MEMUATKAN CAMERA...";
             document.getElementById("btn-start-cam").disabled = true;
 
             const modelURL = URL_MODEL_TM + "model.json";
@@ -468,40 +514,30 @@
                 model = await tmImage.load(modelURL, metadataURL);
                 maxPredictions = model.getTotalPredictions();
 
-                // Saiz kanvas mudah alih mesra peranti
-                const flip = false; 
-                webcam = new tmImage.Webcam(300, 300, flip); 
-                
-                // Akses Kamera Belakang Telefon Pintar
-                await webcam.setup({ video: { facingMode: "environment" } });
-                await webcam.play();
-                window.requestAnimationFrame(loopCam);
+                const constraints = {
+                    video: { facingMode: { ideal: "environment" }, width: { ideal: 640 }, height: { ideal: 640 } }
+                };
 
-                const webcamContainer = document.getElementById("webcam-container");
-                webcamContainer.innerHTML = "";
-                webcamContainer.appendChild(webcam.canvas);
+                videoStream = await navigator.mediaDevices.getUserMedia(constraints);
+                const videoElem = document.getElementById("webcam-video");
+                videoElem.srcObject = videoStream;
 
                 document.getElementById("btn-start-cam").style.display = "none";
                 document.getElementById("btn-capture-ai").style.display = "block";
-                isCamActive = true;
-            } catch(e) {
-                alert("Sila benarkan akses kamera dlm pelayar telefon pintar anda (Camera Permission Allow).");
-                document.getElementById("btn-start-cam").innerText = "Buka Kamera AI";
+            } catch (e) {
+                alert("Gagal Buka Camera: Sila pastikan anda menekan ALLOW/IZINKAN kamera pada peranti.");
+                document.getElementById("btn-start-cam").innerText = "Buka Camera Peranti";
                 document.getElementById("btn-start-cam").disabled = false;
             }
         }
 
-        async function loopCam() {
-            if(isCamActive) {
-                webcam.update();
-                window.requestAnimationFrame(loopCam);
-            }
-        }
-
         async function prosesImbasanAI() {
-            const prediction = await model.predict(webcam.canvas);
-            let highest = { className: "", probability: 0 };
+            const videoElem = document.getElementById("webcam-video");
             
+            // AI Predict Direct Canvas Stream
+            const prediction = await model.predict(videoElem);
+            let highest = { className: "", probability: 0 };
+
             for (let i = 0; i < maxPredictions; i++) {
                 if (prediction[i].probability > highest.probability) {
                     highest = prediction[i];
@@ -510,6 +546,9 @@
 
             currentStatus = highest.className;
             currentConfidence = (highest.probability * 100).toFixed(1);
+
+            // TUKAR GAMBAR KE KOD BASE64 (MAKSIMUM 25 GAMBAR LIGHTWEIGHT)
+            simpanGambarBase64(videoElem);
 
             const bgCard = document.getElementById("result-card-bg");
             const statusTxt = document.getElementById("res-status-text");
@@ -536,6 +575,41 @@
             }
 
             navigasiKe(3);
+        }
+
+        /* SIMPAN GAMBAR DALAM BENTUK KOD BASE64 (MAKSIMUM 25 GAMBAR) */
+        function simpanGambarBase64(videoElem) {
+            const canvas = document.createElement("canvas");
+            canvas.width = 150; 
+            canvas.height = 150;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(videoElem, 0, 0, 150, 150);
+            
+            // Convert to lightweight JPEG Base64 Code
+            const base64Code = canvas.toDataURL("image/jpeg", 0.6);
+
+            savedImagesArray.unshift(base64Code);
+            if(savedImagesArray.length > 25) {
+                savedImagesArray.pop(); // Kekalkan max 25 gambar terkini
+            }
+
+            localStorage.setItem("smart_ic_gallery_base64", JSON.stringify(savedImagesArray));
+            muatGambarTersimpan();
+        }
+
+        function muatGambarTersimpan() {
+            const galleryBox = document.getElementById("gallery-box");
+            savedImagesArray = JSON.parse(localStorage.getItem("smart_ic_gallery_base64")) || [];
+            
+            if(savedImagesArray.length > 0) {
+                galleryBox.innerHTML = "";
+                savedImagesArray.forEach(code => {
+                    let img = document.createElement("img");
+                    img.src = code;
+                    img.className = "gallery-img";
+                    galleryBox.appendChild(img);
+                });
+            }
         }
 
         async function simpanKeSheets() {
@@ -566,10 +640,6 @@
         }
 
         function renderDashboard() {
-            let clean = currentMode === 'harian' ? 12 : 68;
-            let med = currentMode === 'harian' ? 3 : 14;
-            let dirty = currentMode === 'harian' ? 1 : 5;
-
             const logContainer = document.getElementById("history-log-container");
             logContainer.innerHTML = "";
 
@@ -587,23 +657,16 @@
                 logContainer.appendChild(div);
             });
 
-            document.getElementById("count-clean").innerText = clean;
-            document.getElementById("count-med").innerText = med;
-            document.getElementById("count-dirty").innerText = dirty;
-
             const ctx = document.getElementById('weeklyChart').getContext('2d');
             if(window.myWeeklyChart) window.myWeeklyChart.destroy();
-
-            let chartLabels = currentMode === 'harian' ? ['Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat'] : ['Jan', 'Feb', 'Mac', 'Apr', 'Mei', 'Jun'];
-            let chartData = currentMode === 'harian' ? [10, 12, 8, 15, 12] : [60, 65, 58, 72, 70, 68];
 
             window.myWeeklyChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: chartLabels,
+                    labels: ['Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat'],
                     datasets: [{
-                        label: 'Bilangan Imbasan',
-                        data: chartData,
+                        label: 'Imbasan',
+                        data: [10, 12, 8, 15, 12],
                         backgroundColor: '#2ec4b6'
                     }]
                 },
