@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMART i-C | AI Classroom Cleaning Detector</title>
+    <title>SMART i-C | SK Petrajaya Kuching</title>
     <style>
         * {
             box-sizing: border-box;
@@ -20,22 +20,30 @@
             padding: 15px;
         }
 
-        /* Container Layout */
+        /* Header Moden dengan Logo SKPJ di Kanan */
         .app-header {
             background: linear-gradient(135deg, #1c2541 0%, #0b132b 100%);
             border: 1px solid #3a506b;
             border-radius: 16px;
-            padding: 16px;
+            padding: 18px;
             margin-bottom: 15px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             box-shadow: 0 4px 20px rgba(0, 229, 255, 0.15);
+        }
+
+        .header-text {
+            text-align: left;
+            flex-grow: 1;
+            padding-right: 10px;
         }
 
         .brand-title {
             color: #00e5ff;
             font-size: 24px;
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
         }
@@ -43,23 +51,25 @@
         .brand-subtitle {
             color: #5bc0be;
             font-size: 11px;
-            margin-top: 4px;
-            letter-spacing: 1px;
-        }
-
-        .team-badge {
-            display: inline-block;
-            background: rgba(0, 229, 255, 0.1);
-            color: #ffd700;
-            border: 1px solid #ffd700;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 10px;
+            margin-top: 3px;
+            letter-spacing: 0.5px;
             font-weight: 600;
-            margin-top: 8px;
         }
 
-        /* Class Selector Card */
+        .school-name-header {
+            color: #ffd700;
+            font-size: 10px;
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .school-logo {
+            width: 60px;
+            height: auto;
+            flex-shrink: 0;
+        }
+
+        /* Card Layout */
         .card {
             background: #1c2541;
             border: 1px solid #3a506b;
@@ -89,7 +99,7 @@
             outline: none;
         }
 
-        /* Camera Feed Section */
+        /* Camera Feed Section dengan Kesan Garisan Neon (Scanline) */
         .camera-card {
             background: #1c2541;
             border: 1px solid #3a506b;
@@ -106,10 +116,31 @@
             margin: 0 auto 15px auto;
             background: #000000;
             border-radius: 12px;
-            border: 2px dashed #00e5ff;
+            border: 2px solid #00e5ff;
             position: relative;
             overflow: hidden;
             display: block;
+            box-shadow: inset 0 0 15px rgba(0, 229, 255, 0.3);
+        }
+
+        /* Efek Ilustrasi Garisan Imbasan (Laser Scan Line) */
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #00e5ff;
+            box-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff;
+            animation: scanning 2s infinite linear;
+            display: none;
+            z-index: 10;
+        }
+
+        @keyframes scanning {
+            0% { top: 0%; }
+            50% { top: 97%; }
+            100% { top: 0%; }
         }
 
         #webcam-container canvas {
@@ -160,7 +191,7 @@
             box-shadow: 0 0 15px rgba(0, 176, 155, 0.4);
         }
 
-        /* Results Box */
+        /* Results Display */
         .result-card {
             background: #1c2541;
             border: 1px solid #3a506b;
@@ -171,17 +202,19 @@
         }
 
         .status-badge {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             padding: 12px;
             border-radius: 10px;
             text-align: center;
             margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
-        .status-clean { background: rgba(0, 230, 118, 0.2); color: #00e676; border: 1px solid #00e676; }
-        .status-med { background: rgba(255, 215, 0, 0.2); color: #ffd700; border: 1px solid #ffd700; }
-        .status-dirty { background: rgba(255, 23, 68, 0.2); color: #ff1744; border: 1px solid #ff1744; }
+        /* Warna Dinamik Mengikut Permintaan */
+        .status-clean { background: rgba(0, 230, 118, 0.25); color: #00e676; border: 2px solid #00e676; }
+        .status-med { background: rgba(255, 152, 0, 0.25); color: #ff9800; border: 2px solid #ff9800; }
+        .status-dirty { background: rgba(255, 23, 68, 0.25); color: #ff1744; border: 2px solid #ff1744; }
 
         .confidence-meter {
             height: 10px;
@@ -198,24 +231,50 @@
             transition: width 0.5s ease;
         }
 
-        .footer-text {
+        /* Footer & Logo Avengers Bahagian Bawah */
+        .app-footer {
             text-align: center;
-            font-size: 10px;
+            padding: 20px 10px 10px 10px;
+            margin-top: 10px;
+            border-top: 1px dashed #3a506b;
+        }
+
+        .footer-label {
+            font-size: 11px;
             color: #5bc0be;
-            margin-top: 20px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .avengers-logo {
+            width: 65px;
+            height: auto;
+            margin-bottom: 6px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+        }
+
+        .footer-team {
+            color: #00e5ff;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header Bersama Logo SKPJ di Kanan -->
     <div class="app-header">
-        <div class="brand-title">SMART i-C</div>
-        <div class="brand-subtitle">INTELLIGENT CLASSROOM SYSTEM v2.0</div>
-        <div class="team-badge">POWERED BY GERAMA LAB & AI AVENGERS</div>
+        <div class="header-text">
+            <div class="brand-title">SMART i-C</div>
+            <div class="brand-subtitle">Sistem Pengesanan Kebersihan Bilik Darjah AI</div>
+            <div class="school-name-header">Sekolah Kebangsaan Petrajaya (SKPJ) Kuching</div>
+        </div>
+        <img src="logo-skpj.png" alt="Logo SKPJ" class="school-logo" onerror="this.style.display='none'">
     </div>
 
-    <!-- Dropdown Kelas (Dynamic) -->
+    <!-- Dropdown Pilih / Tambah Kelas -->
     <div class="card">
         <div class="card-title">📍 Pilih / Tambah Bilik Darjah</div>
         <select id="select-kelas" onchange="semakPilihanKelas(this)">
@@ -226,10 +285,11 @@
         </select>
     </div>
 
-    <!-- Camera Feed -->
+    <!-- Camera Feed dengan Kesan Garisan Laser Imbasan -->
     <div class="camera-card">
-        <div class="card-title">📸 Imbasan Kamera AI</div>
+        <div class="card-title" id="camera-status-title">📸 Kamera: Sedang Mengimbas...</div>
         <div class="viewfinder" id="viewfinder-box">
+            <div class="scan-line" id="scanLaser"></div>
             <div class="camera-placeholder" id="placeholder-text">Tekan 'Buka Kamera' Untuk Mula</div>
             <div id="webcam-container"></div>
         </div>
@@ -239,7 +299,7 @@
     <!-- Results Display -->
     <div class="result-card" id="result-box">
         <div class="card-title">📊 Analisis AI Real-Time</div>
-        <div class="status-badge status-clean" id="status-text">ANALISIS...</div>
+        <div class="status-badge status-clean" id="status-text">MENUNGGU ANALISIS...</div>
         <div style="display: flex; justify-content: space-between; font-size: 12px; color: #5bc0be;">
             <span>Tahap Keyakinan AI:</span>
             <span id="confidence-val">0%</span>
@@ -250,8 +310,11 @@
         <button class="btn-save" id="btn-hantar" type="button" onclick="hantarDataManual()">💾 Simpan Rekod Ke Sheets</button>
     </div>
 
-    <div class="footer-text">
-        Projek Inovasi AI Sek. Men. | Hak Cipta © Gerama Lab (New Digital Solution)
+    <!-- Footer Bahagian Bawah (Dibangunkan oleh Kumpulan & Logo AI Avengers) -->
+    <div class="app-footer">
+        <div class="footer-label">Dibangunkan oleh Kumpulan:</div>
+        <img src="logo-avengers.png" alt="Logo AI Avengers" class="avengers-logo" onerror="this.style.display='none'">
+        <div class="footer-team">AI AVENGERS</div>
     </div>
 
     <!-- Scripts -->
@@ -265,7 +328,6 @@
         let model, webcam, labelContainer, maxPredictions;
         let currentStatus = "", currentConfidence = 0;
 
-        // --- MUAAT NAIK KELAS DARI LOCALSTORAGE SEMASA APPS DIBUKA ---
         window.onload = function() {
             muatKelasTersimpan();
         };
@@ -274,7 +336,6 @@
             const select = document.getElementById("select-kelas");
             const kelasTersimpan = JSON.parse(localStorage.getItem("smart_ic_custom_classes")) || [];
             
-            // Masukkan kelas dari LocalStorage sebelum option '+ Tambah Kelas'
             kelasTersimpan.forEach(namaKelas => {
                 let opt = document.createElement("option");
                 opt.value = namaKelas;
@@ -289,21 +350,19 @@
                 if (namaBaharu && namaBaharu.trim() !== "") {
                     namaBaharu = namaBaharu.trim();
                     
-                    // Simpan dlm LocalStorage pelayar
                     let kelasTersimpan = JSON.parse(localStorage.getItem("smart_ic_custom_classes")) || [];
                     if (!kelasTersimpan.includes(namaBaharu)) {
                         kelasTersimpan.push(namaBaharu);
                         localStorage.setItem("smart_ic_custom_classes", JSON.stringify(kelasTersimpan));
                     }
 
-                    // Tambah ke dalam Dropdown UI
                     let opt = document.createElement("option");
                     opt.value = namaBaharu;
                     opt.innerText = namaBaharu;
                     selectElement.insertBefore(opt, selectElement.lastElementChild);
-                    selectElement.value = namaBaharu; // Auto select kelas baharu
+                    selectElement.value = namaBaharu; 
                 } else {
-                    selectElement.selectedIndex = 0; // Reset mun cancel
+                    selectElement.selectedIndex = 0; 
                 }
             }
         }
@@ -327,7 +386,13 @@
 
                 document.getElementById("placeholder-text").style.display = "none";
                 document.getElementById("webcam-container").appendChild(webcam.canvas);
+                
+                // Paparkan kotak keputusan & aktifkan garisan imbasan laser
                 document.getElementById("result-box").style.display = "block";
+                document.getElementById("scanLaser").style.display = "block";
+                
+                // Tukar teks tajuk kamera kepada "Berjaya Mengimbas"
+                document.getElementById("camera-status-title").innerText = "📸 Kamera: Berjaya Mengimbas (Live)";
                 document.getElementById("btn-start").style.display = "none";
                 document.getElementById("btn-hantar").style.display = "block";
 
@@ -360,13 +425,17 @@
             const statusElem = document.getElementById("status-text");
             statusElem.innerText = currentStatus.toUpperCase();
             
+            // Logik warna butang/badge mengikut permintaan:
+            // Sangat Bersih = Hijau, Sederhana Bersih = Jingga, Kotor = Merah
             statusElem.className = "status-badge ";
-            if (currentStatus.toLowerCase().includes("bersih") && !currentStatus.toLowerCase().includes("sederhana")) {
-                statusElem.classList.add("status-clean");
-            } else if (currentStatus.toLowerCase().includes("sederhana")) {
-                statusElem.classList.add("status-med");
+            let lowerStatus = currentStatus.toLowerCase();
+            
+            if (lowerStatus.includes("bersih") && !lowerStatus.includes("sederhana")) {
+                statusElem.classList.add("status-clean"); // Hijau
+            } else if (lowerStatus.includes("sederhana")) {
+                statusElem.classList.add("status-med"); // Jingga / Orange
             } else {
-                statusElem.classList.add("status-dirty");
+                statusElem.classList.add("status-dirty"); // Merah
             }
 
             document.getElementById("confidence-val").innerText = currentConfidence + "%";
@@ -388,7 +457,7 @@
                 namaKelas: namaKelas,
                 status: currentStatus,
                 keyakinan: currentConfidence,
-                catatan: "Imbasan Aplikasi SMART i-C (Gerama Lab)"
+                catatan: "Imbasan SMART i-C (SKPJ Kuching)"
             };
 
             try {
