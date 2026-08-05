@@ -3,117 +3,407 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMART i-C Online | AI Avengers</title>
-    
-    <!-- Kod CSS Asal dlm index.html (Boleh Edit Kelak mun mahu) -->
+    <title>SMART i-C | AI Classroom Cleaning Detector</title>
     <style>
-        body { font-family: 'Montserrat', sans-serif; text-align: center; background-color: #f0f0f0; padding: 20px; }
-        #webcam-container { margin: 20px auto; width: 300px; height: 300px; background: black; border-radius: 15px; }
-        canvas { border-radius: 15px; }
-        #label-container { margin: 20px auto; font-size: 20px; font-weight: bold; padding: 15px; background: white; border-radius: 10px; }
-        #label-container div { margin: 5px 0; }
-        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 16px; cursor: pointer; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0b132b;
+            color: #ffffff;
+            display: block;
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        /* Container Layout */
+        .app-header {
+            background: linear-gradient(135deg, #1c2541 0%, #0b132b 100%);
+            border: 1px solid #3a506b;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 229, 255, 0.15);
+        }
+
+        .brand-title {
+            color: #00e5ff;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+
+        .brand-subtitle {
+            color: #5bc0be;
+            font-size: 11px;
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        .team-badge {
+            display: inline-block;
+            background: rgba(0, 229, 255, 0.1);
+            color: #ffd700;
+            border: 1px solid #ffd700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        /* Class Selector Card */
+        .card {
+            background: #1c2541;
+            border: 1px solid #3a506b;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-title {
+            font-size: 13px;
+            color: #5bc0be;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px;
+            background: #0b132b;
+            border: 1px solid #00e5ff;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        /* Camera Feed Section */
+        .camera-card {
+            background: #1c2541;
+            border: 1px solid #3a506b;
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .viewfinder {
+            width: 100%;
+            max-width: 320px;
+            height: 280px;
+            margin: 0 auto 15px auto;
+            background: #000000;
+            border-radius: 12px;
+            border: 2px dashed #00e5ff;
+            position: relative;
+            overflow: hidden;
+            display: block;
+        }
+
+        #webcam-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .camera-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #5bc0be;
+            font-size: 12px;
+        }
+
+        .btn-scan {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #00e5ff 0%, #0088ff 100%);
+            border: none;
+            border-radius: 12px;
+            color: #0b132b;
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+        }
+
+        .btn-save {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #00b09b 0%, #96c93d 100%);
+            border: none;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: none;
+            box-shadow: 0 0 15px rgba(0, 176, 155, 0.4);
+        }
+
+        /* Results Box */
+        .result-card {
+            background: #1c2541;
+            border: 1px solid #3a506b;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .status-badge {
+            font-size: 22px;
+            font-weight: 800;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .status-clean { background: rgba(0, 230, 118, 0.2); color: #00e676; border: 1px solid #00e676; }
+        .status-med { background: rgba(255, 215, 0, 0.2); color: #ffd700; border: 1px solid #ffd700; }
+        .status-dirty { background: rgba(255, 23, 68, 0.2); color: #ff1744; border: 1px solid #ff1744; }
+
+        .confidence-meter {
+            height: 10px;
+            background: #0b132b;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: #00e5ff;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 10px;
+            color: #5bc0be;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
-    <h1>SMART i-C</h1>
-    <p>Sistem Pengesanan Kebersihan Bilik Darjah AI | AI Avengers</p>
-    
-    <button type="button" onclick="init()">Mula Imbasan</button>
-    <div id="webcam-container"></div>
-    <div id="label-container">Menunggu Imbasan...</div>
+    <!-- Header -->
+    <div class="app-header">
+        <div class="brand-title">SMART i-C</div>
+        <div class="brand-subtitle">INTELLIGENT CLASSROOM SYSTEM v2.0</div>
+        <div class="team-badge">POWERED BY GERAMA LAB & AI AVENGERS</div>
+    </div>
 
-    <!-- Kod Javascript Jangka Panjang dari TM + Kod Tambahan GAS -->
+    <!-- Dropdown Kelas (Dynamic) -->
+    <div class="card">
+        <div class="card-title">📍 Pilih / Tambah Bilik Darjah</div>
+        <select id="select-kelas" onchange="semakPilihanKelas(this)">
+            <option value="Kelas 1 Alpha">Kelas 1 Alpha</option>
+            <option value="Kelas 2 Beta">Kelas 2 Beta</option>
+            <option value="Makmal Sains">Makmal Sains</option>
+            <option value="ADD_NEW_CLASS" style="font-weight: bold; color: #00e5ff;">➕ [ Tambah Kelas Baharu... ]</option>
+        </select>
+    </div>
+
+    <!-- Camera Feed -->
+    <div class="camera-card">
+        <div class="card-title">📸 Imbasan Kamera AI</div>
+        <div class="viewfinder" id="viewfinder-box">
+            <div class="camera-placeholder" id="placeholder-text">Tekan 'Buka Kamera' Untuk Mula</div>
+            <div id="webcam-container"></div>
+        </div>
+        <button class="btn-scan" id="btn-start" type="button" onclick="init()">Buka Kamera AI</button>
+    </div>
+
+    <!-- Results Display -->
+    <div class="result-card" id="result-box">
+        <div class="card-title">📊 Analisis AI Real-Time</div>
+        <div class="status-badge status-clean" id="status-text">ANALISIS...</div>
+        <div style="display: flex; justify-content: space-between; font-size: 12px; color: #5bc0be;">
+            <span>Tahap Keyakinan AI:</span>
+            <span id="confidence-val">0%</span>
+        </div>
+        <div class="confidence-meter">
+            <div class="confidence-fill" id="confidence-bar"></div>
+        </div>
+        <button class="btn-save" id="btn-hantar" type="button" onclick="hantarDataManual()">💾 Simpan Rekod Ke Sheets</button>
+    </div>
+
+    <div class="footer-text">
+        Projek Inovasi AI Sek. Men. | Hak Cipta © Gerama Lab (New Digital Solution)
+    </div>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-    
-    <script type="text/javascript">
-        // --- SMART i-C: Fungsi Penghantaran Data (GitHub -> GAS) ---
-        // Pembangunan oleh: AI AVENGERS
 
-        // ⚠️ 1. URL MODEL TM KITAK (TELAH DIKEMAS KINI)
-        // Kamek dah tampal URL model kitak sitok
+    <script type="text/javascript">
         const URL_MODEL_TM = "https://teachablemachine.withgoogle.com/models/8T1UNdXAx/"; 
-        
-        // ⚠️ 2. URL WEB APP GAS KITAK (TELAH DIKEMAS KINI)
-        // Kamek dah tampal URL Web App Google Apps Script kitak sitok
         const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzE_Hm9DdGq3ICixBiC_m78B0lnzW7tlQx1UebWT7-rD5kDbp4JN5WqZQbDTZWP8fHH/exec"; 
 
         let model, webcam, labelContainer, maxPredictions;
+        let currentStatus = "", currentConfidence = 0;
 
-        // --- Fungsi init() Asal dari TM dlm index.html dolok dolok ---
+        // --- MUAAT NAIK KELAS DARI LOCALSTORAGE SEMASA APPS DIBUKA ---
+        window.onload = function() {
+            muatKelasTersimpan();
+        };
+
+        function muatKelasTersimpan() {
+            const select = document.getElementById("select-kelas");
+            const kelasTersimpan = JSON.parse(localStorage.getItem("smart_ic_custom_classes")) || [];
+            
+            // Masukkan kelas dari LocalStorage sebelum option '+ Tambah Kelas'
+            kelasTersimpan.forEach(namaKelas => {
+                let opt = document.createElement("option");
+                opt.value = namaKelas;
+                opt.innerText = namaKelas;
+                select.insertBefore(opt, select.lastElementChild);
+            });
+        }
+
+        function semakPilihanKelas(selectElement) {
+            if (selectElement.value === "ADD_NEW_CLASS") {
+                let namaBaharu = prompt("Masukkan Nama Kelas / Bilik Baharu:");
+                if (namaBaharu && namaBaharu.trim() !== "") {
+                    namaBaharu = namaBaharu.trim();
+                    
+                    // Simpan dlm LocalStorage pelayar
+                    let kelasTersimpan = JSON.parse(localStorage.getItem("smart_ic_custom_classes")) || [];
+                    if (!kelasTersimpan.includes(namaBaharu)) {
+                        kelasTersimpan.push(namaBaharu);
+                        localStorage.setItem("smart_ic_custom_classes", JSON.stringify(kelasTersimpan));
+                    }
+
+                    // Tambah ke dalam Dropdown UI
+                    let opt = document.createElement("option");
+                    opt.value = namaBaharu;
+                    opt.innerText = namaBaharu;
+                    selectElement.insertBefore(opt, selectElement.lastElementChild);
+                    selectElement.value = namaBaharu; // Auto select kelas baharu
+                } else {
+                    selectElement.selectedIndex = 0; // Reset mun cancel
+                }
+            }
+        }
+
         async function init() {
+            document.getElementById("btn-start").innerText = "MEMUATKAN AI...";
+            document.getElementById("btn-start").disabled = true;
+
             const modelURL = URL_MODEL_TM + "model.json";
             const metadataURL = URL_MODEL_TM + "metadata.json";
 
-            model = await tmImage.load(modelURL, metadataURL);
-            maxPredictions = model.getTotalPredictions();
+            try {
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalPredictions();
 
-            const flip = true; // whether to flip the webcam
-            webcam = new tmImage.Webcam(300, 300, flip); // width, height, flip
-            await webcam.setup(); // request access to the webcam
-            await webcam.play();
-            window.requestAnimationFrame(loop);
+                const flip = true; 
+                webcam = new tmImage.Webcam(300, 300, flip); 
+                await webcam.setup({ facingMode: "environment" }); 
+                await webcam.play();
+                window.requestAnimationFrame(loop);
 
-            document.getElementById("webcam-container").appendChild(webcam.canvas);
-            labelContainer = document.getElementById("label-container");
-            for (let i = 0; i < maxPredictions; i++) { // and class labels
-                labelContainer.appendChild(document.createElement("div"));
+                document.getElementById("placeholder-text").style.display = "none";
+                document.getElementById("webcam-container").appendChild(webcam.canvas);
+                document.getElementById("result-box").style.display = "block";
+                document.getElementById("btn-start").style.display = "none";
+                document.getElementById("btn-hantar").style.display = "block";
+
+            } catch (err) {
+                alert("Ralat Kamera / Model: Sila pastikan kebenaran kamera (Camera Permission) diizinkan!");
+                document.getElementById("btn-start").innerText = "Buka Kamera AI";
+                document.getElementById("btn-start").disabled = false;
             }
         }
 
         async function loop() {
-            webcam.update(); // update the webcam frame
+            webcam.update(); 
             await predict();
             window.requestAnimationFrame(loop);
         }
 
-        // --- Fungsi predict() yang Telah Diubah Suai Utk Hantar Data ---
         async function predict() {
             const prediction = await model.predict(webcam.canvas);
             
-            // Cari keputusan AI paling tinggi
-            let highestPrediction = { className: "", probability: 0 };
+            let highest = { className: "", probability: 0 };
             for (let i = 0; i < maxPredictions; i++) {
-                if (prediction[i].probability > highestPrediction.probability) {
-                    highestPrediction = prediction[i];
+                if (prediction[i].probability > highest.probability) {
+                    highest = prediction[i];
                 }
             }
 
-            // Tunjuk dlm Screen (Contoh: "Bersih: 95.5%")
-            labelContainer.innerHTML = highestPrediction.className + ": " + (highestPrediction.probability * 100).toFixed(1) + "%";
+            currentStatus = highest.className;
+            currentConfidence = (highest.probability * 100).toFixed(1);
 
-            // --- Fasa 2.0: Proses Hantar Data ke Google Sheets Mun Perlu ---
-            // Kitak boleh polah automatik mun keyakinan AI > 90%
-            if (highestPrediction.probability > 0.90 && (highestPrediction.className == "Bersih" || highestPrediction.className == "Kotor")) {
-                // Hantar automatik dlm background (uncomment dlm bengkel esok mun perlu)
-                // await hantarDataKeSheets(highestPrediction.className, highestPrediction.probability);
+            const statusElem = document.getElementById("status-text");
+            statusElem.innerText = currentStatus.toUpperCase();
+            
+            statusElem.className = "status-badge ";
+            if (currentStatus.toLowerCase().includes("bersih") && !currentStatus.toLowerCase().includes("sederhana")) {
+                statusElem.classList.add("status-clean");
+            } else if (currentStatus.toLowerCase().includes("sederhana")) {
+                statusElem.classList.add("status-med");
+            } else {
+                statusElem.classList.add("status-dirty");
             }
+
+            document.getElementById("confidence-val").innerText = currentConfidence + "%";
+            document.getElementById("confidence-bar").style.width = currentConfidence + "%";
         }
 
-        // --- Fungsi Lengkap Hantar Data ke Sheets (Jambatan API doPost) ---
-        async function hantarDataKeSheets(statusAI, keyakinanAI) {
+        async function hantarDataManual() {
+            const namaKelas = document.getElementById("select-kelas").value;
+            if(namaKelas === "ADD_NEW_CLASS") {
+                alert("Sila pilih atau tambah nama kelas yang sah dolok!");
+                return;
+            }
+
+            const btn = document.getElementById("btn-hantar");
+            btn.innerText = "MENGHANTAR...";
+            btn.disabled = true;
+
             const payload = {
-                namaKelas: "Kelas Tidak Diketahui", // Kitak boleh polah Input Dropdown dlm HTML kelak dlm bengkel mun mahu
-                status: statusAI,
-                keyakinan: (keyakinanAI * 100).toFixed(1),
-                catatan: "Imbasan automatik via SMART i-C Online (v2.0)"
+                namaKelas: namaKelas,
+                status: currentStatus,
+                keyakinan: currentConfidence,
+                catatan: "Imbasan Aplikasi SMART i-C (Gerama Lab)"
             };
 
             try {
                 await fetch(GAS_WEB_APP_URL, {
                     method: "POST",
-                    mode: "no-cors", // Penting untuk cross-origin Google Apps Script
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload)
                 });
-                console.log("Data kebersihan berjaya dihantar ke Google Sheets via GAS!");
-                // alert("Rekod kebersihan BERJAYA disimpan dlm Google Sheets!");
-            } catch (error) {
-                console.error("Ralat semasa menghantar data:", error);
+                alert("BERJAYA! Rekod kebersihan " + namaKelas + " telah disimpan ke Google Sheets.");
+            } catch (e) {
+                alert("Ralat menghantar data!");
+            } finally {
+                btn.innerText = "💾 Simpan Rekod Ke Sheets";
+                btn.disabled = false;
             }
         }
     </script>
