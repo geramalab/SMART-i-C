@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMART i-C | SK PETRAJAYA KUCHING</title>
-    <!-- Chart.js Utk Dashboard Analitik -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
@@ -34,7 +33,7 @@
             overflow: hidden;
         }
 
-        /* HEADER TOP BAR DENGAN BUTANG LANDING PAGE HOME & ADMIN */
+        /* HEADER TOP BAR */
         .top-bar {
             background-color: #0b2545;
             color: #ffffff;
@@ -50,7 +49,6 @@
         }
 
         .header-left-group { display: flex; align-items: center; gap: 6px; }
-        
         .btn-top-icon {
             background: rgba(255,255,255,0.15);
             border: 1px solid rgba(255,255,255,0.3);
@@ -59,7 +57,6 @@
             padding: 5px 8px;
             font-size: 13px;
             cursor: pointer;
-            transition: all 0.2s;
         }
         .btn-top-icon:active { transform: scale(0.9); }
 
@@ -71,12 +68,12 @@
         .screen { display: none; padding: 15px; flex-grow: 1; padding-bottom: 110px; }
         .screen.active { display: block; }
 
-        /* 1) LANDING PAGE STYLES */
+        /* ================= LANDING PAGE DENGAN LOGO BESAR & ANIMASI MURID ================= */
         #screen-landing {
             background: radial-gradient(circle at center, #134074 0%, #0b2545 70%, #051329 100%);
             color: #ffffff;
             text-align: center;
-            padding: 30px 20px;
+            padding: 25px 20px;
             display: none;
             flex-direction: column;
             align-items: center;
@@ -87,19 +84,60 @@
         }
         #screen-landing.active { display: flex; }
 
-        .landing-welcome { font-size: 14px; font-weight: 800; letter-spacing: 2px; color: #e2e8f0; }
-        .landing-logo-smart { width: 100px; height: auto; margin: 15px 0; }
-        .landing-title { font-size: 26px; font-weight: 900; color: #ffd700; letter-spacing: 1.5px; }
-        .landing-tagline { font-size: 12px; color: #cbd5e1; margin-top: 5px; font-weight: 600; }
-        .landing-school { font-size: 12px; font-weight: 800; color: #00e5ff; margin-top: 15px; }
-        .landing-dev-box { margin-top: 20px; padding: 12px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 16px; width: 100%; }
-        .landing-avengers-logo { width: 45px; height: 45px; border-radius: 50%; margin: 8px auto 4px auto; border: 2px solid #ffd700; }
+        .landing-welcome { font-size: 13px; font-weight: 800; letter-spacing: 2px; color: #e2e8f0; }
+
+        /* HERO LOGO WRAPPER WITH KIDS ANIMATION */
+        .landing-hero-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        /* GAMBAR ANIMASI KANAK-KANAK BERBAJU SEKOLAH */
+        .landing-kids-img {
+            width: 140px;
+            height: auto;
+            margin-bottom: -30px;
+            z-index: 1;
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
+            animation: bounceKids 2.5s infinite ease-in-out;
+        }
+
+        @keyframes bounceKids {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* LOGO SMART i-C DIBESARKAN */
+        .landing-logo-smart-large {
+            width: 135px;
+            height: auto;
+            z-index: 2;
+            filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.7));
+            animation: pulseGlow 3s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .landing-title { font-size: 28px; font-weight: 900; color: #ffd700; letter-spacing: 1.5px; margin-top: 5px; }
+        .landing-tagline { font-size: 12px; color: #cbd5e1; margin-top: 3px; font-weight: 600; }
+        .landing-school { font-size: 12px; font-weight: 800; color: #00e5ff; margin-top: 12px; }
+        
+        .landing-dev-box { margin-top: 15px; padding: 10px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 16px; width: 100%; }
+        .landing-avengers-logo { width: 42px; height: 42px; border-radius: 50%; margin: 6px auto 3px auto; border: 2px solid #ffd700; }
         .landing-team-name { font-size: 14px; font-weight: 900; color: #ffd700; }
 
         .btn-landing-start {
-            width: 100%; padding: 16px; background: linear-gradient(90deg, #ffd700 0%, #ffaa00 100%);
+            width: 100%; padding: 15px; background: linear-gradient(90deg, #ffd700 0%, #ffaa00 100%);
             color: #0b2545; border: none; border-radius: 14px; font-size: 15px; font-weight: 900;
-            text-transform: uppercase; cursor: pointer; margin-top: 15px;
+            text-transform: uppercase; cursor: pointer; margin-top: 12px; box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
         }
 
         /* CARD & BUTTON STYLES */
@@ -122,16 +160,25 @@
         .top3-card { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px 5px; text-align: center; font-size: 10px; font-weight: 700; }
         .top3-card .medal { font-size: 24px; margin-bottom: 3px; }
 
-        .guide-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-        .guide-card { border-radius: 12px; padding: 10px 6px; text-align: center; font-size: 10px; }
-        .guide-clean { background: #e6f9ed; border: 1.5px solid #2ec4b6; color: #0e6251; }
-        .guide-med { background: #fff8e6; border: 1.5px solid #ff9f1c; color: #7d6608; }
-        .guide-dirty { background: #fde8e8; border: 1.5px solid #e71d36; color: #78281f; }
-
-        /* CAMERA & UPLOAD */
-        .camera-box { width: 100%; max-width: 320px; height: 250px; background: #000; border-radius: 16px; overflow: hidden; margin: 0 auto 12px auto; border: 2px solid #134074; display: flex; align-items: center; justify-content: center; }
+        /* CAMERA & PREVIEW WORKFLOW BOX */
+        .camera-box { width: 100%; max-width: 320px; height: 250px; background: #000; border-radius: 16px; overflow: hidden; margin: 0 auto 12px auto; border: 2px solid #134074; display: flex; align-items: center; justify-content: center; position: relative; }
         #webcam-video, #uploaded-img-preview { width: 100%; height: 100%; object-fit: cover; }
         #uploaded-img-preview { display: none; }
+
+        .class-confirm-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(11, 37, 69, 0.85);
+            color: #ffd700;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            border: 1px solid #ffd700;
+            backdrop-filter: blur(4px);
+            display: none;
+        }
 
         .btn-modern { width: 100%; padding: 13px; border: none; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .btn-primary { background: #134074; color: #ffffff; }
@@ -139,12 +186,15 @@
         .btn-secondary { background: #e2e8f0; color: #1a202c; }
         .btn-admin { background: #ffd700; color: #0b2545; }
 
-        .gallery-container { display: flex; gap: 8px; overflow-x: auto; padding: 8px 0; }
-        .gallery-img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; border: 2px solid #134074; flex-shrink: 0; }
+        /* GALERI SLOT 25 GAMBAR BESERTA LABEL KELAS */
+        .gallery-container { display: flex; gap: 10px; overflow-x: auto; padding: 8px 0; }
+        .gallery-item-box { position: relative; flex-shrink: 0; width: 70px; text-align: center; }
+        .gallery-img { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; border: 2px solid #134074; }
+        .gallery-label { font-size: 8px; font-weight: 700; color: #134074; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         /* RATING BINTANG STYLES */
         .star-rating { display: flex; gap: 5px; justify-content: center; margin: 10px 0; }
-        .star { font-size: 28px; color: #cbd5e1; cursor: pointer; transition: color 0.2s; }
+        .star { font-size: 28px; color: #cbd5e1; cursor: pointer; }
         .star.selected { color: #ffd700; }
 
         .ranking-table { width: 100%; border-collapse: collapse; font-size: 11px; }
@@ -168,11 +218,18 @@
 
     <div class="app-container">
 
-        <!-- ================= 1) LANDING PAGE ================= -->
+        <!-- ================= LANDING PAGE WITH LARGE LOGO & KIDS ANIMATION ================= -->
         <div id="screen-landing" class="active">
             <div>
                 <div class="landing-welcome">SELAMAT DATANG KE</div>
-                <img src="logo-smart-ic.png" alt="SMART i-C" class="landing-logo-smart" onerror="this.style.opacity='0'">
+                
+                <div class="landing-hero-wrapper">
+                    <!-- Gambar Animasi Murid Berbaju Sekolah (SKPJ) -->
+                    <img src="kanak-sekolah.png" alt="Murid SKPJ" class="landing-kids-img" onerror="this.style.display='none'">
+                    <!-- Logo SMART i-C DIBESARKAN -->
+                    <img src="logo-smart-ic.png" alt="SMART i-C" class="landing-logo-smart-large" onerror="this.style.opacity='0'">
+                </div>
+
                 <div class="landing-title">SMART i-C</div>
                 <div class="landing-tagline">INTELLIGENT CLASSROOM CLEANING SYSTEM</div>
                 <div class="landing-school">SEKOLAH KEBANGSAAN PETRAJAYA KUCHING (YEA1203)</div>
@@ -266,26 +323,36 @@
             </div>
         </div>
 
-        <!-- ================= SCREEN 2: KAMERA & UPLOAD ================= -->
+        <!-- ================= SCREEN 2: KAMERA & SMART WORKFLOW ================= -->
         <div class="screen" id="screen-2">
             <div class="camera-hint">
-                💡 <b>Tip:</b> Halakan camera dari peranti anda atau muat naik gambar dari galeri.
+                💡 <b>Tip:</b> Tangkap gambar dari kamera peranti atau muat naik dari galeri.
             </div>
 
             <div class="camera-box">
+                <div class="class-confirm-badge" id="preview-class-badge">📍 Kelas: 1 Alpha</div>
                 <video id="webcam-video" autoplay playsinline muted></video>
                 <img id="uploaded-img-preview" alt="Preview Gambar Galeri">
             </div>
 
+            <!-- BUTTONS WORKFLOW -->
             <div style="display: flex; flex-direction: column; gap: 8px;">
                 <button class="btn-modern btn-primary" id="btn-start-cam" onclick="mulaKameraPeranti()">📷 Buka Camera Peranti</button>
+                
                 <input type="file" id="file-upload-input" accept="image/*" style="display:none;" onchange="kendalikanMuatNaikGambar(this)">
-                <button class="btn-modern btn-upload" onclick="document.getElementById('file-upload-input').click()">🖼️ Muat Naik Gambar Galeri</button>
-                <button class="btn-modern btn-primary" id="btn-capture-ai" style="display:none;" onclick="prosesImbasanAI()">⚡ Imbas Sekarang</button>
+                <button class="btn-modern btn-upload" id="btn-trigger-upload" onclick="document.getElementById('file-upload-input').click()">🖼️ Muat Naik Gambar Galeri</button>
+
+                <!-- OPTION UTK PENGESAHAN GAMBAR & EDIT/BATAL -->
+                <button class="btn-modern btn-primary" id="btn-capture-ai" style="display:none;" onclick="prosesImbasanAI()">⚡ Selesai & Imbas AI</button>
+                <button class="btn-modern btn-secondary" id="btn-reset-img" style="display:none;" onclick="resetLangkahGambar()">✏️ Tukar Gambar / Edit Kelas</button>
             </div>
 
+            <!-- GALERI SLOT 25 GAMBAR BESERTA LABEL KELAS -->
             <div class="card" style="margin-top: 15px;">
-                <div class="section-title" style="font-size: 11px;">🖼️ Galeri Imbasan Terkini (Maksimum 25 Gambar)</div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                    <div class="section-title" style="font-size: 11px; margin-bottom:0;">🖼️ Galeri Imbasan Terkini (Max 25)</div>
+                    <button style="font-size:9px; color:#e71d36; background:none; border:none; cursor:pointer; font-weight:800;" onclick="padamGaleriTersimpan()">🗑️ Padam Galeri</button>
+                </div>
                 <div class="gallery-container" id="gallery-box">
                     <div style="font-size: 10px; color: #94a3b8;">Tiada imbasan gambar lagi.</div>
                 </div>
@@ -315,7 +382,7 @@
         <!-- ================= SCREEN 4: DASHBOARD & REKOD ================= -->
         <div class="screen" id="screen-4">
             <div class="card" style="background:#eef4fb; border:1px solid #cbd5e1;">
-                <div class="section-title">📄 EKSPOIRT LAPORAN</div>
+                <div class="section-title">📄 EKSPORT LAPORAN</div>
                 <button class="btn-modern btn-primary" onclick="window.print()">🖨️ Cetak / PDF</button>
             </div>
 
@@ -380,9 +447,7 @@
 
             <div class="card">
                 <div class="section-title">📊 SENARAI MAKLUM BALAS TERSIMPAN</div>
-                <div id="admin-feedback-list" style="font-size:11px;">
-                    <!-- Feedback Log items -->
-                </div>
+                <div id="admin-feedback-list" style="font-size:11px;"></div>
             </div>
         </div>
 
@@ -402,10 +467,6 @@
         </div>
     </div>
 
-    <!-- SCRIPTS -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-
     <script>
         const URL_MODEL_TM = "https://teachablemachine.withgoogle.com/models/8T1UNdXAx/"; 
         const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzE_Hm9DdGq3ICixBiC_m78B0lnzW7tlQx1UebWT7-rD5kDbp4JN5WqZQbDTZWP8fHH/exec"; 
@@ -424,8 +485,7 @@
         ];
 
         let feedbackList = [
-            { rating: "5★", kat: "Pujian", ulasan: "Aplikasi sangat bagus dan responsif!", tarikh: "06/08/2026" },
-            { rating: "4★", kat: "Cadangan", ulasan: "Boleh tambah fungsi cetak terus ke printer Bluetooth.", tarikh: "05/08/2026" }
+            { rating: "5★", kat: "Pujian", ulasan: "Aplikasi sangat bagus dan responsif!", tarikh: "06/08/2026" }
         ];
 
         const top10Data = [
@@ -460,11 +520,17 @@
                 document.getElementById('nav-' + screenNum).classList.add('active');
             }
 
+            if(screenNum === 2) {
+                const kelasSelected = document.getElementById("select-kelas").value;
+                const badge = document.getElementById("preview-class-badge");
+                badge.innerText = "📍 Kelas: " + kelasSelected;
+                badge.style.display = "block";
+            }
+
             if(screenNum === 4) { renderDashboard(); }
             if(screenNum === 6) { renderAdminFeedback(); }
         }
 
-        /* MODAL ADMINISTRATOR WITH PASSWORD */
         function bukaAdminModal() {
             let pass = prompt("Masukkan Kata Laluan Pentadbir:");
             if(pass === "skpj2026" || pass === "admin123") {
@@ -475,7 +541,6 @@
             }
         }
 
-        /* RATING & MAKLUM BALAS */
         function pilihStar(starNum) {
             selectedStarRating = starNum;
             const stars = document.querySelectorAll(".star");
@@ -494,24 +559,17 @@
             const btn = document.getElementById("btn-submit-fb");
             btn.innerText = "MENGHANTAR..."; btn.disabled = true;
 
-            const payload = {
-                type: "FEEDBACK",
-                rating: selectedStarRating + " Star",
-                kategori: kat,
-                ulasan: ulasan,
-                tarikh: "06/08/2026"
-            };
+            const payload = { type: "FEEDBACK", rating: selectedStarRating + " Star", kategori: kat, ulasan: ulasan, tarikh: "06/08/2026" };
 
             try {
                 await fetch(GAS_WEB_APP_URL, {
-                    method: "POST",
-                    mode: "no-cors",
+                    method: "POST", mode: "no-cors",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload)
                 });
 
                 feedbackList.unshift({ rating: selectedStarRating + "★", kat: kat, ulasan: ulasan, tarikh: "Hari Ini" });
-                alert("Terima kasih! Maklum balas anda telah disimpan ke Google Drive Pentadbir.");
+                alert("Terima kasih! Maklum balas anda telah disimpan.");
                 document.getElementById("fb-ulasan").value = "";
                 navigasiKe(1);
             } catch(e) {
@@ -527,13 +585,12 @@
             feedbackList.forEach(item => {
                 let div = document.createElement("div");
                 div.className = "log-list-item";
-                div.innerHTML = `<div><b>[${item.kat}] ${item.rating}</b><br><span>${item.ulasan}</span></div>
-                                 <div style="text-align:right; color:#718096;">${item.tarikh}</div>`;
+                div.innerHTML = `<div><b>[${item.kat}] ${item.rating}</b><br><span>${item.ulasan}</span></div><div style="text-align:right; color:#718096;">${item.tarikh}</div>`;
                 container.appendChild(div);
             });
         }
 
-        /* KAMERA & MUAT NAIK GAMBAR */
+        /* KAMERA & MUAT NAIK WORKFLOW */
         async function mulaKameraPeranti() {
             document.getElementById("btn-start-cam").innerText = "MEMUATKAN CAMERA...";
             document.getElementById("btn-start-cam").disabled = true;
@@ -554,7 +611,9 @@
                 videoElem.srcObject = videoStream;
 
                 document.getElementById("btn-start-cam").style.display = "none";
-                document.getElementById("btn-capture-ai").style.display = "block";
+                document.getElementById("btn-trigger-upload").style.display = "none";
+                document.getElementById("btn-capture-ai").style.display = "flex";
+                document.getElementById("btn-reset-img").style.display = "flex";
                 isUploadedFile = false;
             } catch (e) {
                 alert("Gagal Buka Camera: Sila pastikan anda menekan ALLOW/IZINKAN kamera pada peranti.");
@@ -583,22 +642,42 @@
                     }
 
                     document.getElementById("btn-start-cam").style.display = "none";
-                    document.getElementById("btn-capture-ai").style.display = "block";
+                    document.getElementById("btn-trigger-upload").style.display = "none";
+                    document.getElementById("btn-capture-ai").style.display = "flex";
+                    document.getElementById("btn-reset-img").style.display = "flex";
                 };
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
+        function resetLangkahGambar() {
+            if(videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+            }
+            document.getElementById("uploaded-img-preview").style.display = "none";
+            document.getElementById("webcam-video").style.display = "none";
+
+            document.getElementById("btn-start-cam").style.display = "flex";
+            document.getElementById("btn-start-cam").innerText = "📷 Buka Camera Peranti";
+            document.getElementById("btn-start-cam").disabled = false;
+            
+            document.getElementById("btn-trigger-upload").style.display = "flex";
+            document.getElementById("btn-capture-ai").style.display = "none";
+            document.getElementById("btn-reset-img").style.display = "none";
+            document.getElementById("file-upload-input").value = "";
+        }
+
         async function prosesImbasanAI() {
             let prediction;
             const videoElem = document.getElementById("webcam-video");
+            const namaKelasSelected = document.getElementById("select-kelas").value;
             
             if(isUploadedFile && uploadedImageElement) {
                 prediction = await model.predict(uploadedImageElement);
-                simpanGambarBase64(uploadedImageElement);
+                simpanGambarBase64(uploadedImageElement, namaKelasSelected);
             } else {
                 prediction = await model.predict(videoElem);
-                simpanGambarBase64(videoElem);
+                simpanGambarBase64(videoElem, namaKelasSelected);
             }
 
             let highest = { className: "", probability: 0 };
@@ -631,30 +710,40 @@
             navigasiKe(3);
         }
 
-        function simpanGambarBase64(elementSource) {
+        /* SIMPAN GAMBAR + LABEL NAMA KELAS */
+        function simpanGambarBase64(elementSource, namaKelas) {
             const canvas = document.createElement("canvas");
             canvas.width = 150; canvas.height = 150;
             const ctx = canvas.getContext("2d");
             ctx.drawImage(elementSource, 0, 0, 150, 150);
             
             const base64Code = canvas.toDataURL("image/jpeg", 0.6);
-            savedImagesArray.unshift(base64Code);
+            savedImagesArray.unshift({ code: base64Code, kelas: namaKelas });
             if(savedImagesArray.length > 25) savedImagesArray.pop();
 
-            localStorage.setItem("smart_ic_gallery_base64", JSON.stringify(savedImagesArray));
+            localStorage.setItem("smart_ic_gallery_v6", JSON.stringify(savedImagesArray));
             muatGambarTersimpan();
         }
 
         function muatGambarTersimpan() {
             const galleryBox = document.getElementById("gallery-box");
-            savedImagesArray = JSON.parse(localStorage.getItem("smart_ic_gallery_base64")) || [];
+            savedImagesArray = JSON.parse(localStorage.getItem("smart_ic_gallery_v6")) || [];
             if(savedImagesArray.length > 0) {
                 galleryBox.innerHTML = "";
-                savedImagesArray.forEach(code => {
-                    let img = document.createElement("img");
-                    img.src = code; img.className = "gallery-img";
-                    galleryBox.appendChild(img);
+                savedImagesArray.forEach(item => {
+                    let div = document.createElement("div");
+                    div.className = "gallery-item-box";
+                    div.innerHTML = `<img src="${item.code}" class="gallery-img"><div class="gallery-label">${item.kelas}</div>`;
+                    galleryBox.appendChild(div);
                 });
+            }
+        }
+
+        function padamGaleriTersimpan() {
+            if(confirm("Adakah anda pasti mahu memadam semua gambar dlm galeri ini?")) {
+                localStorage.removeItem("smart_ic_gallery_v6");
+                savedImagesArray = [];
+                document.getElementById("gallery-box").innerHTML = '<div style="font-size: 10px; color: #94a3b8;">Tiada imbasan gambar lagi.</div>';
             }
         }
 
@@ -674,6 +763,7 @@
 
                 historyData.unshift({ kelas: kelas, status: currentStatus, keyakinan: currentConfidence + "%", tarikh: "Hari Ini" });
                 alert("BERJAYA! Data disimpan ke Sheets & Dashboard.");
+                resetLangkahGambar();
                 navigasiKe(4);
             } catch(e) {
                 alert("Ralat menyimpan data!");
@@ -690,8 +780,7 @@
                 let iconStatus = lower.includes("bersih") && !lower.includes("sederhana") ? "🟢😃" : (lower.includes("sederhana") ? "🟠😐" : "🔴☹️");
                 let div = document.createElement("div");
                 div.className = "log-list-item";
-                div.innerHTML = `<div><b>${item.kelas}</b><br><span style="color:#718096">${item.tarikh}</span></div>
-                                 <div style="text-align:right"><b>${iconStatus} ${item.status}</b><br><span style="color:#134074">${item.keyakinan}</span></div>`;
+                div.innerHTML = `<div><b>${item.kelas}</b><br><span style="color:#718096">${item.tarikh}</span></div><div style="text-align:right"><b>${iconStatus} ${item.status}</b><br><span style="color:#134074">${item.keyakinan}</span></div>`;
                 logContainer.appendChild(div);
             });
 
