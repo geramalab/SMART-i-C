@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROTOTAIP SMART CLASSROOM AI | SKPJ</title>
+    <title>SMART i-C | SK PETRAJAYA KUCHING</title>
     <!-- Chart.js Utk Dashboard Analitik -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -25,19 +25,20 @@
         .app-container {
             width: 100%;
             max-width: 450px;
-            background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+            background: #ffffff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            overflow: hidden;
         }
 
-        /* HEADER DIBESARKAN & BOLD KEPADA NAMA SISTEM */
+        /* HEADER TOP BAR DENGAN BUTANG LANDING PAGE HOME & ADMIN */
         .top-bar {
             background-color: #0b2545;
             color: #ffffff;
-            padding: 12px 18px;
+            padding: 10px 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -45,157 +46,106 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            height: 75px;
+            height: 65px;
         }
 
-        .header-logo-img {
-            width: 48px;
-            height: 48px;
-            object-fit: contain;
-            display: block;
-            filter: drop-shadow(0 0 4px rgba(255,255,255,0.2));
+        .header-left-group { display: flex; align-items: center; gap: 6px; }
+        
+        .btn-top-icon {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            color: #ffd700;
+            padding: 5px 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
         }
+        .btn-top-icon:active { transform: scale(0.9); }
 
+        .header-logo-img { width: 36px; height: 36px; object-fit: contain; display: block; }
         .top-bar-center { text-align: center; }
-        .top-bar-title { 
-            font-size: 22px; 
-            font-weight: 900; 
-            letter-spacing: 1.5px; 
-            color: #ffd700; 
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
-        }
-        .top-bar-sub { font-size: 10px; font-weight: 700; opacity: 0.9; letter-spacing: 0.8px; color: #00e5ff; }
+        .top-bar-title { font-size: 18px; font-weight: 900; letter-spacing: 1px; color: #ffd700; }
+        .top-bar-sub { font-size: 9px; font-weight: 700; opacity: 0.9; color: #00e5ff; }
 
-        .screen { 
-            display: none; 
-            padding: 15px; 
-            flex-grow: 1; 
-            padding-bottom: 110px; 
-        }
+        .screen { display: none; padding: 15px; flex-grow: 1; padding-bottom: 110px; }
         .screen.active { display: block; }
 
-        .hero-banner {
-            background: linear-gradient(135deg, #134074 0%, #0b2545 100%);
+        /* 1) LANDING PAGE STYLES */
+        #screen-landing {
+            background: radial-gradient(circle at center, #134074 0%, #0b2545 70%, #051329 100%);
             color: #ffffff;
-            border-radius: 16px;
-            padding: 18px;
             text-align: center;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(11, 37, 69, 0.2);
+            padding: 30px 20px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            position: absolute;
+            top: 0; left: 0; width: 100%; z-index: 300;
+        }
+        #screen-landing.active { display: flex; }
+
+        .landing-welcome { font-size: 14px; font-weight: 800; letter-spacing: 2px; color: #e2e8f0; }
+        .landing-logo-smart { width: 100px; height: auto; margin: 15px 0; }
+        .landing-title { font-size: 26px; font-weight: 900; color: #ffd700; letter-spacing: 1.5px; }
+        .landing-tagline { font-size: 12px; color: #cbd5e1; margin-top: 5px; font-weight: 600; }
+        .landing-school { font-size: 12px; font-weight: 800; color: #00e5ff; margin-top: 15px; }
+        .landing-dev-box { margin-top: 20px; padding: 12px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 16px; width: 100%; }
+        .landing-avengers-logo { width: 45px; height: 45px; border-radius: 50%; margin: 8px auto 4px auto; border: 2px solid #ffd700; }
+        .landing-team-name { font-size: 14px; font-weight: 900; color: #ffd700; }
+
+        .btn-landing-start {
+            width: 100%; padding: 16px; background: linear-gradient(90deg, #ffd700 0%, #ffaa00 100%);
+            color: #0b2545; border: none; border-radius: 14px; font-size: 15px; font-weight: 900;
+            text-transform: uppercase; cursor: pointer; margin-top: 15px;
         }
 
+        /* CARD & BUTTON STYLES */
+        .hero-banner { background: linear-gradient(135deg, #134074 0%, #0b2545 100%); color: #ffffff; border-radius: 16px; padding: 18px; text-align: center; margin-bottom: 15px; }
         .hero-title { font-size: 16px; font-weight: 800; margin-bottom: 6px; color: #ffd700; line-height: 1.3; }
         .hero-sub { font-size: 11px; opacity: 0.9; line-height: 1.4; }
 
-        .card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 14px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            margin-bottom: 15px;
-        }
-
+        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 15px; }
         .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
-        .btn-action-card {
-            background: linear-gradient(135deg, #ffffff 0%, #eef4fb 100%);
-            border: 1px solid #cbd5e1;
-            border-radius: 14px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        }
-
+        .btn-action-card { background: linear-gradient(135deg, #ffffff 0%, #eef4fb 100%); border: 1px solid #cbd5e1; border-radius: 14px; padding: 15px; text-align: center; cursor: pointer; }
         .btn-action-card .icon { font-size: 28px; margin-bottom: 5px; }
         .btn-action-card .label { font-size: 13px; font-weight: 700; color: #134074; }
 
         .section-title { font-size: 12px; font-weight: 800; color: #0b2545; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* KAD RINGKASAN AKSES SYSTEM & TOP 3 MEDAL */
-        .stat-banner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: linear-gradient(135deg, #0b2545 0%, #134074 100%);
-            color: #fff;
-            padding: 12px 15px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-        }
+        .stat-banner { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #0b2545 0%, #134074 100%); color: #fff; padding: 12px 15px; border-radius: 12px; margin-bottom: 15px; }
         .stat-num { font-size: 20px; font-weight: 900; color: #00e5ff; }
 
         .top3-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 5px; }
-        .top3-card {
-            background: #f8fafc;
-            border: 1px solid #cbd5e1;
-            border-radius: 12px;
-            padding: 10px 5px;
-            text-align: center;
-            font-size: 10px;
-            font-weight: 700;
-        }
+        .top3-card { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px 5px; text-align: center; font-size: 10px; font-weight: 700; }
         .top3-card .medal { font-size: 24px; margin-bottom: 3px; }
 
         .guide-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-        .guide-card { border-radius: 12px; padding: 10px 6px; text-align: center; font-size: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
+        .guide-card { border-radius: 12px; padding: 10px 6px; text-align: center; font-size: 10px; }
         .guide-clean { background: #e6f9ed; border: 1.5px solid #2ec4b6; color: #0e6251; }
         .guide-med { background: #fff8e6; border: 1.5px solid #ff9f1c; color: #7d6608; }
         .guide-dirty { background: #fde8e8; border: 1.5px solid #e71d36; color: #78281f; }
-        .guide-card .emoji-icon { font-size: 24px; margin-bottom: 4px; display: block; }
-        .guide-card .title { font-weight: 800; font-size: 10px; margin-bottom: 2px; }
 
-        /* CAMERA BOX & VIDEO STREAM NATIVE */
-        .camera-box { 
-            width: 100%; 
-            max-width: 320px;
-            height: 260px; 
-            background: #000; 
-            border-radius: 16px; 
-            overflow: hidden; 
-            margin: 0 auto 12px auto; 
-            border: 2px solid #134074; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        #webcam-video { width: 100%; height: 100%; object-fit: cover; }
-        .camera-hint { background: #eef4fb; padding: 10px; border-radius: 10px; font-size: 11px; color: #134074; margin-bottom: 12px; text-align: center; }
+        /* CAMERA & UPLOAD */
+        .camera-box { width: 100%; max-width: 320px; height: 250px; background: #000; border-radius: 16px; overflow: hidden; margin: 0 auto 12px auto; border: 2px solid #134074; display: flex; align-items: center; justify-content: center; }
+        #webcam-video, #uploaded-img-preview { width: 100%; height: 100%; object-fit: cover; }
+        #uploaded-img-preview { display: none; }
 
-        /* GALERI MINI 25 GAMBAR IMBASAN (BASE64) */
-        .gallery-container {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding: 8px 0;
-            margin-top: 10px;
-        }
-        .gallery-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 2px solid #134074;
-            flex-shrink: 0;
-        }
+        .btn-modern { width: 100%; padding: 13px; border: none; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-primary { background: #134074; color: #ffffff; }
+        .btn-upload { background: rgba(11, 37, 69, 0.85); color: #ffd700; border: 1px solid #ffd700; }
+        .btn-secondary { background: #e2e8f0; color: #1a202c; }
+        .btn-admin { background: #ffd700; color: #0b2545; }
 
-        /* Result Cards */
-        .result-badge-card { border-radius: 16px; padding: 18px; text-align: center; margin-bottom: 15px; color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .bg-clean { background: linear-gradient(135deg, #2ec4b6 0%, #0f9f90 100%); }
-        .bg-med { background: linear-gradient(135deg, #ff9f1c 0%, #e67e22 100%); }
-        .bg-dirty { background: linear-gradient(135deg, #e71d36 0%, #c0392b 100%); }
-        .result-emoji-big { font-size: 48px; margin-bottom: 5px; }
-        .result-status { font-size: 24px; font-weight: 900; letter-spacing: 1px; margin: 2px 0; }
+        .gallery-container { display: flex; gap: 8px; overflow-x: auto; padding: 8px 0; }
+        .gallery-img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; border: 2px solid #134074; flex-shrink: 0; }
 
-        .tab-switcher { display: flex; background: #e2e8f0; border-radius: 10px; padding: 3px; margin-bottom: 12px; }
-        .tab-btn { flex: 1; padding: 8px; text-align: center; font-size: 10px; font-weight: 800; border-radius: 8px; cursor: pointer; color: #64748b; }
-        .tab-btn.active { background: #134074; color: #ffffff; }
-
-        .score-summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-        .score-card { border-radius: 12px; padding: 10px; text-align: center; }
-        .score-card .num { font-size: 20px; font-weight: 900; }
-        .score-card .lbl { font-size: 9px; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
+        /* RATING BINTANG STYLES */
+        .star-rating { display: flex; gap: 5px; justify-content: center; margin: 10px 0; }
+        .star { font-size: 28px; color: #cbd5e1; cursor: pointer; transition: color 0.2s; }
+        .star.selected { color: #ffd700; }
 
         .ranking-table { width: 100%; border-collapse: collapse; font-size: 11px; }
         .ranking-table th { background: #0b2545; color: #ffd700; padding: 6px 8px; text-align: left; }
@@ -204,49 +154,48 @@
 
         .log-list-item { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 10px; margin-bottom: 6px; font-size: 10px; }
 
-        .btn-primary { width: 100%; padding: 12px; background: #134074; color: #ffffff; border: none; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; text-transform: uppercase; }
-        .btn-secondary { width: 100%; padding: 10px; background: #e2e8f0; color: #1a202c; border: none; border-radius: 12px; font-weight: 700; font-size: 12px; cursor: pointer; margin-top: 6px; }
-
-        .bottom-nav-wrapper {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 450px;
-            z-index: 200;
-            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
-        }
-
-        .bottom-nav {
-            background: #ffffff;
-            border-top: 1px solid #cbd5e1;
-            display: flex;
-            justify-content: space-around;
-            padding: 6px 0;
-        }
-
-        .nav-item { text-align: center; color: #64748b; font-size: 9px; cursor: pointer; flex-grow: 1; }
+        /* BOTTOM NAV & FOOTER */
+        .bottom-nav-wrapper { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 450px; z-index: 200; box-shadow: 0 -4px 15px rgba(0,0,0,0.1); }
+        .bottom-nav { background: #ffffff; border-top: 1px solid #cbd5e1; display: flex; justify-content: space-around; padding: 6px 0; }
+        .nav-item { text-align: center; color: #64748b; font-size: 8.5px; cursor: pointer; flex-grow: 1; }
         .nav-item.active { color: #134074; font-weight: 800; }
-        .nav-item .icon { font-size: 16px; margin-bottom: 2px; }
+        .nav-item .icon { font-size: 15px; margin-bottom: 2px; }
 
-        .app-footer-fixed {
-            background-color: #0b2545;
-            color: #ffffff;
-            text-align: center;
-            padding: 6px 10px;
-            font-size: 8px;
-            line-height: 1.3;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
+        .app-footer-fixed { background-color: #0b2545; color: #ffffff; text-align: center; padding: 6px 10px; font-size: 8px; border-top: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
 
     <div class="app-container">
-        <!-- HEADER DIBESARKAN & NAMA SISTEM BOLD -->
+
+        <!-- ================= 1) LANDING PAGE ================= -->
+        <div id="screen-landing" class="active">
+            <div>
+                <div class="landing-welcome">SELAMAT DATANG KE</div>
+                <img src="logo-smart-ic.png" alt="SMART i-C" class="landing-logo-smart" onerror="this.style.opacity='0'">
+                <div class="landing-title">SMART i-C</div>
+                <div class="landing-tagline">INTELLIGENT CLASSROOM CLEANING SYSTEM</div>
+                <div class="landing-school">SEKOLAH KEBANGSAAN PETRAJAYA KUCHING (YEA1203)</div>
+            </div>
+
+            <div style="width: 100%;">
+                <div class="landing-dev-box">
+                    <div style="font-size: 10px; color: #94a3b8; text-transform: uppercase;">DISEDIAKAN OLEH:</div>
+                    <img src="logo-avengers.png" alt="AI Avengers" class="landing-avengers-logo" onerror="this.style.display='none'">
+                    <div class="landing-team-name">AI AVENGERS</div>
+                </div>
+
+                <button class="btn-landing-start" onclick="masukKeHome()">KLIK UNTUK TERUSKAN ➔</button>
+            </div>
+        </div>
+
+        <!-- HEADER TOP BAR WITH ADMIN BUTTON -->
         <div class="top-bar">
-            <img src="logo-smart-ic.png" alt="SMART i-C" class="header-logo-img" onerror="this.style.opacity='0'">
+            <div class="header-left-group">
+                <button class="btn-top-icon" title="Landing Page" onclick="kembaliKeLanding()">🏠</button>
+                <button class="btn-top-icon" title="Portal Admin" onclick="bukaAdminModal()" style="color:#ffd700;">🔑 Admin</button>
+                <img src="logo-smart-ic.png" alt="SMART i-C" class="header-logo-img" onerror="this.style.opacity='0'">
+            </div>
             
             <div class="top-bar-center">
                 <div class="top-bar-title">SMART i-C</div>
@@ -257,13 +206,12 @@
         </div>
 
         <!-- ================= SCREEN 1: LAMAN UTAMA ================= -->
-        <div class="screen active" id="screen-1">
+        <div class="screen" id="screen-1">
             <div class="hero-banner">
                 <div class="hero-title">Kelas Bersih, Minda Ceria,<br>Masa Depan Cemerlang</div>
                 <div class="hero-sub">AI mengesan tahap kebersihan kelas melalui gambar secara pantas dan tepat.</div>
             </div>
 
-            <!-- RINGKASAN AKSES SISTERM SPJ MASA -->
             <div class="stat-banner">
                 <div>
                     <div style="font-size: 10px; text-transform: uppercase; opacity: 0.8;">Jumlah Akses & Imbasan</div>
@@ -296,7 +244,6 @@
                 </div>
             </div>
 
-            <!-- TOP 3 KELAS TERBERSIH BERSAMA PINGAT -->
             <div class="card">
                 <div class="section-title">🏆 Top 3 Kelas Terbersih</div>
                 <div class="top3-grid">
@@ -317,41 +264,26 @@
                     </div>
                 </div>
             </div>
-
-            <div class="section-title">Panduan Tahap Kebersihan</div>
-            <div class="guide-grid">
-                <div class="guide-card guide-clean">
-                    <span class="emoji-icon">🟢😃</span>
-                    <div class="title">BERSIH</div>
-                    <div>Kelas kemas & tiada sampah</div>
-                </div>
-                <div class="guide-card guide-med">
-                    <span class="emoji-icon">🟠😐</span>
-                    <div class="title">SEDERHANA</div>
-                    <div>Sedikit sampah / kurang kemas</div>
-                </div>
-                <div class="guide-card guide-dirty">
-                    <span class="emoji-icon">🔴☹️</span>
-                    <div class="title">KOTOR</div>
-                    <div>Banyak sampah & berselerak</div>
-                </div>
-            </div>
         </div>
 
-        <!-- ================= SCREEN 2: KAMERA & GALERI 25 GAMBAR ================= -->
+        <!-- ================= SCREEN 2: KAMERA & UPLOAD ================= -->
         <div class="screen" id="screen-2">
             <div class="camera-hint">
-                💡 <b>Tip:</b> Halakan camera dari peranti anda ke kawasan kelas untuk analisis AI.
+                💡 <b>Tip:</b> Halakan camera dari peranti anda atau muat naik gambar dari galeri.
             </div>
 
             <div class="camera-box">
                 <video id="webcam-video" autoplay playsinline muted></video>
+                <img id="uploaded-img-preview" alt="Preview Gambar Galeri">
             </div>
 
-            <button class="btn-primary" id="btn-start-cam" onclick="mulaKameraPeranti()">Buka Camera Peranti</button>
-            <button class="btn-primary" id="btn-capture-ai" style="display:none;" onclick="prosesImbasanAI()">⚡ Imbas Sekarang</button>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <button class="btn-modern btn-primary" id="btn-start-cam" onclick="mulaKameraPeranti()">📷 Buka Camera Peranti</button>
+                <input type="file" id="file-upload-input" accept="image/*" style="display:none;" onchange="kendalikanMuatNaikGambar(this)">
+                <button class="btn-modern btn-upload" onclick="document.getElementById('file-upload-input').click()">🖼️ Muat Naik Gambar Galeri</button>
+                <button class="btn-modern btn-primary" id="btn-capture-ai" style="display:none;" onclick="prosesImbasanAI()">⚡ Imbas Sekarang</button>
+            </div>
 
-            <!-- SIMPANAN MAXIMUM 25 GAMBAR IMBASAN (BASE64) -->
             <div class="card" style="margin-top: 15px;">
                 <div class="section-title" style="font-size: 11px;">🖼️ Galeri Imbasan Terkini (Maksimum 25 Gambar)</div>
                 <div class="gallery-container" id="gallery-box">
@@ -364,62 +296,38 @@
         <div class="screen" id="screen-3">
             <div class="section-title">Analisis Selesai</div>
             
-            <div class="result-badge-card bg-clean" id="result-card-bg">
-                <div class="result-emoji-big" id="res-emoji">😃</div>
-                <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px;">Tahap Kebersihan</div>
-                <div class="result-status" id="res-status-text">BERSIH</div>
-                <div style="font-size: 12px; opacity: 0.95;">Keyakinan AI: <span id="res-conf-val">0%</span></div>
+            <div class="result-badge-card bg-clean" id="result-card-bg" style="border-radius:16px; padding:18px; text-align:center; color:#fff;">
+                <div style="font-size:48px;" id="res-emoji">😃</div>
+                <div style="font-size: 10px; text-transform: uppercase;">Tahap Kebersihan</div>
+                <div style="font-size:24px; font-weight:900;" id="res-status-text">BERSIH</div>
+                <div style="font-size: 12px;">Keyakinan AI: <span id="res-conf-val">0%</span></div>
             </div>
 
-            <div class="card" style="font-size: 11px; color: #475569; line-height: 1.4;">
+            <div class="card" style="font-size: 11px; color: #475569;">
                 <b>Cadangan Tindakan:</b>
                 <div id="res-advice-text" style="margin-top: 4px;">Kekalkan kebersihan dan susunan meja kelas.</div>
             </div>
 
-            <button class="btn-primary" id="btn-save-sheets" onclick="simpanKeSheets()">💾 Simpan Rekod Ke Sheets</button>
-            <button class="btn-secondary" onclick="navigasiKe(2)">🔄 Analisis Semula</button>
+            <button class="btn-modern btn-primary" id="btn-save-sheets" onclick="simpanKeSheets()">💾 Simpan Rekod Ke Sheets</button>
+            <button class="btn-modern btn-secondary" onclick="navigasiKe(2)" style="margin-top:8px;">🔄 Analisis Semula</button>
         </div>
 
-        <!-- ================= SCREEN 4: DASHBOARD ANALITIK ================= -->
+        <!-- ================= SCREEN 4: DASHBOARD & REKOD ================= -->
         <div class="screen" id="screen-4">
-            <div class="tab-switcher">
-                <div class="tab-btn active" id="tab-daily" onclick="tukarTabAnalitik('harian')">📅 HARIAN</div>
-                <div class="tab-btn" id="tab-monthly" onclick="tukarTabAnalitik('bulanan')">🗓️ BULANAN</div>
-            </div>
-
-            <div class="score-summary-grid">
-                <div class="score-card guide-clean">
-                    <div style="font-size: 16px;">🟢</div>
-                    <div class="num" id="count-clean">12</div>
-                    <div class="lbl">Bersih</div>
-                </div>
-                <div class="score-card guide-med">
-                    <div style="font-size: 16px;">🟠</div>
-                    <div class="num" id="count-med">3</div>
-                    <div class="lbl">Sederhana</div>
-                </div>
-                <div class="score-card guide-dirty">
-                    <div style="font-size: 16px;">🔴</div>
-                    <div class="num" id="count-dirty">1</div>
-                    <div class="lbl">Kotor</div>
-                </div>
+            <div class="card" style="background:#eef4fb; border:1px solid #cbd5e1;">
+                <div class="section-title">📄 EKSPOIRT LAPORAN</div>
+                <button class="btn-modern btn-primary" onclick="window.print()">🖨️ Cetak / PDF</button>
             </div>
 
             <div class="card">
-                <div class="section-title" style="font-size: 10px;" id="chart-title-text">Carta Analitik Kebersihan Harian</div>
+                <div class="section-title" style="font-size: 10px;">Carta Analitik Kebersihan Harian</div>
                 <canvas id="weeklyChart" height="130"></canvas>
             </div>
 
             <div class="card">
-                <div class="section-title">🏆 TOP 10 KELAS TERBAIK (FASA 1 & 2)</div>
+                <div class="section-title">🏆 TOP 10 KELAS TERBAIK</div>
                 <table class="ranking-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 25px;">#</th>
-                            <th>Nama Kelas</th>
-                            <th style="text-align: right;">Skor Kebersihan</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>#</th><th>Nama Kelas</th><th style="text-align: right;">Skor</th></tr></thead>
                     <tbody id="ranking-body"></tbody>
                 </table>
             </div>
@@ -428,21 +336,63 @@
             <div id="history-log-container"></div>
         </div>
 
+        <!-- ================= SCREEN 5: MAKLUM BALAS PENGGUNA ================= -->
+        <div class="screen" id="screen-5">
+            <div class="card">
+                <div class="section-title">💬 Maklum Balas Pengguna</div>
+                <p style="font-size:11px; color:#64748b; margin-bottom:12px;">Bantu kami menambah baik aplikasi SMART i-C ini.</p>
+
+                <label style="font-size:11px; font-weight:700;">Penilaian Anda:</label>
+                <div class="star-rating">
+                    <span class="star" onclick="pilihStar(1)">★</span>
+                    <span class="star" onclick="pilihStar(2)">★</span>
+                    <span class="star" onclick="pilihStar(3)">★</span>
+                    <span class="star" onclick="pilihStar(4)">★</span>
+                    <span class="star" onclick="pilihStar(5)">★</span>
+                </div>
+
+                <label style="font-size:11px; font-weight:700; margin-top:10px; display:block;">Kategori:</label>
+                <select id="fb-kategori" style="width:100%; padding:8px; border-radius:8px; border:1px solid #cbd5e1; font-size:12px; margin-bottom:10px;">
+                    <option value="Cadangan">Cadangan Penambahbaikan</option>
+                    <option value="Pujian">Pujian / Kepuasan</option>
+                    <option value="Masalah">Masalah Teknikal</option>
+                </select>
+
+                <label style="font-size:11px; font-weight:700;">Ulasan / Cadangan:</label>
+                <textarea id="fb-ulasan" rows="3" style="width:100%; padding:8px; border-radius:8px; border:1px solid #cbd5e1; font-size:12px; margin-top:4px; outline:none;" placeholder="Tulis pandangan anda di sini..."></textarea>
+
+                <button class="btn-modern btn-primary" style="margin-top:12px;" id="btn-submit-fb" onclick="hantarMaklumBalas()">📤 Hantar Maklum Balas</button>
+            </div>
+        </div>
+
+        <!-- ================= SCREEN 6: PORTAL PENTADBIR (ADMIN PANEL) ================= -->
+        <div class="screen" id="screen-6">
+            <div class="card" style="background:#0b2545; color:#fff;">
+                <div style="font-size:16px; font-weight:800; color:#ffd700;">🔒 Portal Pentadbir & Penilai</div>
+                <div style="font-size:10px; color:#00e5ff;">Akses Pengurusan Data & Laporan Terperinci</div>
+            </div>
+
+            <div class="card">
+                <div class="section-title">📁 PAUTAN DIRECT GOOGLE DRIVE MAKLUM BALAS</div>
+                <p style="font-size:10px; color:#64748b; margin-bottom:8px;">Format fail PDF & Rekod CSV disimpan secara automatik dlm Drive berikut:</p>
+                <button class="btn-modern btn-admin" onclick="window.open('https://drive.google.com/drive/folders/1cz-GWxTU1j0tsU3HYS-dTYJ8d7vELIWl?usp=drive_link', '_blank')">📂 Buka Folder Drive Maklum Balas</button>
+            </div>
+
+            <div class="card">
+                <div class="section-title">📊 SENARAI MAKLUM BALAS TERSIMPAN</div>
+                <div id="admin-feedback-list" style="font-size:11px;">
+                    <!-- Feedback Log items -->
+                </div>
+            </div>
+        </div>
+
         <!-- BOTTOM NAV & FOOTER -->
         <div class="bottom-nav-wrapper">
             <div class="bottom-nav">
-                <div class="nav-item active" id="nav-1" onclick="navigasiKe(1)">
-                    <div class="icon">🏠</div>
-                    <div>Utama</div>
-                </div>
-                <div class="nav-item" id="nav-2" onclick="navigasiKe(2)">
-                    <div class="icon">📷</div>
-                    <div>Imbas</div>
-                </div>
-                <div class="nav-item" id="nav-4" onclick="navigasiKe(4)">
-                    <div class="icon">📊</div>
-                    <div>Analitik</div>
-                </div>
+                <div class="nav-item" id="nav-1" onclick="navigasiKe(1)"><div class="icon">🏠</div><div>Utama</div></div>
+                <div class="nav-item" id="nav-2" onclick="navigasiKe(2)"><div class="icon">📷</div><div>Imbas</div></div>
+                <div class="nav-item" id="nav-4" onclick="navigasiKe(4)"><div class="icon">📊</div><div>Analitik</div></div>
+                <div class="nav-item" id="nav-5" onclick="navigasiKe(5)"><div class="icon">💬</div><div>Maklumbalas</div></div>
             </div>
 
             <div class="app-footer-fixed">
@@ -463,32 +413,43 @@
         let model, maxPredictions;
         let currentStatus = "", currentConfidence = 0;
         let videoStream = null;
-        let savedImagesArray = []; // Simpan Maksimum 25 Gambar dlm Kod Base64
+        let savedImagesArray = [];
+        let isUploadedFile = false;
+        let uploadedImageElement = null;
+        let selectedStarRating = 5;
 
         let historyData = [
             { kelas: "Kelas 1 Alpha", status: "Bersih", keyakinan: "96.5%", tarikh: "06/08/2026" },
-            { kelas: "Kelas 2 Beta", status: "Bersih", keyakinan: "92.0%", tarikh: "06/08/2026" },
-            { kelas: "Makmal Sains", status: "Bersih", keyakinan: "95.0%", tarikh: "05/08/2026" }
+            { kelas: "Kelas 2 Beta", status: "Bersih", keyakinan: "92.0%", tarikh: "06/08/2026" }
+        ];
+
+        let feedbackList = [
+            { rating: "5★", kat: "Pujian", ulasan: "Aplikasi sangat bagus dan responsif!", tarikh: "06/08/2026" },
+            { rating: "4★", kat: "Cadangan", ulasan: "Boleh tambah fungsi cetak terus ke printer Bluetooth.", tarikh: "05/08/2026" }
         ];
 
         const top10Data = [
             { rank: 1, kelas: "Kelas 1 Alpha", skor: "98.5%" },
             { rank: 2, kelas: "Makmal Sains", skor: "96.2%" },
-            { rank: 3, kelas: "Kelas 2 Beta", skor: "94.8%" },
-            { rank: 4, kelas: "Kelas 5 Epsilon", skor: "92.0%" },
-            { rank: 5, kelas: "Bilik Seni", skor: "89.5%" },
-            { rank: 6, kelas: "Kelas 3 Gamma", skor: "87.0%" },
-            { rank: 7, kelas: "Kelas 4 Delta", skor: "85.2%" },
-            { rank: 8, kelas: "Kelas 1 Beta", skor: "83.1%" },
-            { rank: 9, kelas: "Kelas 2 Alpha", skor: "81.4%" },
-            { rank: 10, kelas: "Bilik Muzik", skor: "79.0%" }
+            { rank: 3, kelas: "Kelas 2 Beta", skor: "94.8%" }
         ];
 
         window.onload = function() {
             renderDashboard();
             renderRankingTable();
             muatGambarTersimpan();
+            pilihStar(5);
         };
+
+        function masukKeHome() {
+            document.getElementById("screen-landing").classList.remove("active");
+            navigasiKe(1);
+        }
+
+        function kembaliKeLanding() {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById("screen-landing").classList.add("active");
+        }
 
         function navigasiKe(screenNum) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -500,9 +461,79 @@
             }
 
             if(screenNum === 4) { renderDashboard(); }
+            if(screenNum === 6) { renderAdminFeedback(); }
         }
 
-        /* KAMERA UNIFIED MESRA SEMUA PERANTI (LAPTOP/TABLET/PHONE) */
+        /* MODAL ADMINISTRATOR WITH PASSWORD */
+        function bukaAdminModal() {
+            let pass = prompt("Masukkan Kata Laluan Pentadbir:");
+            if(pass === "skpj2026" || pass === "admin123") {
+                alert("Akses Diluluskan! Selamat Datang Pentadbir.");
+                navigasiKe(6);
+            } else if(pass !== null) {
+                alert("Kata Laluan Salah! Akses Ditolak.");
+            }
+        }
+
+        /* RATING & MAKLUM BALAS */
+        function pilihStar(starNum) {
+            selectedStarRating = starNum;
+            const stars = document.querySelectorAll(".star");
+            stars.forEach((s, idx) => {
+                if(idx < starNum) s.classList.add("selected");
+                else s.classList.remove("selected");
+            });
+        }
+
+        async function hantarMaklumBalas() {
+            const kat = document.getElementById("fb-kategori").value;
+            const ulasan = document.getElementById("fb-ulasan").value;
+            
+            if(!ulasan.trim()) { alert("Sila tulis sedikit ulasan."); return; }
+
+            const btn = document.getElementById("btn-submit-fb");
+            btn.innerText = "MENGHANTAR..."; btn.disabled = true;
+
+            const payload = {
+                type: "FEEDBACK",
+                rating: selectedStarRating + " Star",
+                kategori: kat,
+                ulasan: ulasan,
+                tarikh: "06/08/2026"
+            };
+
+            try {
+                await fetch(GAS_WEB_APP_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                feedbackList.unshift({ rating: selectedStarRating + "★", kat: kat, ulasan: ulasan, tarikh: "Hari Ini" });
+                alert("Terima kasih! Maklum balas anda telah disimpan ke Google Drive Pentadbir.");
+                document.getElementById("fb-ulasan").value = "";
+                navigasiKe(1);
+            } catch(e) {
+                alert("Ralat menghantar maklum balas!");
+            } finally {
+                btn.innerText = "📤 Hantar Maklum Balas"; btn.disabled = false;
+            }
+        }
+
+        function renderAdminFeedback() {
+            const container = document.getElementById("admin-feedback-list");
+            container.innerHTML = "";
+            feedbackList.forEach(item => {
+                let div = document.createElement("div");
+                div.className = "log-list-item";
+                div.innerHTML = `<div><b>[${item.kat}] ${item.rating}</b><br><span>${item.ulasan}</span></div>
+                                 <div style="text-align:right; color:#718096;">${item.tarikh}</div>`;
+                container.appendChild(div);
+            });
+        }
+
+        /* KAMERA & MUAT NAIK GAMBAR */
         async function mulaKameraPeranti() {
             document.getElementById("btn-start-cam").innerText = "MEMUATKAN CAMERA...";
             document.getElementById("btn-start-cam").disabled = true;
@@ -514,84 +545,101 @@
                 model = await tmImage.load(modelURL, metadataURL);
                 maxPredictions = model.getTotalPredictions();
 
-                const constraints = {
-                    video: { facingMode: { ideal: "environment" }, width: { ideal: 640 }, height: { ideal: 640 } }
-                };
-
+                const constraints = { video: { facingMode: { ideal: "environment" }, width: { ideal: 640 }, height: { ideal: 640 } } };
                 videoStream = await navigator.mediaDevices.getUserMedia(constraints);
+                
                 const videoElem = document.getElementById("webcam-video");
+                videoElem.style.display = "block";
+                document.getElementById("uploaded-img-preview").style.display = "none";
                 videoElem.srcObject = videoStream;
 
                 document.getElementById("btn-start-cam").style.display = "none";
                 document.getElementById("btn-capture-ai").style.display = "block";
+                isUploadedFile = false;
             } catch (e) {
                 alert("Gagal Buka Camera: Sila pastikan anda menekan ALLOW/IZINKAN kamera pada peranti.");
-                document.getElementById("btn-start-cam").innerText = "Buka Camera Peranti";
+                document.getElementById("btn-start-cam").innerText = "📷 Buka Camera Peranti";
                 document.getElementById("btn-start-cam").disabled = false;
             }
         }
 
+        function kendalikanMuatNaikGambar(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = async function (e) {
+                    const imgPreview = document.getElementById("uploaded-img-preview");
+                    imgPreview.src = e.target.result;
+                    imgPreview.style.display = "block";
+                    document.getElementById("webcam-video").style.display = "none";
+
+                    uploadedImageElement = imgPreview;
+                    isUploadedFile = true;
+
+                    if(!model) {
+                        const modelURL = URL_MODEL_TM + "model.json";
+                        const metadataURL = URL_MODEL_TM + "metadata.json";
+                        model = await tmImage.load(modelURL, metadataURL);
+                        maxPredictions = model.getTotalPredictions();
+                    }
+
+                    document.getElementById("btn-start-cam").style.display = "none";
+                    document.getElementById("btn-capture-ai").style.display = "block";
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
         async function prosesImbasanAI() {
+            let prediction;
             const videoElem = document.getElementById("webcam-video");
             
-            // AI Predict Direct Canvas Stream
-            const prediction = await model.predict(videoElem);
-            let highest = { className: "", probability: 0 };
+            if(isUploadedFile && uploadedImageElement) {
+                prediction = await model.predict(uploadedImageElement);
+                simpanGambarBase64(uploadedImageElement);
+            } else {
+                prediction = await model.predict(videoElem);
+                simpanGambarBase64(videoElem);
+            }
 
+            let highest = { className: "", probability: 0 };
             for (let i = 0; i < maxPredictions; i++) {
-                if (prediction[i].probability > highest.probability) {
-                    highest = prediction[i];
-                }
+                if (prediction[i].probability > highest.probability) highest = prediction[i];
             }
 
             currentStatus = highest.className;
             currentConfidence = (highest.probability * 100).toFixed(1);
 
-            // TUKAR GAMBAR KE KOD BASE64 (MAKSIMUM 25 GAMBAR LIGHTWEIGHT)
-            simpanGambarBase64(videoElem);
-
             const bgCard = document.getElementById("result-card-bg");
-            const statusTxt = document.getElementById("res-status-text");
-            const confTxt = document.getElementById("res-conf-val");
-            const adviceTxt = document.getElementById("res-advice-text");
-            const emojiTxt = document.getElementById("res-emoji");
-
-            statusTxt.innerText = currentStatus.toUpperCase();
-            confTxt.innerText = currentConfidence + "%";
+            document.getElementById("res-status-text").innerText = currentStatus.toUpperCase();
+            document.getElementById("res-conf-val").innerText = currentConfidence + "%";
 
             let lower = currentStatus.toLowerCase();
             if(lower.includes("bersih") && !lower.includes("sederhana")) {
                 bgCard.className = "result-badge-card bg-clean";
-                emojiTxt.innerText = "😃✨";
-                adviceTxt.innerText = "Tahniah! Kelas anda dalam keadaan bersih dan kemas.";
+                document.getElementById("res-emoji").innerText = "😃✨";
+                document.getElementById("res-advice-text").innerText = "Tahniah! Kelas anda dalam keadaan bersih dan kemas.";
             } else if(lower.includes("sederhana")) {
                 bgCard.className = "result-badge-card bg-med";
-                emojiTxt.innerText = "😐🧹";
-                adviceTxt.innerText = "Kutip sedikit sampah di lantai & susun semula meja/kursi.";
+                document.getElementById("res-emoji").innerText = "😐🧹";
+                document.getElementById("res-advice-text").innerText = "Kutip sedikit sampah di lantai & susun semula meja/kursi.";
             } else {
                 bgCard.className = "result-badge-card bg-dirty";
-                emojiTxt.innerText = "☹️⚠️";
-                adviceTxt.innerText = "Sila sapu lantai dan bersihkan sampah dengan kadar segera.";
+                document.getElementById("res-emoji").innerText = "☹️⚠️";
+                document.getElementById("res-advice-text").innerText = "Sila sapu lantai dan bersihkan sampah dengan kadar segera.";
             }
 
             navigasiKe(3);
         }
 
-        /* SIMPAN GAMBAR DALAM BENTUK KOD BASE64 (MAKSIMUM 25 GAMBAR) */
-        function simpanGambarBase64(videoElem) {
+        function simpanGambarBase64(elementSource) {
             const canvas = document.createElement("canvas");
-            canvas.width = 150; 
-            canvas.height = 150;
+            canvas.width = 150; canvas.height = 150;
             const ctx = canvas.getContext("2d");
-            ctx.drawImage(videoElem, 0, 0, 150, 150);
+            ctx.drawImage(elementSource, 0, 0, 150, 150);
             
-            // Convert to lightweight JPEG Base64 Code
             const base64Code = canvas.toDataURL("image/jpeg", 0.6);
-
             savedImagesArray.unshift(base64Code);
-            if(savedImagesArray.length > 25) {
-                savedImagesArray.pop(); // Kekalkan max 25 gambar terkini
-            }
+            if(savedImagesArray.length > 25) savedImagesArray.pop();
 
             localStorage.setItem("smart_ic_gallery_base64", JSON.stringify(savedImagesArray));
             muatGambarTersimpan();
@@ -600,13 +648,11 @@
         function muatGambarTersimpan() {
             const galleryBox = document.getElementById("gallery-box");
             savedImagesArray = JSON.parse(localStorage.getItem("smart_ic_gallery_base64")) || [];
-            
             if(savedImagesArray.length > 0) {
                 galleryBox.innerHTML = "";
                 savedImagesArray.forEach(code => {
                     let img = document.createElement("img");
-                    img.src = code;
-                    img.className = "gallery-img";
+                    img.src = code; img.className = "gallery-img";
                     galleryBox.appendChild(img);
                 });
             }
@@ -615,15 +661,13 @@
         async function simpanKeSheets() {
             const kelas = document.getElementById("select-kelas").value;
             const btn = document.getElementById("btn-save-sheets");
-            btn.innerText = "MENGHANTAR...";
-            btn.disabled = true;
+            btn.innerText = "MENGHANTAR..."; btn.disabled = true;
 
             const payload = { namaKelas: kelas, status: currentStatus, keyakinan: currentConfidence, catatan: "App Imbasan SKPJ" };
 
             try {
                 await fetch(GAS_WEB_APP_URL, {
-                    method: "POST",
-                    mode: "no-cors",
+                    method: "POST", mode: "no-cors",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload)
                 });
@@ -634,22 +678,16 @@
             } catch(e) {
                 alert("Ralat menyimpan data!");
             } finally {
-                btn.innerText = "💾 Simpan Rekod Ke Sheets";
-                btn.disabled = false;
+                btn.innerText = "💾 Simpan Rekod Ke Sheets"; btn.disabled = false;
             }
         }
 
         function renderDashboard() {
             const logContainer = document.getElementById("history-log-container");
             logContainer.innerHTML = "";
-
             historyData.forEach(item => {
                 let lower = item.status.toLowerCase();
-                let iconStatus = "🟢😃";
-                if(lower.includes("bersih") && !lower.includes("sederhana")) { iconStatus = "🟢😃"; }
-                else if(lower.includes("sederhana")) { iconStatus = "🟠😐"; }
-                else { iconStatus = "🔴☹️"; }
-
+                let iconStatus = lower.includes("bersih") && !lower.includes("sederhana") ? "🟢😃" : (lower.includes("sederhana") ? "🟠😐" : "🔴☹️");
                 let div = document.createElement("div");
                 div.className = "log-list-item";
                 div.innerHTML = `<div><b>${item.kelas}</b><br><span style="color:#718096">${item.tarikh}</span></div>
@@ -659,17 +697,9 @@
 
             const ctx = document.getElementById('weeklyChart').getContext('2d');
             if(window.myWeeklyChart) window.myWeeklyChart.destroy();
-
             window.myWeeklyChart = new Chart(ctx, {
                 type: 'bar',
-                data: {
-                    labels: ['Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat'],
-                    datasets: [{
-                        label: 'Imbasan',
-                        data: [10, 12, 8, 15, 12],
-                        backgroundColor: '#2ec4b6'
-                    }]
-                },
+                data: { labels: ['Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat'], datasets: [{ label: 'Imbasan', data: [10, 12, 8, 15, 12], backgroundColor: '#2ec4b6' }] },
                 options: { responsive: true, plugins: { legend: { display: false } } }
             });
         }
@@ -678,12 +708,7 @@
             const tbody = document.getElementById("ranking-body");
             tbody.innerHTML = "";
             top10Data.forEach(item => {
-                let row = `<tr>
-                    <td><span class="rank-badge">${item.rank}</span></td>
-                    <td>${item.kelas}</td>
-                    <td style="text-align: right; color: #0e6251; font-weight: 800;">${item.skor}</td>
-                </tr>`;
-                tbody.innerHTML += row;
+                tbody.innerHTML += `<tr><td><span class="rank-badge">${item.rank}</span></td><td>${item.kelas}</td><td style="text-align: right; color: #0e6251; font-weight: 800;">${item.skor}</td></tr>`;
             });
         }
 
@@ -691,10 +716,8 @@
             if(select.value === "ADD_NEW_CLASS") {
                 let name = prompt("Masukkan Nama Kelas Baharu:");
                 if(name) {
-                    let opt = document.createElement("option");
-                    opt.value = name; opt.innerText = name;
-                    select.insertBefore(opt, select.lastElementChild);
-                    select.value = name;
+                    let opt = document.createElement("option"); opt.value = name; opt.innerText = name;
+                    select.insertBefore(opt, select.lastElementChild); select.value = name;
                 } else { select.selectedIndex = 0; }
             }
         }
