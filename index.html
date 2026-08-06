@@ -18,6 +18,7 @@
             color: #1a202c;
             display: flex;
             justify-content: center;
+            align-items: center;
             min-height: 100vh;
         }
 
@@ -68,39 +69,56 @@
         .screen { display: none; padding: 15px; flex-grow: 1; padding-bottom: 110px; }
         .screen.active { display: block; }
 
-        /* ================= LANDING PAGE DENGAN LOGO BESAR & ANIMASI MURID ================= */
+        /* ================= 1) LANDING PAGE PERFECT CENTER & AUTO-RESIZE ================= */
         #screen-landing {
             background: radial-gradient(circle at center, #134074 0%, #0b2545 70%, #051329 100%);
             color: #ffffff;
             text-align: center;
-            padding: 25px 20px;
+            padding: 20px;
             display: none;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center; /* KANDUNGAN SENTIASA TEPAT DI TENGAH SKRIN */
             min-height: 100vh;
             position: absolute;
             top: 0; left: 0; width: 100%; z-index: 300;
+            overflow-y: auto;
         }
         #screen-landing.active { display: flex; }
 
-        .landing-welcome { font-size: 13px; font-weight: 800; letter-spacing: 2px; color: #e2e8f0; }
+        .landing-content-wrapper {
+            width: 100%;
+            max-width: 380px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: auto 0;
+        }
 
-        /* HERO LOGO WRAPPER WITH KIDS ANIMATION */
+        .landing-welcome { 
+            font-size: clamp(11px, 3vw, 13px); 
+            font-weight: 800; 
+            letter-spacing: 2px; 
+            color: #e2e8f0; 
+        }
+
         .landing-hero-wrapper {
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin: 10px 0;
+            margin: 8px 0;
+            width: 100%;
         }
 
-        /* GAMBAR ANIMASI KANAK-KANAK BERBAJU SEKOLAH */
+        /* GAMBAR ANIMASI KANAK-KANAK BERBAJU SEKOLAH (AUTO RESIZE) */
         .landing-kids-img {
-            width: 140px;
+            width: 160px;
+            max-width: 75%;
             height: auto;
-            margin-bottom: -30px;
+            margin-bottom: -28px;
             z-index: 1;
             filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
             animation: bounceKids 2.5s infinite ease-in-out;
@@ -111,9 +129,10 @@
             50% { transform: translateY(-8px); }
         }
 
-        /* LOGO SMART i-C DIBESARKAN */
+        /* LOGO SMART i-C DIBESARKAN & AUTO RESIZE */
         .landing-logo-smart-large {
-            width: 135px;
+            width: 150px;
+            max-width: 65%;
             height: auto;
             z-index: 2;
             filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.7));
@@ -126,19 +145,55 @@
             100% { transform: scale(1); }
         }
 
-        .landing-title { font-size: 28px; font-weight: 900; color: #ffd700; letter-spacing: 1.5px; margin-top: 5px; }
-        .landing-tagline { font-size: 12px; color: #cbd5e1; margin-top: 3px; font-weight: 600; }
-        .landing-school { font-size: 12px; font-weight: 800; color: #00e5ff; margin-top: 12px; }
-        
-        .landing-dev-box { margin-top: 15px; padding: 10px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 16px; width: 100%; }
-        .landing-avengers-logo { width: 42px; height: 42px; border-radius: 50%; margin: 6px auto 3px auto; border: 2px solid #ffd700; }
-        .landing-team-name { font-size: 14px; font-weight: 900; color: #ffd700; }
+        /* FONT SMART i-C FLUID AUTO-RESIZE */
+        .landing-title { 
+            font-size: clamp(28px, 8vw, 36px); 
+            font-weight: 900; 
+            color: #ffd700; 
+            letter-spacing: 2px; 
+            margin-top: 4px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .landing-tagline { 
+            font-size: clamp(10px, 2.5vw, 12px); 
+            color: #cbd5e1; 
+            margin-top: 2px; 
+            font-weight: 600; 
+        }
+
+        /* NAMA SEKOLAH DAN YEA DIBARISI BAHARU */
+        .landing-school { 
+            font-size: clamp(11px, 3vw, 13px); 
+            font-weight: 800; 
+            color: #00e5ff; 
+            margin-top: 10px; 
+            line-height: 1.3;
+        }
+        .landing-school-code {
+            color: #ffd700;
+            font-size: clamp(10px, 2.5vw, 11px);
+            font-weight: 700;
+        }
+
+        .landing-dev-box { 
+            margin-top: 15px; 
+            padding: 8px 12px; 
+            background: rgba(255, 255, 255, 0.08); 
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-radius: 14px; 
+            width: 100%; 
+        }
+        .landing-avengers-logo { width: 38px; height: 38px; border-radius: 50%; margin: 4px auto 2px auto; border: 2px solid #ffd700; }
+        .landing-team-name { font-size: 13px; font-weight: 900; color: #ffd700; }
 
         .btn-landing-start {
-            width: 100%; padding: 15px; background: linear-gradient(90deg, #ffd700 0%, #ffaa00 100%);
-            color: #0b2545; border: none; border-radius: 14px; font-size: 15px; font-weight: 900;
+            width: 100%; padding: 14px; background: linear-gradient(90deg, #ffd700 0%, #ffaa00 100%);
+            color: #0b2545; border: none; border-radius: 14px; font-size: 14px; font-weight: 900;
             text-transform: uppercase; cursor: pointer; margin-top: 12px; box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            transition: transform 0.2s;
         }
+        .btn-landing-start:active { transform: scale(0.97); }
 
         /* CARD & BUTTON STYLES */
         .hero-banner { background: linear-gradient(135deg, #134074 0%, #0b2545 100%); color: #ffffff; border-radius: 16px; padding: 18px; text-align: center; margin-bottom: 15px; }
@@ -169,15 +224,15 @@
             position: absolute;
             top: 10px;
             left: 10px;
-            background: rgba(11, 37, 69, 0.85);
+            background: rgba(11, 37, 69, 0.9);
             color: #ffd700;
-            padding: 5px 10px;
+            padding: 5px 12px;
             border-radius: 20px;
             font-size: 11px;
             font-weight: 800;
             border: 1px solid #ffd700;
             backdrop-filter: blur(4px);
-            display: none;
+            z-index: 10;
         }
 
         .btn-modern { width: 100%; padding: 13px; border: none; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; }
@@ -186,13 +241,12 @@
         .btn-secondary { background: #e2e8f0; color: #1a202c; }
         .btn-admin { background: #ffd700; color: #0b2545; }
 
-        /* GALERI SLOT 25 GAMBAR BESERTA LABEL KELAS */
+        /* GALERI SLOT 25 GAMBAR BESERTA LABEL KELAS & MASA */
         .gallery-container { display: flex; gap: 10px; overflow-x: auto; padding: 8px 0; }
-        .gallery-item-box { position: relative; flex-shrink: 0; width: 70px; text-align: center; }
-        .gallery-img { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; border: 2px solid #134074; }
-        .gallery-label { font-size: 8px; font-weight: 700; color: #134074; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .gallery-item-box { position: relative; flex-shrink: 0; width: 75px; text-align: center; }
+        .gallery-img { width: 75px; height: 75px; border-radius: 10px; object-fit: cover; border: 2px solid #134074; }
+        .gallery-label { font-size: 8px; font-weight: 800; color: #134074; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* RATING BINTANG STYLES */
         .star-rating { display: flex; gap: 5px; justify-content: center; margin: 10px 0; }
         .star { font-size: 28px; color: #cbd5e1; cursor: pointer; }
         .star.selected { color: #ffd700; }
@@ -218,13 +272,13 @@
 
     <div class="app-container">
 
-        <!-- ================= LANDING PAGE WITH LARGE LOGO & KIDS ANIMATION ================= -->
+        <!-- ================= LANDING PAGE PERFECT CENTER ================= -->
         <div id="screen-landing" class="active">
-            <div>
+            <div class="landing-content-wrapper">
                 <div class="landing-welcome">SELAMAT DATANG KE</div>
                 
                 <div class="landing-hero-wrapper">
-                    <!-- Gambar Animasi Murid Berbaju Sekolah (SKPJ) -->
+                    <!-- Gambar Animasi Murid Berbaju Sekolah -->
                     <img src="kanak-sekolah.png" alt="Murid SKPJ" class="landing-kids-img" onerror="this.style.display='none'">
                     <!-- Logo SMART i-C DIBESARKAN -->
                     <img src="logo-smart-ic.png" alt="SMART i-C" class="landing-logo-smart-large" onerror="this.style.opacity='0'">
@@ -232,12 +286,15 @@
 
                 <div class="landing-title">SMART i-C</div>
                 <div class="landing-tagline">INTELLIGENT CLASSROOM CLEANING SYSTEM</div>
-                <div class="landing-school">SEKOLAH KEBANGSAAN PETRAJAYA KUCHING (YEA1203)</div>
-            </div>
+                
+                <!-- NAMA SEKOLAH DENGAN KOD DIBARISI BAHARU -->
+                <div class="landing-school">
+                    SEKOLAH KEBANGSAAN PETRAJAYA KUCHING<br>
+                    <span class="landing-school-code">(YEA1203)</span>
+                </div>
 
-            <div style="width: 100%;">
                 <div class="landing-dev-box">
-                    <div style="font-size: 10px; color: #94a3b8; text-transform: uppercase;">DISEDIAKAN OLEH:</div>
+                    <div style="font-size: 9px; color: #94a3b8; text-transform: uppercase;">DISEDIAKAN OLEH:</div>
                     <img src="logo-avengers.png" alt="AI Avengers" class="landing-avengers-logo" onerror="this.style.display='none'">
                     <div class="landing-team-name">AI AVENGERS</div>
                 </div>
@@ -432,7 +489,7 @@
             </div>
         </div>
 
-        <!-- ================= SCREEN 6: PORTAL PENTADBIR (ADMIN PANEL) ================= -->
+        <!-- ================= SCREEN 6: PORTAL PENTADBIR ================= -->
         <div class="screen" id="screen-6">
             <div class="card" style="background:#0b2545; color:#fff;">
                 <div style="font-size:16px; font-weight:800; color:#ffd700;">🔒 Portal Pentadbir & Penilai</div>
@@ -590,7 +647,7 @@
             });
         }
 
-        /* KAMERA & MUAT NAIK WORKFLOW */
+        /* KAMERA & MUAT NAIK WORKFLOW FIX */
         async function mulaKameraPeranti() {
             document.getElementById("btn-start-cam").innerText = "MEMUATKAN CAMERA...";
             document.getElementById("btn-start-cam").disabled = true;
@@ -599,8 +656,10 @@
             const metadataURL = URL_MODEL_TM + "metadata.json";
 
             try {
-                model = await tmImage.load(modelURL, metadataURL);
-                maxPredictions = model.getTotalPredictions();
+                if(!model) {
+                    model = await tmImage.load(modelURL, metadataURL);
+                    maxPredictions = model.getTotalPredictions();
+                }
 
                 const constraints = { video: { facingMode: { ideal: "environment" }, width: { ideal: 640 }, height: { ideal: 640 } } };
                 videoStream = await navigator.mediaDevices.getUserMedia(constraints);
@@ -667,14 +726,28 @@
             document.getElementById("file-upload-input").value = "";
         }
 
+        /* PEMBETULAN ENGINE AI IMBASAN CANVAS */
         async function prosesImbasanAI() {
             let prediction;
             const videoElem = document.getElementById("webcam-video");
             const namaKelasSelected = document.getElementById("select-kelas").value;
             
+            if(!model) {
+                const modelURL = URL_MODEL_TM + "model.json";
+                const metadataURL = URL_MODEL_TM + "metadata.json";
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalPredictions();
+            }
+
             if(isUploadedFile && uploadedImageElement) {
-                prediction = await model.predict(uploadedImageElement);
-                simpanGambarBase64(uploadedImageElement, namaKelasSelected);
+                // Gunakan canvas sementara untuk mengimbas gambar galeri secara stabil
+                const tempCanvas = document.createElement("canvas");
+                tempCanvas.width = 300; tempCanvas.height = 300;
+                const ctx = tempCanvas.getContext("2d");
+                ctx.drawImage(uploadedImageElement, 0, 0, 300, 300);
+                
+                prediction = await model.predict(tempCanvas);
+                simpanGambarBase64(tempCanvas, namaKelasSelected);
             } else {
                 prediction = await model.predict(videoElem);
                 simpanGambarBase64(videoElem, namaKelasSelected);
@@ -710,7 +783,7 @@
             navigasiKe(3);
         }
 
-        /* SIMPAN GAMBAR + LABEL NAMA KELAS */
+        /* SIMPAN GAMBAR + NAMA KELAS & KUNCI IDENTITI */
         function simpanGambarBase64(elementSource, namaKelas) {
             const canvas = document.createElement("canvas");
             canvas.width = 150; canvas.height = 150;
@@ -721,13 +794,13 @@
             savedImagesArray.unshift({ code: base64Code, kelas: namaKelas });
             if(savedImagesArray.length > 25) savedImagesArray.pop();
 
-            localStorage.setItem("smart_ic_gallery_v6", JSON.stringify(savedImagesArray));
+            localStorage.setItem("smart_ic_gallery_v7", JSON.stringify(savedImagesArray));
             muatGambarTersimpan();
         }
 
         function muatGambarTersimpan() {
             const galleryBox = document.getElementById("gallery-box");
-            savedImagesArray = JSON.parse(localStorage.getItem("smart_ic_gallery_v6")) || [];
+            savedImagesArray = JSON.parse(localStorage.getItem("smart_ic_gallery_v7")) || [];
             if(savedImagesArray.length > 0) {
                 galleryBox.innerHTML = "";
                 savedImagesArray.forEach(item => {
@@ -741,7 +814,7 @@
 
         function padamGaleriTersimpan() {
             if(confirm("Adakah anda pasti mahu memadam semua gambar dlm galeri ini?")) {
-                localStorage.removeItem("smart_ic_gallery_v6");
+                localStorage.removeItem("smart_ic_gallery_v7");
                 savedImagesArray = [];
                 document.getElementById("gallery-box").innerHTML = '<div style="font-size: 10px; color: #94a3b8;">Tiada imbasan gambar lagi.</div>';
             }
