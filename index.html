@@ -69,16 +69,16 @@
         .screen { display: none; padding: 15px; flex-grow: 1; padding-bottom: 110px; }
         .screen.active { display: block; }
 
-        /* ================= 1) LANDING PAGE PERFECT CENTER & AUTO-RESIZE ================= */
+        /* ================= 1) LANDING PAGE PERFECT CENTER & BALANCED LAYOUT ================= */
         #screen-landing {
             background: radial-gradient(circle at center, #134074 0%, #0b2545 70%, #051329 100%);
             color: #ffffff;
             text-align: center;
-            padding: 20px;
+            padding: 25px 20px;
             display: none;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* KANDUNGAN SENTIASA TEPAT DI TENGAH SKRIN */
+            justify-content: space-between;
             min-height: 100vh;
             position: absolute;
             top: 0; left: 0; width: 100%; z-index: 300;
@@ -97,10 +97,11 @@
         }
 
         .landing-welcome { 
-            font-size: clamp(11px, 3vw, 13px); 
-            font-weight: 800; 
+            font-size: clamp(12px, 3.5vw, 15px); 
+            font-weight: 900; 
             letter-spacing: 2px; 
             color: #e2e8f0; 
+            margin-bottom: 5px;
         }
 
         .landing-hero-wrapper {
@@ -109,16 +110,15 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin: 8px 0;
+            margin: 5px 0;
             width: 100%;
         }
 
-        /* GAMBAR ANIMASI KANAK-KANAK BERBAJU SEKOLAH (AUTO RESIZE) */
         .landing-kids-img {
-            width: 160px;
-            max-width: 75%;
+            width: 180px;
+            max-width: 85%;
             height: auto;
-            margin-bottom: -28px;
+            margin-bottom: -32px;
             z-index: 1;
             filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
             animation: bounceKids 2.5s infinite ease-in-out;
@@ -129,10 +129,9 @@
             50% { transform: translateY(-8px); }
         }
 
-        /* LOGO SMART i-C DIBESARKAN & AUTO RESIZE */
         .landing-logo-smart-large {
-            width: 150px;
-            max-width: 65%;
+            width: 170px;
+            max-width: 80%;
             height: auto;
             z-index: 2;
             filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.7));
@@ -145,35 +144,34 @@
             100% { transform: scale(1); }
         }
 
-        /* FONT SMART i-C FLUID AUTO-RESIZE */
         .landing-title { 
-            font-size: clamp(28px, 8vw, 36px); 
+            font-size: clamp(32px, 9vw, 40px); 
             font-weight: 900; 
             color: #ffd700; 
             letter-spacing: 2px; 
             margin-top: 4px;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 18px rgba(255, 215, 0, 0.6);
         }
 
         .landing-tagline { 
-            font-size: clamp(10px, 2.5vw, 12px); 
+            font-size: clamp(10px, 2.8vw, 12px); 
             color: #cbd5e1; 
             margin-top: 2px; 
-            font-weight: 600; 
+            font-weight: 700; 
         }
 
-        /* NAMA SEKOLAH DAN YEA DIBARISI BAHARU */
         .landing-school { 
-            font-size: clamp(11px, 3vw, 13px); 
+            font-size: clamp(12px, 3.2vw, 14px); 
             font-weight: 800; 
             color: #00e5ff; 
             margin-top: 10px; 
             line-height: 1.3;
         }
+        
         .landing-school-code {
             color: #ffd700;
-            font-size: clamp(10px, 2.5vw, 11px);
-            font-weight: 700;
+            font-size: clamp(11px, 2.8vw, 12px);
+            font-weight: 800;
         }
 
         .landing-dev-box { 
@@ -194,6 +192,14 @@
             transition: transform 0.2s;
         }
         .btn-landing-start:active { transform: scale(0.97); }
+
+        .landing-copyright-bottom {
+            font-size: 8px;
+            color: #94a3b8;
+            margin-top: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
 
         /* CARD & BUTTON STYLES */
         .hero-banner { background: linear-gradient(135deg, #134074 0%, #0b2545 100%); color: #ffffff; border-radius: 16px; padding: 18px; text-align: center; margin-bottom: 15px; }
@@ -243,8 +249,8 @@
 
         /* GALERI SLOT 25 GAMBAR BESERTA LABEL KELAS & MASA */
         .gallery-container { display: flex; gap: 10px; overflow-x: auto; padding: 8px 0; }
-        .gallery-item-box { position: relative; flex-shrink: 0; width: 75px; text-align: center; }
-        .gallery-img { width: 75px; height: 75px; border-radius: 10px; object-fit: cover; border: 2px solid #134074; }
+        .gallery-item-box { position: relative; flex-shrink: 0; width: 80px; text-align: center; }
+        .gallery-img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; border: 2px solid #134074; }
         .gallery-label { font-size: 8px; font-weight: 800; color: #134074; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         .star-rating { display: flex; gap: 5px; justify-content: center; margin: 10px 0; }
@@ -278,16 +284,13 @@
                 <div class="landing-welcome">SELAMAT DATANG KE</div>
                 
                 <div class="landing-hero-wrapper">
-                    <!-- Gambar Animasi Murid Berbaju Sekolah -->
                     <img src="kanak-sekolah.png" alt="Murid SKPJ" class="landing-kids-img" onerror="this.style.display='none'">
-                    <!-- Logo SMART i-C DIBESARKAN -->
                     <img src="logo-smart-ic.png" alt="SMART i-C" class="landing-logo-smart-large" onerror="this.style.opacity='0'">
                 </div>
 
                 <div class="landing-title">SMART i-C</div>
                 <div class="landing-tagline">INTELLIGENT CLASSROOM CLEANING SYSTEM</div>
                 
-                <!-- NAMA SEKOLAH DENGAN KOD DIBARISI BAHARU -->
                 <div class="landing-school">
                     SEKOLAH KEBANGSAAN PETRAJAYA KUCHING<br>
                     <span class="landing-school-code">(YEA1203)</span>
@@ -300,6 +303,10 @@
                 </div>
 
                 <button class="btn-landing-start" onclick="masukKeHome()">KLIK UNTUK TERUSKAN ➔</button>
+
+                <div class="landing-copyright-bottom">
+                    PEMBANGUNAN SISTEM: AI AVENGERS | HAK CIPTA TERPELIHARA 2026
+                </div>
             </div>
         </div>
 
@@ -319,7 +326,7 @@
             <img src="logo-skpj.png" alt="SKPJ" class="header-logo-img" onerror="this.style.opacity='0'">
         </div>
 
-        <!-- ================= SCREEN 1: LAMAN UTAMA ================= -->
+        <!-- ================= SCREEN 1: LAMAN UTAMA (PENEROKA KELAS & REKOD) ================= -->
         <div class="screen" id="screen-1">
             <div class="hero-banner">
                 <div class="hero-title">Kelas Bersih, Minda Ceria,<br>Masa Depan Cemerlang</div>
@@ -334,17 +341,32 @@
                 <div class="stat-num" id="total-usage-count">142x</div>
             </div>
 
+            <!-- GALERI & PENEROKA REKOD KELAS -->
             <div class="card">
-                <div class="section-title">📍 Pilih Bilik Darjah</div>
-                <select id="select-kelas" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600;" onchange="semakPilihanKelas(this)">
+                <div class="section-title">🔍 Peneroka Galeri & Rekod Kelas</div>
+                <select id="home-select-kelas" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600;" onchange="tapisGaleriHome(this.value)">
+                    <option value="ALL">-- SEMUA KELAS / BILIK DARJAH --</option>
                     <option value="Kelas 1 Alpha">Kelas 1 Alpha</option>
                     <option value="Kelas 2 Beta">Kelas 2 Beta</option>
                     <option value="Kelas 3 Gamma">Kelas 3 Gamma</option>
                     <option value="Kelas 4 Delta">Kelas 4 Delta</option>
                     <option value="Kelas 5 Epsilon">Kelas 5 Epsilon</option>
                     <option value="Makmal Sains">Makmal Sains</option>
-                    <option value="ADD_NEW_CLASS" style="color: #134074; font-weight: bold;">➕ [ Tambah Kelas Baharu... ]</option>
                 </select>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; margin-bottom:6px;">
+                    <div style="font-size:11px; font-weight:800; color:#0b2545;">🖼️ Galeri Gambar Kelas</div>
+                    <select id="sort-order" style="font-size:9px; padding:4px; border-radius:6px;" onchange="renderDashboard()">
+                        <option value="DATE">Isih: Tarikh Terkini</option>
+                        <option value="CLASS">Isih: Nama Kelas</option>
+                    </select>
+                </div>
+
+                <div class="gallery-container" id="home-gallery-box">
+                    <div style="font-size: 10px; color: #94a3b8;">Tiada gambar imbasan lagi.</div>
+                </div>
+
+                <button class="btn-modern btn-primary" style="margin-top:10px; font-size:11px; padding:10px;" onclick="navigasiKe(4)">📄 Ekstrak Laporan Kelas</button>
             </div>
 
             <div class="action-grid">
@@ -382,8 +404,17 @@
 
         <!-- ================= SCREEN 2: KAMERA & SMART WORKFLOW ================= -->
         <div class="screen" id="screen-2">
-            <div class="camera-hint">
-                💡 <b>Tip:</b> Tangkap gambar dari kamera peranti atau muat naik dari galeri.
+            <div class="card" style="margin-bottom:12px;">
+                <div class="section-title">📍 Pilih Kelas Untuk Imbasan</div>
+                <select id="scan-select-kelas" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600;" onchange="kemaskiniBadgeKelas(this)">
+                    <option value="Kelas 1 Alpha">Kelas 1 Alpha</option>
+                    <option value="Kelas 2 Beta">Kelas 2 Beta</option>
+                    <option value="Kelas 3 Gamma">Kelas 3 Gamma</option>
+                    <option value="Kelas 4 Delta">Kelas 4 Delta</option>
+                    <option value="Kelas 5 Epsilon">Kelas 5 Epsilon</option>
+                    <option value="Makmal Sains">Makmal Sains</option>
+                    <option value="ADD_NEW_CLASS" style="color: #134074; font-weight: bold;">➕ [ Tambah Kelas Baharu... ]</option>
+                </select>
             </div>
 
             <div class="camera-box">
@@ -399,12 +430,10 @@
                 <input type="file" id="file-upload-input" accept="image/*" style="display:none;" onchange="kendalikanMuatNaikGambar(this)">
                 <button class="btn-modern btn-upload" id="btn-trigger-upload" onclick="document.getElementById('file-upload-input').click()">🖼️ Muat Naik Gambar Galeri</button>
 
-                <!-- OPTION UTK PENGESAHAN GAMBAR & EDIT/BATAL -->
                 <button class="btn-modern btn-primary" id="btn-capture-ai" style="display:none;" onclick="prosesImbasanAI()">⚡ Selesai & Imbas AI</button>
                 <button class="btn-modern btn-secondary" id="btn-reset-img" style="display:none;" onclick="resetLangkahGambar()">✏️ Tukar Gambar / Edit Kelas</button>
             </div>
 
-            <!-- GALERI SLOT 25 GAMBAR BESERTA LABEL KELAS -->
             <div class="card" style="margin-top: 15px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                     <div class="section-title" style="font-size: 11px; margin-bottom:0;">🖼️ Galeri Imbasan Terkini (Max 25)</div>
@@ -416,7 +445,7 @@
             </div>
         </div>
 
-        <!-- ================= SCREEN 3: KEPUTUSAN AI ================= -->
+        <!-- ================= SCREEN 3: KEPUTUSAN AI (ANALISIS) ================= -->
         <div class="screen" id="screen-3">
             <div class="section-title">Analisis Selesai</div>
             
@@ -439,12 +468,12 @@
         <!-- ================= SCREEN 4: DASHBOARD & REKOD ================= -->
         <div class="screen" id="screen-4">
             <div class="card" style="background:#eef4fb; border:1px solid #cbd5e1;">
-                <div class="section-title">📄 EKSPORT LAPORAN</div>
-                <button class="btn-modern btn-primary" onclick="window.print()">🖨️ Cetak / PDF</button>
+                <div class="section-title">📄 EKSPORT LAPORAN KELAS</div>
+                <button class="btn-modern btn-primary" onclick="window.print()">🖨️ Cetak / Simpan PDF Laporan</button>
             </div>
 
             <div class="card">
-                <div class="section-title" style="font-size: 10px;">Carta Analitik Kebersihan Harian</div>
+                <div class="section-title" style="font-size: 10px;">Carta Analisis Kebersihan Harian</div>
                 <canvas id="weeklyChart" height="130"></canvas>
             </div>
 
@@ -513,7 +542,7 @@
             <div class="bottom-nav">
                 <div class="nav-item" id="nav-1" onclick="navigasiKe(1)"><div class="icon">🏠</div><div>Utama</div></div>
                 <div class="nav-item" id="nav-2" onclick="navigasiKe(2)"><div class="icon">📷</div><div>Imbas</div></div>
-                <div class="nav-item" id="nav-4" onclick="navigasiKe(4)"><div class="icon">📊</div><div>Analitik</div></div>
+                <div class="nav-item" id="nav-4" onclick="navigasiKe(4)"><div class="icon">📊</div><div>Analisis</div></div>
                 <div class="nav-item" id="nav-5" onclick="navigasiKe(5)"><div class="icon">💬</div><div>Maklumbalas</div></div>
             </div>
 
@@ -538,7 +567,8 @@
 
         let historyData = [
             { kelas: "Kelas 1 Alpha", status: "Bersih", keyakinan: "96.5%", tarikh: "06/08/2026" },
-            { kelas: "Kelas 2 Beta", status: "Bersih", keyakinan: "92.0%", tarikh: "06/08/2026" }
+            { kelas: "Kelas 2 Beta", status: "Bersih", keyakinan: "92.0%", tarikh: "06/08/2026" },
+            { kelas: "Makmal Sains", status: "Bersih", keyakinan: "95.0%", tarikh: "05/08/2026" }
         ];
 
         let feedbackList = [
@@ -555,6 +585,7 @@
             renderDashboard();
             renderRankingTable();
             muatGambarTersimpan();
+            tapisGaleriHome('ALL');
             pilihStar(5);
         };
 
@@ -578,7 +609,7 @@
             }
 
             if(screenNum === 2) {
-                const kelasSelected = document.getElementById("select-kelas").value;
+                const kelasSelected = document.getElementById("scan-select-kelas").value;
                 const badge = document.getElementById("preview-class-badge");
                 badge.innerText = "📍 Kelas: " + kelasSelected;
                 badge.style.display = "block";
@@ -647,7 +678,20 @@
             });
         }
 
-        /* KAMERA & MUAT NAIK WORKFLOW FIX */
+        function kemaskiniBadgeKelas(select) {
+            if(select.value === "ADD_NEW_CLASS") {
+                let name = prompt("Masukkan Nama Kelas Baharu:");
+                if(name) {
+                    let opt = document.createElement("option"); opt.value = name; opt.innerText = name;
+                    select.insertBefore(opt, select.lastElementChild); select.value = name;
+                } else { select.selectedIndex = 0; }
+            }
+            const badge = document.getElementById("preview-class-badge");
+            badge.innerText = "📍 Kelas: " + select.value;
+            badge.style.display = "block";
+        }
+
+        /* KAMERA & MUAT NAIK WORKFLOW */
         async function mulaKameraPeranti() {
             document.getElementById("btn-start-cam").innerText = "MEMUATKAN CAMERA...";
             document.getElementById("btn-start-cam").disabled = true;
@@ -726,11 +770,11 @@
             document.getElementById("file-upload-input").value = "";
         }
 
-        /* PEMBETULAN ENGINE AI IMBASAN CANVAS */
+        /* FIX ENJIN AI IMBASAN CANVAS GAMBAR GALERI */
         async function prosesImbasanAI() {
             let prediction;
             const videoElem = document.getElementById("webcam-video");
-            const namaKelasSelected = document.getElementById("select-kelas").value;
+            const namaKelasSelected = document.getElementById("scan-select-kelas").value;
             
             if(!model) {
                 const modelURL = URL_MODEL_TM + "model.json";
@@ -740,7 +784,6 @@
             }
 
             if(isUploadedFile && uploadedImageElement) {
-                // Gunakan canvas sementara untuk mengimbas gambar galeri secara stabil
                 const tempCanvas = document.createElement("canvas");
                 tempCanvas.width = 300; tempCanvas.height = 300;
                 const ctx = tempCanvas.getContext("2d");
@@ -783,7 +826,7 @@
             navigasiKe(3);
         }
 
-        /* SIMPAN GAMBAR + NAMA KELAS & KUNCI IDENTITI */
+        /* SIMPAN GAMBAR + LOCK NAMA KELAS & TARIKH */
         function simpanGambarBase64(elementSource, namaKelas) {
             const canvas = document.createElement("canvas");
             canvas.width = 150; canvas.height = 150;
@@ -791,16 +834,17 @@
             ctx.drawImage(elementSource, 0, 0, 150, 150);
             
             const base64Code = canvas.toDataURL("image/jpeg", 0.6);
-            savedImagesArray.unshift({ code: base64Code, kelas: namaKelas });
+            savedImagesArray.unshift({ code: base64Code, kelas: namaKelas, tarikh: "06/08/2026" });
             if(savedImagesArray.length > 25) savedImagesArray.pop();
 
-            localStorage.setItem("smart_ic_gallery_v7", JSON.stringify(savedImagesArray));
+            localStorage.setItem("smart_ic_gallery_v8", JSON.stringify(savedImagesArray));
             muatGambarTersimpan();
+            tapisGaleriHome('ALL');
         }
 
         function muatGambarTersimpan() {
             const galleryBox = document.getElementById("gallery-box");
-            savedImagesArray = JSON.parse(localStorage.getItem("smart_ic_gallery_v7")) || [];
+            savedImagesArray = JSON.parse(localStorage.getItem("smart_ic_gallery_v8")) || [];
             if(savedImagesArray.length > 0) {
                 galleryBox.innerHTML = "";
                 savedImagesArray.forEach(item => {
@@ -812,16 +856,39 @@
             }
         }
 
+        function tapisGaleriHome(kelasFilter) {
+            const homeGalleryBox = document.getElementById("home-gallery-box");
+            savedImagesArray = JSON.parse(localStorage.getItem("smart_ic_gallery_v8")) || [];
+            
+            let filtered = savedImagesArray;
+            if(kelasFilter !== 'ALL') {
+                filtered = savedImagesArray.filter(i => i.kelas === kelasFilter);
+            }
+
+            if(filtered.length > 0) {
+                homeGalleryBox.innerHTML = "";
+                filtered.forEach(item => {
+                    let div = document.createElement("div");
+                    div.className = "gallery-item-box";
+                    div.innerHTML = `<img src="${item.code}" class="gallery-img"><div class="gallery-label">${item.kelas}</div>`;
+                    homeGalleryBox.appendChild(div);
+                });
+            } else {
+                homeGalleryBox.innerHTML = '<div style="font-size: 10px; color: #94a3b8;">Tiada rekod gambar untuk kelas ini.</div>';
+            }
+        }
+
         function padamGaleriTersimpan() {
             if(confirm("Adakah anda pasti mahu memadam semua gambar dlm galeri ini?")) {
-                localStorage.removeItem("smart_ic_gallery_v7");
+                localStorage.removeItem("smart_ic_gallery_v8");
                 savedImagesArray = [];
                 document.getElementById("gallery-box").innerHTML = '<div style="font-size: 10px; color: #94a3b8;">Tiada imbasan gambar lagi.</div>';
+                tapisGaleriHome('ALL');
             }
         }
 
         async function simpanKeSheets() {
-            const kelas = document.getElementById("select-kelas").value;
+            const kelas = document.getElementById("scan-select-kelas").value;
             const btn = document.getElementById("btn-save-sheets");
             btn.innerText = "MENGHANTAR..."; btn.disabled = true;
 
@@ -834,7 +901,7 @@
                     body: JSON.stringify(payload)
                 });
 
-                historyData.unshift({ kelas: kelas, status: currentStatus, keyakinan: currentConfidence + "%", tarikh: "Hari Ini" });
+                historyData.unshift({ kelas: kelas, status: currentStatus, keyakinan: currentConfidence + "%", tarikh: "06/08/2026" });
                 alert("BERJAYA! Data disimpan ke Sheets & Dashboard.");
                 resetLangkahGambar();
                 navigasiKe(4);
@@ -847,14 +914,22 @@
 
         function renderDashboard() {
             const logContainer = document.getElementById("history-log-container");
+            const sortMode = document.getElementById("sort-order").value;
             logContainer.innerHTML = "";
-            historyData.forEach(item => {
+
+            let displayList = [...historyData];
+            if(sortMode === 'CLASS') {
+                displayList.sort((a, b) => a.kelas.localeCompare(b.kelas));
+            }
+
+            displayList.forEach(item => {
                 let lower = item.status.toLowerCase();
                 let iconStatus = lower.includes("bersih") && !lower.includes("sederhana") ? "🟢😃" : (lower.includes("sederhana") ? "🟠😐" : "🔴☹️");
-                let div = document.createElement("div");
-                div.className = "log-list-item";
-                div.innerHTML = `<div><b>${item.kelas}</b><br><span style="color:#718096">${item.tarikh}</span></div><div style="text-align:right"><b>${iconStatus} ${item.status}</b><br><span style="color:#134074">${item.keyakinan}</span></div>`;
-                logContainer.appendChild(div);
+                let div = document.getElementById("log-list-item");
+                let newRow = document.createElement("div");
+                newRow.className = "log-list-item";
+                newRow.innerHTML = `<div><b>${item.kelas}</b><br><span style="color:#718096">${item.tarikh}</span></div><div style="text-align:right"><b>${iconStatus} ${item.status}</b><br><span style="color:#134074">${item.keyakinan}</span></div>`;
+                logContainer.appendChild(newRow);
             });
 
             const ctx = document.getElementById('weeklyChart').getContext('2d');
@@ -872,16 +947,6 @@
             top10Data.forEach(item => {
                 tbody.innerHTML += `<tr><td><span class="rank-badge">${item.rank}</span></td><td>${item.kelas}</td><td style="text-align: right; color: #0e6251; font-weight: 800;">${item.skor}</td></tr>`;
             });
-        }
-
-        function semakPilihanKelas(select) {
-            if(select.value === "ADD_NEW_CLASS") {
-                let name = prompt("Masukkan Nama Kelas Baharu:");
-                if(name) {
-                    let opt = document.createElement("option"); opt.value = name; opt.innerText = name;
-                    select.insertBefore(opt, select.lastElementChild); select.value = name;
-                } else { select.selectedIndex = 0; }
-            }
         }
     </script>
 </body>
