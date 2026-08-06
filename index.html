@@ -12,10 +12,10 @@
         body { background: linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%); color: #1a202c; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
         .app-container { width: 100%; max-width: 450px; background: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.25); overflow: hidden; }
 
-        /* HEADER TOP BAR */
+        /* HEADER TOP BAR WITH ADMIN BUTTON */
         .top-bar { background-color: #0b2545; color: #ffffff; padding: 10px 15px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.2); height: 65px; }
         .header-left-group { display: flex; align-items: center; gap: 6px; }
-        .btn-top-icon { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; color: #ffd700; padding: 5px 8px; font-size: 13px; cursor: pointer; }
+        .btn-top-icon { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; color: #ffd700; padding: 5px 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
         .btn-top-icon:active { transform: scale(0.9); }
         .header-logo-img { width: 36px; height: 36px; object-fit: contain; display: block; }
         .top-bar-center { text-align: center; }
@@ -55,7 +55,14 @@
         .btn-action-card .label { font-size: 13px; font-weight: 700; color: #134074; }
         .section-title { font-size: 12px; font-weight: 800; color: #0b2545; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* PANDUAN 3 TAHAP KEBERSIHAN (EMOJI 3D STYLE) */
+        .stat-banner { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #0b2545 0%, #134074 100%); color: #fff; padding: 12px 15px; border-radius: 12px; margin-bottom: 15px; }
+        .stat-num { font-size: 20px; font-weight: 900; color: #00e5ff; }
+
+        .top3-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 5px; }
+        .top3-card { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px 5px; text-align: center; font-size: 10px; font-weight: 700; }
+        .top3-card .medal { font-size: 24px; margin-bottom: 3px; }
+
+        /* PANDUAN 3 TAHAP KEBERSIHAN (EMOJI 3D) */
         .guide-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 15px; }
         .guide-card { border-radius: 14px; padding: 12px 8px; text-align: center; font-size: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
         .guide-clean { background: linear-gradient(180deg, #e6f9ed 0%, #c8f7d5 100%); border: 1.5px solid #2ec4b6; color: #0e6251; }
@@ -74,11 +81,16 @@
         .btn-primary { background: #134074; color: #ffffff; }
         .btn-upload { background: rgba(11, 37, 69, 0.85); color: #ffd700; border: 1px solid #ffd700; }
         .btn-secondary { background: #e2e8f0; color: #1a202c; }
+        .btn-admin { background: #ffd700; color: #0b2545; }
 
         .gallery-container { display: flex; gap: 10px; overflow-x: auto; padding: 8px 0; }
         .gallery-item-box { position: relative; flex-shrink: 0; width: 80px; text-align: center; }
         .gallery-img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; border: 2px solid #134074; }
         .gallery-label { font-size: 8px; font-weight: 800; color: #134074; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        .star-rating { display: flex; gap: 5px; justify-content: center; margin: 10px 0; }
+        .star { font-size: 28px; color: #cbd5e1; cursor: pointer; }
+        .star.selected { color: #ffd700; }
 
         .ranking-table { width: 100%; border-collapse: collapse; font-size: 11px; }
         .ranking-table th { background: #0b2545; color: #ffd700; padding: 6px 8px; text-align: left; }
@@ -119,10 +131,11 @@
             </div>
         </div>
 
-        <!-- TOP BAR -->
+        <!-- TOP BAR WITH ADMIN BUTTON -->
         <div class="top-bar">
             <div class="header-left-group">
                 <button class="btn-top-icon" onclick="kembaliKeLanding()">🏠</button>
+                <button class="btn-top-icon" onclick="bukaAdminModal()" style="color:#ffd700;">🔑 Admin</button>
                 <img src="logo-smart-ic.png" alt="SMART i-C" class="header-logo-img" onerror="this.style.opacity='0'">
             </div>
             <div class="top-bar-center">
@@ -139,13 +152,20 @@
                 <div class="hero-sub">AI mengesan tahap kebersihan kelas melalui gambar secara pantas dan tepat.</div>
             </div>
 
-            <!-- BUTANG UTAMA AMBIL GAMBAR & REKOD -->
+            <div class="stat-banner">
+                <div>
+                    <div style="font-size: 10px; text-transform: uppercase; opacity: 0.8;">Jumlah Akses & Imbasan</div>
+                    <div style="font-size: 11px; font-weight: 700;">Keseluruhan Sistem</div>
+                </div>
+                <div class="stat-num" id="total-usage-count">142x</div>
+            </div>
+
             <div class="action-grid">
                 <div class="btn-action-card" onclick="navigasiKe(2)"><div class="icon">📷</div><div class="label">Ambil Gambar</div></div>
                 <div class="btn-action-card" onclick="navigasiKe(4)"><div class="icon">📊</div><div class="label">Lihat Rekod</div></div>
             </div>
 
-            <!-- PANDUAN 3 TAHAP KEBERSIHAN (VISUAL EMOJI 3D) -->
+            <!-- PANDUAN 3 TAHAP KEBERSIHAN -->
             <div class="section-title">Panduan Tahap Kebersihan</div>
             <div class="guide-grid">
                 <div class="guide-card guide-clean">
@@ -165,7 +185,27 @@
                 </div>
             </div>
 
-            <!-- PENEROKA GALERI KELAS -->
+            <div class="card">
+                <div class="section-title">🏆 Top 3 Kelas Terbersih</div>
+                <div class="top3-grid">
+                    <div class="top3-card">
+                        <div class="medal">🥇</div>
+                        <div style="color: #0b2545;">1 Alpha</div>
+                        <div style="color: #2ec4b6; font-weight: 800;">98.5%</div>
+                    </div>
+                    <div class="top3-card">
+                        <div class="medal">🥈</div>
+                        <div style="color: #0b2545;">Makmal Sains</div>
+                        <div style="color: #2ec4b6; font-weight: 800;">96.2%</div>
+                    </div>
+                    <div class="top3-card">
+                        <div class="medal">🥉</div>
+                        <div style="color: #0b2545;">2 Beta</div>
+                        <div style="color: #2ec4b6; font-weight: 800;">94.8%</div>
+                    </div>
+                </div>
+            </div>
+
             <div class="card">
                 <div class="section-title">🔍 Peneroka Galeri & Rekod Kelas</div>
                 <select id="home-select-kelas" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600;" onchange="tapisGaleriHome(this.value)">
@@ -194,6 +234,7 @@
                     <option value="Kelas 4 Delta">Kelas 4 Delta</option>
                     <option value="Kelas 5 Epsilon">Kelas 5 Epsilon</option>
                     <option value="Makmal Sains">Makmal Sains</option>
+                    <option value="ADD_NEW_CLASS" style="color: #134074; font-weight: bold;">➕ [ Tambah Kelas Baharu... ]</option>
                 </select>
             </div>
 
@@ -254,12 +295,61 @@
             <div id="history-log-container"></div>
         </div>
 
+        <!-- SCREEN 5: MAKLUM BALAS PENGGUNA -->
+        <div class="screen" id="screen-5">
+            <div class="card">
+                <div class="section-title">💬 Maklum Balas Pengguna</div>
+                <p style="font-size:11px; color:#64748b; margin-bottom:12px;">Bantu kami menambah baik aplikasi SMART i-C ini.</p>
+
+                <label style="font-size:11px; font-weight:700;">Penilaian Anda:</label>
+                <div class="star-rating">
+                    <span class="star" onclick="pilihStar(1)">★</span>
+                    <span class="star" onclick="pilihStar(2)">★</span>
+                    <span class="star" onclick="pilihStar(3)">★</span>
+                    <span class="star" onclick="pilihStar(4)">★</span>
+                    <span class="star" onclick="pilihStar(5)">★</span>
+                </div>
+
+                <label style="font-size:11px; font-weight:700; margin-top:10px; display:block;">Kategori:</label>
+                <select id="fb-kategori" style="width:100%; padding:8px; border-radius:8px; border:1px solid #cbd5e1; font-size:12px; margin-bottom:10px;">
+                    <option value="Cadangan">Cadangan Penambahbaikan</option>
+                    <option value="Pujian">Pujian / Kepuasan</option>
+                    <option value="Masalah">Masalah Teknikal</option>
+                </select>
+
+                <label style="font-size:11px; font-weight:700;">Ulasan / Cadangan:</label>
+                <textarea id="fb-ulasan" rows="3" style="width:100%; padding:8px; border-radius:8px; border:1px solid #cbd5e1; font-size:12px; margin-top:4px; outline:none;" placeholder="Tulis pandangan anda di sini..."></textarea>
+
+                <button class="btn-modern btn-primary" style="margin-top:12px;" id="btn-submit-fb" onclick="hantarMaklumBalas()">📤 Hantar Maklum Balas</button>
+            </div>
+        </div>
+
+        <!-- SCREEN 6: PORTAL PENTADBIR -->
+        <div class="screen" id="screen-6">
+            <div class="card" style="background:#0b2545; color:#fff;">
+                <div style="font-size:16px; font-weight:800; color:#ffd700;">🔒 Portal Pentadbir & Penilai</div>
+                <div style="font-size:10px; color:#00e5ff;">Akses Pengurusan Data & Laporan Terperinci</div>
+            </div>
+
+            <div class="card">
+                <div class="section-title">📁 PAUTAN DIRECT GOOGLE DRIVE MAKLUM BALAS</div>
+                <p style="font-size:10px; color:#64748b; margin-bottom:8px;">Format fail PDF & Rekod CSV disimpan secara automatik dlm Drive berikut:</p>
+                <button class="btn-modern btn-admin" onclick="window.open('https://drive.google.com/drive/folders/1cz-GWxTU1j0tsU3HYS-dTYJ8d7vELIWl?usp=drive_link', '_blank')">📂 Buka Folder Drive Maklum Balas</button>
+            </div>
+
+            <div class="card">
+                <div class="section-title">📊 SENARAI MAKLUM BALAS TERSIMPAN</div>
+                <div id="admin-feedback-list" style="font-size:11px;"></div>
+            </div>
+        </div>
+
         <!-- BOTTOM NAV & FOOTER -->
         <div class="bottom-nav-wrapper">
             <div class="bottom-nav">
                 <div class="nav-item" id="nav-1" onclick="navigasiKe(1)"><div class="icon">🏠</div><div>Utama</div></div>
                 <div class="nav-item" id="nav-2" onclick="navigasiKe(2)"><div class="icon">📷</div><div>Imbas</div></div>
                 <div class="nav-item" id="nav-4" onclick="navigasiKe(4)"><div class="icon">📊</div><div>Analisis</div></div>
+                <div class="nav-item" id="nav-5" onclick="navigasiKe(5)"><div class="icon">💬</div><div>Maklumbalas</div></div>
             </div>
             <div class="app-footer-fixed">
                 <div style="font-weight: 800; color: #ffffff;">PEMBANGUNAN SISTEM: AI AVENGERS</div>
@@ -278,16 +368,22 @@
         let savedImagesArray = [];
         let isUploadedFile = false;
         let uploadedImageElement = null;
+        let selectedStarRating = 5;
 
         let historyData = [
             { kelas: "Kelas 1 Alpha", status: "Bersih", keyakinan: "96.5%", tarikh: "06/08/2026" },
             { kelas: "Kelas 2 Beta", status: "Bersih", keyakinan: "92.0%", tarikh: "06/08/2026" }
         ];
 
+        let feedbackList = [
+            { rating: "5★", kat: "Pujian", ulasan: "Aplikasi sangat bagus dan responsif!", tarikh: "06/08/2026" }
+        ];
+
         window.onload = function() {
             renderDashboard();
             muatGambarTersimpan();
             tapisGaleriHome('ALL');
+            pilihStar(5);
         };
 
         function masukKeHome() {
@@ -308,10 +404,74 @@
             if(document.getElementById('nav-' + screenNum)) {
                 document.getElementById('nav-' + screenNum).classList.add('active');
             }
+            if(screenNum === 2) {
+                const kelasSelected = document.getElementById("scan-select-kelas").value;
+                const badge = document.getElementById("preview-class-badge");
+                badge.innerText = "📍 Kelas: " + kelasSelected;
+                badge.style.display = "block";
+            }
             if(screenNum === 4) { renderDashboard(); }
+            if(screenNum === 6) { renderAdminFeedback(); }
+        }
+
+        function bukaAdminModal() {
+            let pass = prompt("Masukkan Kata Laluan Pentadbir:");
+            if(pass === "skpj2026" || pass === "admin123") {
+                alert("Akses Diluluskan! Selamat Datang Pentadbir.");
+                navigasiKe(6);
+            } else if(pass !== null) {
+                alert("Kata Laluan Salah! Akses Ditolak.");
+            }
+        }
+
+        function pilihStar(starNum) {
+            selectedStarRating = starNum;
+            const stars = document.querySelectorAll(".star");
+            stars.forEach((s, idx) => {
+                if(idx < starNum) s.classList.add("selected");
+                else s.classList.remove("selected");
+            });
+        }
+
+        async function hantarMaklumBalas() {
+            const kat = document.getElementById("fb-kategori").value;
+            const ulasan = document.getElementById("fb-ulasan").value;
+            if(!ulasan.trim()) { alert("Sila tulis sedikit ulasan."); return; }
+
+            const btn = document.getElementById("btn-submit-fb");
+            btn.innerText = "MENGHANTAR..."; btn.disabled = true;
+
+            const payload = { type: "FEEDBACK", rating: selectedStarRating + " Star", kategori: kat, ulasan: ulasan, tarikh: "06/08/2026" };
+
+            try {
+                await fetch(GAS_WEB_APP_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+                feedbackList.unshift({ rating: selectedStarRating + "★", kat: kat, ulasan: ulasan, tarikh: "Hari Ini" });
+                alert("Terima kasih! Maklum balas anda telah disimpan.");
+                document.getElementById("fb-ulasan").value = "";
+                navigasiKe(1);
+            } catch(e) { alert("Ralat menghantar maklum balas!"); }
+            finally { btn.innerText = "📤 Hantar Maklum Balas"; btn.disabled = false; }
+        }
+
+        function renderAdminFeedback() {
+            const container = document.getElementById("admin-feedback-list");
+            container.innerHTML = "";
+            feedbackList.forEach(item => {
+                let div = document.createElement("div");
+                div.className = "log-list-item";
+                div.innerHTML = `<div><b>[${item.kat}] ${item.rating}</b><br><span>${item.ulasan}</span></div><div style="text-align:right; color:#718096;">${item.tarikh}</div>`;
+                container.appendChild(div);
+            });
         }
 
         function kemaskiniBadgeKelas(select) {
+            if(select.value === "ADD_NEW_CLASS") {
+                let name = prompt("Masukkan Nama Kelas Baharu:");
+                if(name) {
+                    let opt = document.createElement("option"); opt.value = name; opt.innerText = name;
+                    select.insertBefore(opt, select.lastElementChild); select.value = name;
+                } else { select.selectedIndex = 0; }
+            }
             const badge = document.getElementById("preview-class-badge");
             badge.innerText = "📍 Kelas: " + select.value;
             badge.style.display = "block";
@@ -421,7 +581,7 @@
 
                 navigasiKe(3);
             } catch (err) {
-                alert("Ralat Pemprosesan AI: Sila pastikan model Teachable Machine dibuka semula.");
+                alert("Ralat Pemprosesan AI: Sila cuba semula.");
             }
         }
 
@@ -484,11 +644,7 @@
             const payload = { namaKelas: kelas, status: currentStatus, keyakinan: currentConfidence, catatan: "App Imbasan SKPJ" };
 
             try {
-                await fetch(GAS_WEB_APP_URL, {
-                    method: "POST", mode: "no-cors",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload)
-                });
+                await fetch(GAS_WEB_APP_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
                 historyData.unshift({ kelas: kelas, status: currentStatus, keyakinan: currentConfidence + "%", tarikh: "06/08/2026" });
                 alert("BERJAYA! Data disimpan ke Sheets & Dashboard.");
                 resetLangkahGambar();
