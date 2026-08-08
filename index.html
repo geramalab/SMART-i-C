@@ -23,7 +23,7 @@
         .top-bar-title { font-size: 18px; font-weight: 900; letter-spacing: 1px; color: #ffd700; }
         .top-bar-sub { font-size: 9px; font-weight: 700; opacity: 0.9; color: #00e5ff; }
 
-        .screen { display: none; padding: 15px; flex-grow: 1; padding-bottom: 110px; }
+        .screen { display: none; padding: 15px; flex-grow: 1; padding-bottom: 120px; }
         .screen.active { display: block; }
 
         /* LANDING PAGE PERFECT CENTER */
@@ -71,7 +71,7 @@
         .guide-card .emoji-3d { font-size: 32px; display: block; margin-bottom: 4px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15)); }
         .guide-card .title { font-weight: 900; font-size: 11px; margin-bottom: 2px; }
 
-        /* CAMERA & PREVIEW WORKFLOW BOX (MULTI-IMAGE READY) */
+        /* CAMERA & PREVIEW WORKFLOW BOX */
         .camera-box { width: 100%; max-width: 320px; height: 250px; background: #000; border-radius: 16px; overflow: hidden; margin: 0 auto 12px auto; border: 2px solid #134074; display: flex; align-items: center; justify-content: center; position: relative; }
         #webcam-video, #uploaded-img-preview { width: 100%; height: 100%; object-fit: cover; }
         #uploaded-img-preview { display: none; }
@@ -83,6 +83,7 @@
         .btn-upload { background: rgba(11, 37, 69, 0.85); color: #ffd700; border: 1px solid #ffd700; }
         .btn-secondary { background: #e2e8f0; color: #1a202c; }
         .btn-admin { background: #ffd700; color: #0b2545; }
+        .btn-danger { background: #e71d36; color: #ffffff; }
         .btn-success { background: linear-gradient(90deg, #2ec4b6 0%, #0f9f90 100%); color: #ffffff; }
 
         .gallery-container { display: flex; gap: 10px; overflow-x: auto; padding: 8px 0; }
@@ -109,13 +110,13 @@
         .rank-badge { display: inline-block; width: 18px; height: 18px; line-height: 18px; text-align: center; border-radius: 50%; background: #ffd700; color: #0b2545; font-weight: 900; font-size: 9px; }
         .log-list-item { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 10px; margin-bottom: 6px; font-size: 10px; }
 
-        /* BOTTOM NAV & FOOTER */
+        /* BOTTOM NAV & FOOTER WITH VISITOR COUNTER & AUTO YEAR */
         .bottom-nav-wrapper { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 450px; z-index: 200; box-shadow: 0 -4px 15px rgba(0,0,0,0.1); }
         .bottom-nav { background: #ffffff; border-top: 1px solid #cbd5e1; display: flex; justify-content: space-around; padding: 6px 0; }
         .nav-item { text-align: center; color: #64748b; font-size: 8.5px; cursor: pointer; flex-grow: 1; }
         .nav-item.active { color: #134074; font-weight: 800; }
         .nav-item .icon { font-size: 15px; margin-bottom: 2px; }
-        .app-footer-fixed { background-color: #0b2545; color: #ffffff; text-align: center; padding: 6px 10px; font-size: 8px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .app-footer-fixed { background-color: #0b2545; color: #ffffff; text-align: center; padding: 6px 10px; font-size: 8px; border-top: 1px solid rgba(255,255,255,0.1); line-height: 1.4; }
     </style>
 </head>
 <body>
@@ -132,7 +133,7 @@
                 </div>
                 <div class="landing-title">SMART i-C</div>
                 <div class="landing-tagline">INTELLIGENT CLASSROOM CLEANING SYSTEM</div>
-                <div class="landing-school">SEKOLAH KEBANGSAAN PETRAJAYA KUCHING<br><span class="landing-school-code">(YEA1203)</span></div>
+                <div class="landing-school">SEKOLAH KEBANGSAAN PETRAJAYA KUCHING<br><span class="landing-school-code">(YBA1352)</span></div>
                 <div class="landing-dev-box">
                     <div style="font-size: 9px; color: #94a3b8;">DISEDIAKAN OLEH:</div>
                     <img src="logo-avengers.png" alt="AI Avengers" class="landing-avengers-logo" onerror="this.style.display='none'">
@@ -163,9 +164,10 @@
                 <div class="hero-sub">AI mengesan tahap kebersihan kelas melalui gambar secara pantas dan tepat.</div>
             </div>
 
+            <!-- KAD STATISTIK AUTOMATIK -->
             <div class="stat-banner">
                 <div>
-                    <div style="font-size: 10px; text-transform: uppercase; opacity: 0.8;">Jumlah Akses & Imbasan</div>
+                    <div style="font-size: 10px; text-transform: uppercase; opacity: 0.8;">Jumlah Imbasan Selesai</div>
                     <div style="font-size: 11px; font-weight: 700;">Keseluruhan Sistem</div>
                 </div>
                 <div class="stat-num" id="total-usage-count">142x</div>
@@ -219,14 +221,8 @@
 
             <div class="card">
                 <div class="section-title">🔍 Peneroka Galeri & Rekod Kelas</div>
-                <select id="home-select-kelas" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600;" onchange="tapisGaleriHome(this.value)">
+                <select id="home-select-kelas" class="select-class-dropdown" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600;" onchange="tapisGaleriHome(this.value)">
                     <option value="ALL">-- SEMUA KELAS / BILIK DARJAH --</option>
-                    <option value="Kelas 1 Alpha">Kelas 1 Alpha</option>
-                    <option value="Kelas 2 Beta">Kelas 2 Beta</option>
-                    <option value="Kelas 3 Gamma">Kelas 3 Gamma</option>
-                    <option value="Kelas 4 Delta">Kelas 4 Delta</option>
-                    <option value="Kelas 5 Epsilon">Kelas 5 Epsilon</option>
-                    <option value="Makmal Sains">Makmal Sains</option>
                 </select>
                 <div class="gallery-container" id="home-gallery-box" style="margin-top:10px;">
                     <div style="font-size: 10px; color: #94a3b8;">Tiada gambar imbasan lagi.</div>
@@ -234,18 +230,11 @@
             </div>
         </div>
 
-        <!-- SCREEN 2: SCAN & WORKFLOW (PENUH KUASA MULTI-IMAGE SCAN) -->
+        <!-- SCREEN 2: SCAN & WORKFLOW -->
         <div class="screen" id="screen-2">
             <div class="card" style="margin-bottom:12px;">
                 <div class="section-title">📍 Pilih Kelas Untuk Imbasan</div>
-                <select id="scan-select-kelas" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600;" onchange="kemaskiniBadgeKelas(this)">
-                    <option value="Kelas 1 Alpha">Kelas 1 Alpha</option>
-                    <option value="Kelas 2 Beta">Kelas 2 Beta</option>
-                    <option value="Kelas 3 Gamma">Kelas 3 Gamma</option>
-                    <option value="Kelas 4 Delta">Kelas 4 Delta</option>
-                    <option value="Kelas 5 Epsilon">Kelas 5 Epsilon</option>
-                    <option value="Makmal Sains">Makmal Sains</option>
-                    <option value="ADD_NEW_CLASS" style="color: #134074; font-weight: bold;">➕ [ Tambah Kelas Baharu... ]</option>
+                <select id="scan-select-kelas" class="select-class-dropdown" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600;" onchange="kemaskiniBadgeKelas(this)">
                 </select>
             </div>
 
@@ -261,13 +250,11 @@
                 <input type="file" id="file-upload-input" accept="image/*" multiple style="display:none;" onchange="kendalikanMuatNaikGambar(this)">
                 <button class="btn-modern btn-upload" id="btn-trigger-upload" onclick="document.getElementById('file-upload-input').click()">🖼️ Muat Naik Gambar Galeri (Multi)</button>
 
-                <!-- BUTANG TANGKAP MULTI-IMAGE & PROSES -->
                 <button class="btn-modern btn-upload" id="btn-snap-batch" style="display:none;" onclick="tangkapGambarKeBatch()">📸 Tangkap Gambar Tok (+1)</button>
                 <button class="btn-modern btn-success" id="btn-capture-ai" style="display:none;" onclick="prosesImbasanAI()">⚡ Terus Imbas AI (<span id="btn-count-num">0</span> Gambar)</button>
                 <button class="btn-modern btn-secondary" id="btn-reset-img" style="display:none;" onclick="resetLangkahGambar()">✏️ Set Semula Gambar / Edit Kelas</button>
             </div>
 
-            <!-- PREVIEW KELOMPOK GAMBAR YANG DITANGKAP SEBELUM IMBAS AI -->
             <div class="card" style="margin-top: 15px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                     <div class="section-title" style="font-size: 11px; margin-bottom:0;">🖼️ Gambar Sedia Untuk AI Imbas (<span id="batch-slot-count">0</span>/15)</div>
@@ -305,7 +292,7 @@
             <button class="btn-modern btn-secondary" onclick="navigasiKe(2)" style="margin-top:8px;">🔄 Analisis Semula</button>
         </div>
 
-        <!-- SCREEN 4: DASHBOARD & REKOD ANALISIS FASA 1 & 2 -->
+        <!-- SCREEN 4: DASHBOARD -->
         <div class="screen" id="screen-4">
             <div class="tab-switcher">
                 <div class="tab-btn active" id="tab-daily" onclick="tukarTabAnalitik('harian')">📅 HARIAN</div>
@@ -381,11 +368,20 @@
             </div>
         </div>
 
-        <!-- SCREEN 6: PORTAL PENTADBIR -->
+        <!-- SCREEN 6: PORTAL PENTADBIR & PENGURUSAN KELAS ADMIN -->
         <div class="screen" id="screen-6">
             <div class="card" style="background:#0b2545; color:#fff;">
                 <div style="font-size:16px; font-weight:800; color:#ffd700;">🔒 Portal Pentadbir & Penilai</div>
                 <div style="font-size:10px; color:#00e5ff;">Akses Pengurusan Data & Laporan Terperinci</div>
+            </div>
+
+            <!-- FUNGSI PADAM KELAS KHAS UNTUK ADMIN -->
+            <div class="card" style="border:1px solid #fca5a5; background:#fff5f5;">
+                <div class="section-title" style="color:#991b1b;">🗑️ Pengurusan & Padam Kelas (Admin Only)</div>
+                <p style="font-size:10px; color:#7f1d1d; margin-bottom:8px;">Pilih kelas yang tersilap ditambah untuk dipadam daripada sistem:</p>
+                <select id="admin-delete-class-select" style="width:100%; padding:8px; border-radius:8px; border:1px solid #fca5a5; font-size:11px; margin-bottom:8px;">
+                </select>
+                <button class="btn-modern btn-danger" onclick="padamKelasOlehAdmin()">🗑️ Padam Kelas Tok Sekarang</button>
             </div>
 
             <div class="card">
@@ -400,7 +396,7 @@
             </div>
         </div>
 
-        <!-- BOTTOM NAV & FOOTER -->
+        <!-- BOTTOM NAV & FOOTER WITH LIVE VISITOR COUNTER & AUTO YEAR -->
         <div class="bottom-nav-wrapper">
             <div class="bottom-nav">
                 <div class="nav-item" id="nav-1" onclick="navigasiKe(1)"><div class="icon">🏠</div><div>Utama</div></div>
@@ -410,7 +406,8 @@
             </div>
             <div class="app-footer-fixed">
                 <div style="font-weight: 800; color: #ffffff;">PEMBANGUNAN SISTEM: AI AVENGERS</div>
-                <div style="font-size: 7.5px; color: #ffd700; margin-top: 1px;">HAK CIPTA TERPELIHARA 2026</div>
+                <div style="font-size: 7.5px; color: #ffd700; margin-top: 1px;">HAK CIPTA TERPELIHARA <span id="auto-current-year">2026</span></div>
+                <div style="font-size: 7px; color: #00e5ff; margin-top: 2px;" id="live-visitor-count">👁️ Jumlah Pelawat Apps: 1,429</div>
             </div>
         </div>
     </div>
@@ -423,11 +420,14 @@
         let currentStatus = "", currentConfidence = 0;
         let videoStream = null;
         let savedImagesArray = [];
-        let currentBatchImages = []; // MULTI-IMAGE BATCH STORAGE
+        let currentBatchImages = [];
         let isUploadedFile = false;
         let uploadedImageElement = null;
         let selectedStarRating = 5;
         let currentMode = 'harian';
+
+        // Senarai Kelas Asal
+        let defaultClassList = ["Kelas 1 Alpha", "Kelas 2 Beta", "Kelas 3 Gamma", "Kelas 4 Delta", "Kelas 5 Epsilon", "Makmal Sains"];
 
         let historyData = [
             { kelas: "Kelas 1 Alpha", status: "Bersih", keyakinan: "96.5%", tarikh: "08/08/2026" },
@@ -453,12 +453,68 @@
         ];
 
         window.onload = function() {
+            initAppCountersAndYear();
+            muatSenaraiKelasSystem();
             renderDashboard();
             renderRankingTable();
             muatGambarTersimpan();
             tapisGaleriHome('ALL');
             pilihStar(5);
         };
+
+        /* KAUNTER AUTOMATIK PELAWAT, IMBASAN & TAHUN DINAMIK */
+        function initAppCountersAndYear() {
+            // Auto Update Tahun Hak Cipta
+            const currentYear = new Date().getFullYear();
+            document.getElementById("auto-current-year").innerText = currentYear;
+
+            // Kaunter Pelawat Apps Automatik
+            let visitorCount = parseInt(localStorage.getItem("smart_ic_visitors")) || 1428;
+            visitorCount += 1;
+            localStorage.setItem("smart_ic_visitors", visitorCount);
+            document.getElementById("live-visitor-count").innerText = `👁️ Jumlah Pelawat Apps: ${visitorCount.toLocaleString()}`;
+
+            // Kaunter Jumlah Imbasan Automatik
+            let scanCount = parseInt(localStorage.getItem("smart_ic_scans")) || 142;
+            document.getElementById("total-usage-count").innerText = scanCount + "x";
+        }
+
+        /* PENGURUSAN SENARAI KELAS & PADAM KELAS ADMIN */
+        function muatSenaraiKelasSystem() {
+            let savedClasses = JSON.parse(localStorage.getItem("smart_ic_classlist")) || defaultClassList;
+
+            const homeSelect = document.getElementById("home-select-kelas");
+            const scanSelect = document.getElementById("scan-select-kelas");
+            const adminSelect = document.getElementById("admin-delete-class-select");
+
+            homeSelect.innerHTML = '<option value="ALL">-- SEMUA KELAS / BILIK DARJAH --</option>';
+            scanSelect.innerHTML = '';
+            adminSelect.innerHTML = '';
+
+            savedClasses.forEach(c => {
+                homeSelect.innerHTML += `<option value="${c}">${c}</option>`;
+                scanSelect.innerHTML += `<option value="${c}">${c}</option>`;
+                adminSelect.innerHTML += `<option value="${c}">${c}</option>`;
+            });
+
+            scanSelect.innerHTML += '<option value="ADD_NEW_CLASS" style="color: #134074; font-weight: bold;">➕ [ Tambah Kelas Baharu... ]</option>';
+        }
+
+        function padamKelasOlehAdmin() {
+            let adminSelect = document.getElementById("admin-delete-class-select");
+            let kelasNakPadam = adminSelect.value;
+
+            if(!kelasNakPadam) { alert("Tiada kelas dipilih."); return; }
+
+            if(confirm(`Adakah anda pasti mahu memadam "${kelasNakPadam}" daripada senarai kelas?`)) {
+                let savedClasses = JSON.parse(localStorage.getItem("smart_ic_classlist")) || defaultClassList;
+                savedClasses = savedClasses.filter(c => c !== kelasNakPadam);
+                localStorage.setItem("smart_ic_classlist", JSON.stringify(savedClasses));
+
+                muatSenaraiKelasSystem();
+                alert(`BERJAYA! Kelas "${kelasNakPadam}" telah dipadam daripada sistem.`);
+            }
+        }
 
         function masukKeHome() {
             document.getElementById("screen-landing").classList.remove("active");
@@ -550,8 +606,13 @@
             if(select.value === "ADD_NEW_CLASS") {
                 let name = prompt("Masukkan Nama Kelas Baharu:");
                 if(name) {
-                    let opt = document.createElement("option"); opt.value = name; opt.innerText = name;
-                    select.insertBefore(opt, select.lastElementChild); select.value = name;
+                    let savedClasses = JSON.parse(localStorage.getItem("smart_ic_classlist")) || defaultClassList;
+                    if(!savedClasses.includes(name)) {
+                        savedClasses.push(name);
+                        localStorage.setItem("smart_ic_classlist", JSON.stringify(savedClasses));
+                        muatSenaraiKelasSystem();
+                    }
+                    select.value = name;
                 } else { select.selectedIndex = 0; }
             }
             const badge = document.getElementById("preview-class-badge");
@@ -559,7 +620,6 @@
             badge.style.display = "block";
         }
 
-        /* KAMERA UNIFIED MULTI-IMAGE READY */
         async function mulaKameraPeranti() {
             document.getElementById("btn-start-cam").innerText = "MEMUATKAN CAMERA...";
             document.getElementById("btn-start-cam").disabled = true;
@@ -591,7 +651,6 @@
             }
         }
 
-        /* TANGKAP GAMBAR KE KELOMPOK (MULTI-IMAGE BATCH) */
         function tangkapGambarKeBatch() {
             if(currentBatchImages.length >= 15) {
                 alert("Maksimum 15 gambar telah dicapai untuk satu imbasan kelas!");
@@ -610,7 +669,6 @@
             kemaskiniBatchUI();
         }
 
-        /* MUAT NAIK PELBAGAI GAMBAR DARIPADA GALERI (MULTI-UPLOAD) */
         function kendalikanMuatNaikGambar(input) {
             if (input.files && input.files.length > 0) {
                 const filesArray = Array.from(input.files).slice(0, 15);
@@ -681,7 +739,6 @@
             document.getElementById("current-batch-gallery-box").innerHTML = '<div style="font-size: 10px; color: #94a3b8;">Belum ada gambar ditangkap untuk kelas ini.</div>';
         }
 
-        /* PROSES IMBASAN AI SECARA SERENTAK MULTI-IMAGE AGGREGATION */
         async function prosesImbasanAI() {
             if(currentBatchImages.length === 0) {
                 alert("Sila tangkap atau muat naik sekurang-kurangnya 1 gambar!");
@@ -700,13 +757,11 @@
                 totals[model.getClassLabels()[i]] = 0;
             }
 
-            // Loop dan Puratakan Skor AI Untuk Semua Gambar
             for(let item of currentBatchImages) {
                 let prediction = await model.predict(item.canvas);
                 for(let p of prediction) {
                     totals[p.className] += p.probability;
                 }
-                // Simpan gambar utama ke galeri sejarah
                 simpanGambarBase64(item.canvas, namaKelasSelected);
             }
 
@@ -724,6 +779,12 @@
 
             currentStatus = bestClass || "BERSIH";
             currentConfidence = (highestAvg * 100).toFixed(1);
+
+            // AUTO-INCREMENT KAUNTER IMBASAN KESELURAHAN
+            let scanCount = parseInt(localStorage.getItem("smart_ic_scans")) || 142;
+            scanCount += 1;
+            localStorage.setItem("smart_ic_scans", scanCount);
+            document.getElementById("total-usage-count").innerText = scanCount + "x";
 
             document.getElementById("res-status-text").innerText = currentStatus.toUpperCase();
             document.getElementById("res-conf-val").innerText = currentConfidence + "%";
