@@ -2,14 +2,15 @@
 <html lang="ms">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SMART i-C | SK PETRAJAYA KUCHING</title>
+    <!-- Cross-Platform Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background: linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%); color: #1a202c; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        body { background: linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%); color: #1a202c; display: flex; justify-content: center; align-items: center; min-height: 100vh; -webkit-tap-highlight-color: transparent; }
         .app-container { width: 100%; max-width: 450px; background: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.25); overflow: hidden; }
 
         /* HEADER TOP BAR WITH ADMIN BUTTON */
@@ -70,24 +71,25 @@
         .guide-card .emoji-3d { font-size: 32px; display: block; margin-bottom: 4px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15)); }
         .guide-card .title { font-weight: 900; font-size: 11px; margin-bottom: 2px; }
 
-        /* CAMERA & PREVIEW WORKFLOW BOX */
+        /* CAMERA & PREVIEW WORKFLOW BOX (MULTI-IMAGE READY) */
         .camera-box { width: 100%; max-width: 320px; height: 250px; background: #000; border-radius: 16px; overflow: hidden; margin: 0 auto 12px auto; border: 2px solid #134074; display: flex; align-items: center; justify-content: center; position: relative; }
         #webcam-video, #uploaded-img-preview { width: 100%; height: 100%; object-fit: cover; }
         #uploaded-img-preview { display: none; }
         .class-confirm-badge { position: absolute; top: 10px; left: 10px; background: rgba(11, 37, 69, 0.9); color: #ffd700; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; border: 1px solid #ffd700; z-index: 10; }
+        .batch-count-badge { position: absolute; top: 10px; right: 10px; background: #2ec4b6; color: #0b2545; padding: 5px 10px; border-radius: 20px; font-size: 11px; font-weight: 900; border: 1px solid #ffffff; z-index: 10; display: none; }
 
         .btn-modern { width: 100%; padding: 13px; border: none; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .btn-primary { background: #134074; color: #ffffff; }
         .btn-upload { background: rgba(11, 37, 69, 0.85); color: #ffd700; border: 1px solid #ffd700; }
         .btn-secondary { background: #e2e8f0; color: #1a202c; }
         .btn-admin { background: #ffd700; color: #0b2545; }
+        .btn-success { background: linear-gradient(90deg, #2ec4b6 0%, #0f9f90 100%); color: #ffffff; }
 
         .gallery-container { display: flex; gap: 10px; overflow-x: auto; padding: 8px 0; }
         .gallery-item-box { position: relative; flex-shrink: 0; width: 80px; text-align: center; }
         .gallery-img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; border: 2px solid #134074; }
         .gallery-label { font-size: 8px; font-weight: 800; color: #134074; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* TAB SWITCHER ANALISIS HARIAN VS BULANAN (FASA 1 & 2) */
         .tab-switcher { display: flex; background: #e2e8f0; border-radius: 10px; padding: 3px; margin-bottom: 12px; }
         .tab-btn { flex: 1; padding: 8px; text-align: center; font-size: 10px; font-weight: 800; border-radius: 8px; cursor: pointer; color: #64748b; }
         .tab-btn.active { background: #134074; color: #ffffff; }
@@ -232,7 +234,7 @@
             </div>
         </div>
 
-        <!-- SCREEN 2: SCAN & WORKFLOW -->
+        <!-- SCREEN 2: SCAN & WORKFLOW (PENUH KUASA MULTI-IMAGE SCAN) -->
         <div class="screen" id="screen-2">
             <div class="card" style="margin-bottom:12px;">
                 <div class="section-title">📍 Pilih Kelas Untuk Imbasan</div>
@@ -249,22 +251,35 @@
 
             <div class="camera-box">
                 <div class="class-confirm-badge" id="preview-class-badge">📍 Kelas: 1 Alpha</div>
-                <video id="webcam-video" autoplay playsinline muted></video>
+                <div class="batch-count-badge" id="preview-batch-badge">📸 0 / 15 Imej</div>
+                <video id="webcam-video" autoplay playsinline webkit-playsinline muted></video>
                 <img id="uploaded-img-preview" alt="Preview Gambar Galeri">
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 8px;">
                 <button class="btn-modern btn-primary" id="btn-start-cam" onclick="mulaKameraPeranti()">📷 Buka Camera Peranti</button>
-                <input type="file" id="file-upload-input" accept="image/*" style="display:none;" onchange="kendalikanMuatNaikGambar(this)">
-                <button class="btn-modern btn-upload" id="btn-trigger-upload" onclick="document.getElementById('file-upload-input').click()">🖼️ Muat Naik Gambar Galeri</button>
+                <input type="file" id="file-upload-input" accept="image/*" multiple style="display:none;" onchange="kendalikanMuatNaikGambar(this)">
+                <button class="btn-modern btn-upload" id="btn-trigger-upload" onclick="document.getElementById('file-upload-input').click()">🖼️ Muat Naik Gambar Galeri (Multi)</button>
 
-                <button class="btn-modern btn-primary" id="btn-capture-ai" style="display:none;" onclick="prosesImbasanAI()">⚡ Selesai & Imbas AI</button>
-                <button class="btn-modern btn-secondary" id="btn-reset-img" style="display:none;" onclick="resetLangkahGambar()">✏️ Tukar Gambar / Edit Kelas</button>
+                <!-- BUTANG TANGKAP MULTI-IMAGE & PROSES -->
+                <button class="btn-modern btn-upload" id="btn-snap-batch" style="display:none;" onclick="tangkapGambarKeBatch()">📸 Tangkap Gambar Tok (+1)</button>
+                <button class="btn-modern btn-success" id="btn-capture-ai" style="display:none;" onclick="prosesImbasanAI()">⚡ Terus Imbas AI (<span id="btn-count-num">0</span> Gambar)</button>
+                <button class="btn-modern btn-secondary" id="btn-reset-img" style="display:none;" onclick="resetLangkahGambar()">✏️ Set Semula Gambar / Edit Kelas</button>
+            </div>
+
+            <!-- PREVIEW KELOMPOK GAMBAR YANG DITANGKAP SEBELUM IMBAS AI -->
+            <div class="card" style="margin-top: 15px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                    <div class="section-title" style="font-size: 11px; margin-bottom:0;">🖼️ Gambar Sedia Untuk AI Imbas (<span id="batch-slot-count">0</span>/15)</div>
+                </div>
+                <div class="gallery-container" id="current-batch-gallery-box">
+                    <div style="font-size: 10px; color: #94a3b8;">Belum ada gambar ditangkap untuk kelas ini.</div>
+                </div>
             </div>
 
             <div class="card" style="margin-top: 15px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                    <div class="section-title" style="font-size: 11px; margin-bottom:0;">🖼️ Galeri Imbasan Terkini</div>
+                    <div class="section-title" style="font-size: 11px; margin-bottom:0;">🖼️ Galeri Sejarah Imbasan (Max 25)</div>
                     <button style="font-size:9px; color:#e71d36; background:none; border:none; cursor:pointer; font-weight:800;" onclick="padamGaleriTersimpan()">🗑️ Padam Galeri</button>
                 </div>
                 <div class="gallery-container" id="gallery-box">
@@ -280,7 +295,7 @@
                 <div style="font-size:48px;" id="res-emoji">😃</div>
                 <div style="font-size: 10px; text-transform: uppercase;">Tahap Kebersihan</div>
                 <div style="font-size:24px; font-weight:900;" id="res-status-text">BERSIH</div>
-                <div style="font-size: 12px;">Keyakinan AI: <span id="res-conf-val">0%</span></div>
+                <div style="font-size: 12px;">Keyakinan AI (Purata <span id="res-image-count">1</span> Gambar): <span id="res-conf-val">0%</span></div>
             </div>
             <div class="card" style="font-size: 11px; color: #475569; margin-top:15px;">
                 <b>Cadangan Tindakan:</b>
@@ -292,7 +307,6 @@
 
         <!-- SCREEN 4: DASHBOARD & REKOD ANALISIS FASA 1 & 2 -->
         <div class="screen" id="screen-4">
-            <!-- TAB SWITCHER HARIAN VS BULANAN (6 BULAN / FASA 1 & 2) -->
             <div class="tab-switcher">
                 <div class="tab-btn active" id="tab-daily" onclick="tukarTabAnalitik('harian')">📅 HARIAN</div>
                 <div class="tab-btn" id="tab-monthly" onclick="tukarTabAnalitik('bulanan')">🗓️ BULANAN (FASA 1 & 2)</div>
@@ -326,7 +340,6 @@
                 <canvas id="weeklyChart" height="130"></canvas>
             </div>
 
-            <!-- JADUAL RANKING TOP 10 KELAS TERBAIK -->
             <div class="card">
                 <div class="section-title">🏆 TOP 10 KELAS TERBAIK (SANGAT BERSIH)</div>
                 <table class="ranking-table">
@@ -410,19 +423,20 @@
         let currentStatus = "", currentConfidence = 0;
         let videoStream = null;
         let savedImagesArray = [];
+        let currentBatchImages = []; // MULTI-IMAGE BATCH STORAGE
         let isUploadedFile = false;
         let uploadedImageElement = null;
         let selectedStarRating = 5;
         let currentMode = 'harian';
 
         let historyData = [
-            { kelas: "Kelas 1 Alpha", status: "Bersih", keyakinan: "96.5%", tarikh: "06/08/2026" },
-            { kelas: "Kelas 2 Beta", status: "Bersih", keyakinan: "92.0%", tarikh: "06/08/2026" },
-            { kelas: "Makmal Sains", status: "Bersih", keyakinan: "95.0%", tarikh: "05/08/2026" }
+            { kelas: "Kelas 1 Alpha", status: "Bersih", keyakinan: "96.5%", tarikh: "08/08/2026" },
+            { kelas: "Kelas 2 Beta", status: "Bersih", keyakinan: "92.0%", tarikh: "08/08/2026" },
+            { kelas: "Makmal Sains", status: "Bersih", keyakinan: "95.0%", tarikh: "07/08/2026" }
         ];
 
         let feedbackList = [
-            { rating: "5★", kat: "Pujian", ulasan: "Aplikasi sangat bagus dan responsif!", tarikh: "06/08/2026" }
+            { rating: "5★", kat: "Pujian", ulasan: "Aplikasi sangat bagus dan responsif!", tarikh: "08/08/2026" }
         ];
 
         const top10Data = [
@@ -509,7 +523,7 @@
             const btn = document.getElementById("btn-submit-fb");
             btn.innerText = "MENGHANTAR..."; btn.disabled = true;
 
-            const payload = { type: "FEEDBACK", rating: selectedStarRating + " Star", kategori: kat, ulasan: ulasan, tarikh: "06/08/2026" };
+            const payload = { type: "FEEDBACK", rating: selectedStarRating + " Star", kategori: kat, ulasan: ulasan, tarikh: "08/08/2026" };
 
             try {
                 await fetch(GAS_WEB_APP_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
@@ -545,6 +559,7 @@
             badge.style.display = "block";
         }
 
+        /* KAMERA UNIFIED MULTI-IMAGE READY */
         async function mulaKameraPeranti() {
             document.getElementById("btn-start-cam").innerText = "MEMUATKAN CAMERA...";
             document.getElementById("btn-start-cam").disabled = true;
@@ -555,7 +570,9 @@
                     maxPredictions = model.getTotalPredictions();
                 }
 
-                videoStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } } });
+                const constraints = { video: { facingMode: { ideal: "environment" }, width: { ideal: 640 }, height: { ideal: 640 } } };
+                videoStream = await navigator.mediaDevices.getUserMedia(constraints);
+                
                 const videoElem = document.getElementById("webcam-video");
                 videoElem.style.display = "block";
                 document.getElementById("uploaded-img-preview").style.display = "none";
@@ -563,39 +580,87 @@
 
                 document.getElementById("btn-start-cam").style.display = "none";
                 document.getElementById("btn-trigger-upload").style.display = "none";
-                document.getElementById("btn-capture-ai").style.display = "flex";
+                document.getElementById("btn-snap-batch").style.display = "flex";
                 document.getElementById("btn-reset-img").style.display = "flex";
+                document.getElementById("preview-batch-badge").style.display = "block";
                 isUploadedFile = false;
             } catch (e) {
-                alert("Gagal Buka Camera: Kebenaran Diperlukan.");
+                alert("Gagal Buka Camera: Sila pastikan anda menekan ALLOW/IZINKAN kamera pada peranti.");
                 document.getElementById("btn-start-cam").innerText = "📷 Buka Camera Peranti";
                 document.getElementById("btn-start-cam").disabled = false;
             }
         }
 
+        /* TANGKAP GAMBAR KE KELOMPOK (MULTI-IMAGE BATCH) */
+        function tangkapGambarKeBatch() {
+            if(currentBatchImages.length >= 15) {
+                alert("Maksimum 15 gambar telah dicapai untuk satu imbasan kelas!");
+                return;
+            }
+
+            const videoElem = document.getElementById("webcam-video");
+            const processCanvas = document.createElement("canvas");
+            processCanvas.width = 300; processCanvas.height = 300;
+            const ctx = processCanvas.getContext("2d");
+            ctx.drawImage(videoElem, 0, 0, 300, 300);
+
+            const base64Code = processCanvas.toDataURL("image/jpeg", 0.6);
+            currentBatchImages.push({ canvas: processCanvas, code: base64Code });
+
+            kemaskiniBatchUI();
+        }
+
+        /* MUAT NAIK PELBAGAI GAMBAR DARIPADA GALERI (MULTI-UPLOAD) */
         function kendalikanMuatNaikGambar(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = async function (e) {
-                    const imgPreview = document.getElementById("uploaded-img-preview");
-                    imgPreview.src = e.target.result;
-                    imgPreview.style.display = "block";
-                    document.getElementById("webcam-video").style.display = "none";
+            if (input.files && input.files.length > 0) {
+                const filesArray = Array.from(input.files).slice(0, 15);
+                currentBatchImages = [];
 
-                    uploadedImageElement = imgPreview;
-                    isUploadedFile = true;
+                filesArray.forEach(file => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = new Image();
+                        img.onload = function() {
+                            const processCanvas = document.createElement("canvas");
+                            processCanvas.width = 300; processCanvas.height = 300;
+                            const ctx = processCanvas.getContext("2d");
+                            ctx.drawImage(img, 0, 0, 300, 300);
 
-                    if(!model) {
-                        model = await tmImage.load(URL_MODEL_TM + "model.json", URL_MODEL_TM + "metadata.json");
-                        maxPredictions = model.getTotalPredictions();
-                    }
+                            const base64Code = processCanvas.toDataURL("image/jpeg", 0.6);
+                            currentBatchImages.push({ canvas: processCanvas, code: base64Code });
+                            kemaskiniBatchUI();
+                        };
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                });
 
-                    document.getElementById("btn-start-cam").style.display = "none";
-                    document.getElementById("btn-trigger-upload").style.display = "none";
-                    document.getElementById("btn-capture-ai").style.display = "flex";
-                    document.getElementById("btn-reset-img").style.display = "flex";
-                };
-                reader.readAsDataURL(input.files[0]);
+                document.getElementById("btn-start-cam").style.display = "none";
+                document.getElementById("btn-trigger-upload").style.display = "none";
+                document.getElementById("btn-reset-img").style.display = "flex";
+                document.getElementById("preview-batch-badge").style.display = "block";
+            }
+        }
+
+        function kemaskiniBatchUI() {
+            const count = currentBatchImages.length;
+            document.getElementById("preview-batch-badge").innerText = `📸 ${count} / 15 Imej`;
+            document.getElementById("batch-slot-count").innerText = count;
+            document.getElementById("btn-count-num").innerText = count;
+
+            if(count > 0) {
+                document.getElementById("btn-capture-ai").style.display = "flex";
+            }
+
+            const batchBox = document.getElementById("current-batch-gallery-box");
+            if(count > 0) {
+                batchBox.innerHTML = "";
+                currentBatchImages.forEach((item, index) => {
+                    let div = document.createElement("div");
+                    div.className = "gallery-item-box";
+                    div.innerHTML = `<img src="${item.code}" class="gallery-img"><div class="gallery-label">Imej #${index + 1}</div>`;
+                    batchBox.appendChild(div);
+                });
             }
         }
 
@@ -607,14 +672,22 @@
             document.getElementById("btn-start-cam").innerText = "📷 Buka Camera Peranti";
             document.getElementById("btn-start-cam").disabled = false;
             document.getElementById("btn-trigger-upload").style.display = "flex";
+            document.getElementById("btn-snap-batch").style.display = "none";
             document.getElementById("btn-capture-ai").style.display = "none";
             document.getElementById("btn-reset-img").style.display = "none";
+            document.getElementById("preview-batch-badge").style.display = "none";
             document.getElementById("file-upload-input").value = "";
+            currentBatchImages = [];
+            document.getElementById("current-batch-gallery-box").innerHTML = '<div style="font-size: 10px; color: #94a3b8;">Belum ada gambar ditangkap untuk kelas ini.</div>';
         }
 
-        /* PERBAIKAN STABIL ENJIN UPLOAD GAMBAR */
+        /* PROSES IMBASAN AI SECARA SERENTAK MULTI-IMAGE AGGREGATION */
         async function prosesImbasanAI() {
-            let prediction;
+            if(currentBatchImages.length === 0) {
+                alert("Sila tangkap atau muat naik sekurang-kurangnya 1 gambar!");
+                return;
+            }
+
             const namaKelasSelected = document.getElementById("scan-select-kelas").value;
             
             if(!model) {
@@ -622,41 +695,46 @@
                 maxPredictions = model.getTotalPredictions();
             }
 
-            const processCanvas = document.createElement("canvas");
-            processCanvas.width = 300; processCanvas.height = 300;
-            const ctx = processCanvas.getContext("2d");
-
-            if(isUploadedFile && uploadedImageElement) {
-                ctx.drawImage(uploadedImageElement, 0, 0, 300, 300);
-            } else {
-                const videoElem = document.getElementById("webcam-video");
-                ctx.drawImage(videoElem, 0, 0, 300, 300);
+            let totals = {};
+            for(let i = 0; i < maxPredictions; i++) {
+                totals[model.getClassLabels()[i]] = 0;
             }
 
-            try {
-                prediction = await model.predict(processCanvas);
-                simpanGambarBase64(processCanvas, namaKelasSelected);
-
-                let highest = { className: "", probability: 0 };
-                for (let i = 0; i < maxPredictions; i++) {
-                    if (prediction[i].probability > highest.probability) highest = prediction[i];
+            // Loop dan Puratakan Skor AI Untuk Semua Gambar
+            for(let item of currentBatchImages) {
+                let prediction = await model.predict(item.canvas);
+                for(let p of prediction) {
+                    totals[p.className] += p.probability;
                 }
-
-                currentStatus = highest.className || "BERSIH";
-                currentConfidence = (highest.probability * 100).toFixed(1);
-
-                document.getElementById("res-status-text").innerText = currentStatus.toUpperCase();
-                document.getElementById("res-conf-val").innerText = currentConfidence + "%";
-
-                navigasiKe(3);
-            } catch (err) {
-                alert("Ralat Pemprosesan AI: Sila cuba semula.");
+                // Simpan gambar utama ke galeri sejarah
+                simpanGambarBase64(item.canvas, namaKelasSelected);
             }
+
+            let bestClass = "";
+            let highestAvg = 0;
+            let totalImages = currentBatchImages.length;
+
+            for(let className in totals) {
+                let avg = totals[className] / totalImages;
+                if(avg > highestAvg) {
+                    highestAvg = avg;
+                    bestClass = className;
+                }
+            }
+
+            currentStatus = bestClass || "BERSIH";
+            currentConfidence = (highestAvg * 100).toFixed(1);
+
+            document.getElementById("res-status-text").innerText = currentStatus.toUpperCase();
+            document.getElementById("res-conf-val").innerText = currentConfidence + "%";
+            document.getElementById("res-image-count").innerText = totalImages;
+
+            navigasiKe(3);
         }
 
         function simpanGambarBase64(elementSource, namaKelas) {
             const base64Code = elementSource.toDataURL("image/jpeg", 0.5);
-            savedImagesArray.unshift({ code: base64Code, kelas: namaKelas, tarikh: "06/08/2026" });
+            savedImagesArray.unshift({ code: base64Code, kelas: namaKelas, tarikh: "08/08/2026" });
             if(savedImagesArray.length > 25) savedImagesArray.pop();
 
             localStorage.setItem("smart_ic_gallery_v8", JSON.stringify(savedImagesArray));
@@ -710,11 +788,11 @@
             const btn = document.getElementById("btn-save-sheets");
             btn.innerText = "MENGHANTAR..."; btn.disabled = true;
 
-            const payload = { namaKelas: kelas, status: currentStatus, keyakinan: currentConfidence, catatan: "App Imbasan SKPJ" };
+            const payload = { namaKelas: kelas, status: currentStatus, keyakinan: currentConfidence, catatan: "App Imbasan SKPJ Multi-Image" };
 
             try {
                 await fetch(GAS_WEB_APP_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-                historyData.unshift({ kelas: kelas, status: currentStatus, keyakinan: currentConfidence + "%", tarikh: "06/08/2026" });
+                historyData.unshift({ kelas: kelas, status: currentStatus, keyakinan: currentConfidence + "%", tarikh: "08/08/2026" });
                 alert("BERJAYA! Data disimpan ke Sheets & Dashboard.");
                 resetLangkahGambar();
                 navigasiKe(4);
