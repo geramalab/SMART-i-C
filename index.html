@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SMART i-C V2.1 | SK PETRAJAYA KUCHING</title>
+    <title>SMART i-C V2.2 | SK PETRAJAYA KUCHING</title>
     <!-- Cross-Platform Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
@@ -21,7 +21,6 @@
             -webkit-tap-highlight-color: transparent; 
         }
 
-        /* AUTO RESPONSIVE CONTAINER (PC FULLSCREEN VS MOBILE APP) */
         .app-container { 
             width: 100%; 
             max-width: 450px; 
@@ -35,7 +34,6 @@
             transition: max-width 0.4s ease, border-radius 0.3s ease;
         }
 
-        /* AUTO FULL-WIDTH PC / LAPTOP MODE */
         @media (min-width: 768px) {
             .app-container {
                 max-width: 1000px;
@@ -44,14 +42,8 @@
                 margin: 20px;
                 box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             }
-            .grid-desktop-2col {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 15px;
-            }
         }
 
-        /* HEADER TOP BAR */
         .top-bar { 
             background-color: #0b2545; 
             color: #ffffff; 
@@ -91,7 +83,6 @@
         .screen.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* LANDING PAGE ANIMATED & BOUNCE INTERACTIVE */
         #screen-landing { 
             background: radial-gradient(circle at center, #134074 0%, #0b2545 70%, #051329 100%); 
             color: #ffffff; 
@@ -109,14 +100,7 @@
         #screen-landing.active { display: flex; }
         .landing-content-wrapper { width: 100%; max-width: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: auto 0; }
         
-        .landing-welcome { 
-            font-size: clamp(12px, 3.5vw, 15px); 
-            font-weight: 900; 
-            letter-spacing: 2px; 
-            color: #e2e8f0; 
-            margin-bottom: 5px;
-        }
-
+        .landing-welcome { font-size: clamp(12px, 3.5vw, 15px); font-weight: 900; letter-spacing: 2px; color: #e2e8f0; margin-bottom: 5px; }
         .landing-hero-wrapper { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 5px 0; width: 100%; }
         .landing-kids-img { width: 180px; max-width: 85%; height: auto; margin-bottom: -32px; z-index: 1; filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4)); animation: floatKids 3s infinite ease-in-out; }
         @keyframes floatKids { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -124,18 +108,7 @@
         .landing-logo-smart-large { width: 170px; max-width: 80%; height: auto; z-index: 2; filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.7)); animation: pulseGlow 2.5s infinite ease-in-out; }
         @keyframes pulseGlow { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(0,229,255,0.5)); } 50% { transform: scale(1.06); filter: drop-shadow(0 0 25px rgba(0,229,255,0.9)); } }
 
-        .landing-title { 
-            font-size: clamp(32px, 9vw, 40px); 
-            font-weight: 900; 
-            color: #ffd700; 
-            letter-spacing: 2px; 
-            margin-top: 4px; 
-            text-shadow: 0 0 18px rgba(255, 215, 0, 0.6);
-            cursor: pointer;
-            transition: transform 0.3s ease, color 0.3s;
-        }
-        .landing-title:hover { transform: scale(1.08); color: #ffffff; }
-
+        .landing-title { font-size: clamp(32px, 9vw, 40px); font-weight: 900; color: #ffd700; letter-spacing: 2px; margin-top: 4px; text-shadow: 0 0 18px rgba(255, 215, 0, 0.6); }
         .landing-tagline { font-size: clamp(10px, 2.8vw, 12px); color: #cbd5e1; margin-top: 2px; font-weight: 700; }
         .landing-school { font-size: clamp(12px, 3.2vw, 14px); font-weight: 800; color: #00e5ff; margin-top: 10px; line-height: 1.3; }
         .landing-school-code { color: #ffd700; font-size: clamp(11px, 2.8vw, 12px); font-weight: 800; }
@@ -150,9 +123,7 @@
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .btn-landing-start:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 22px rgba(255, 215, 0, 0.7); }
-        .btn-landing-start:active { transform: scale(0.97); }
 
-        /* CARDS & BUTTONS WITH HOVER ANIMATION */
         .hero-banner { background: linear-gradient(135deg, #134074 0%, #0b2545 100%); color: #ffffff; border-radius: 16px; padding: 18px; text-align: center; margin-bottom: 15px; }
         .hero-title { font-size: 16px; font-weight: 800; margin-bottom: 6px; color: #ffd700; line-height: 1.3; }
         .hero-sub { font-size: 11px; opacity: 0.9; line-height: 1.4; }
@@ -161,10 +132,9 @@
         .card:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
 
         .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
-        .btn-action-card { background: linear-gradient(135deg, #ffffff 0%, #eef4fb 100%); border: 1px solid #cbd5e1; border-radius: 14px; padding: 15px; text-align: center; cursor: pointer; transition: transform 0.2s, background 0.2s; }
+        .btn-action-card { background: linear-gradient(135deg, #ffffff 0%, #eef4fb 100%); border: 1px solid #cbd5e1; border-radius: 14px; padding: 15px; text-align: center; cursor: pointer; transition: transform 0.2s; }
         .btn-action-card:hover { transform: translateY(-3px) scale(1.02); background: #ffffff; border-color: #134074; }
-        .btn-action-card .icon { font-size: 28px; margin-bottom: 5px; transition: transform 0.2s; }
-        .btn-action-card:hover .icon { transform: scale(1.2) rotate(5deg); }
+        .btn-action-card .icon { font-size: 28px; margin-bottom: 5px; }
         .btn-action-card .label { font-size: 13px; font-weight: 700; color: #134074; }
         .section-title { font-size: 12px; font-weight: 800; color: #0b2545; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
 
@@ -172,27 +142,24 @@
         .stat-num { font-size: 20px; font-weight: 900; color: #00e5ff; }
 
         .top3-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 5px; }
-        .top3-card { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px 5px; text-align: center; font-size: 10px; font-weight: 700; transition: transform 0.2s; }
-        .top3-card:hover { transform: scale(1.05); }
+        .top3-card { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px 5px; text-align: center; font-size: 10px; font-weight: 700; }
         .top3-card .medal { font-size: 24px; margin-bottom: 3px; }
 
         .guide-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 15px; }
-        .guide-card { border-radius: 14px; padding: 12px 8px; text-align: center; font-size: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); transition: transform 0.2s; }
-        .guide-card:hover { transform: translateY(-3px); }
+        .guide-card { border-radius: 14px; padding: 12px 8px; text-align: center; font-size: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
         .guide-clean { background: linear-gradient(180deg, #e6f9ed 0%, #c8f7d5 100%); border: 1.5px solid #2ec4b6; color: #0e6251; }
         .guide-med { background: linear-gradient(180deg, #fff8e6 0%, #ffe8b3 100%); border: 1.5px solid #ff9f1c; color: #7d6608; }
         .guide-dirty { background: linear-gradient(180deg, #fde8e8 0%, #fbc2c2 100%); border: 1.5px solid #e71d36; color: #78281f; }
-        .guide-card .emoji-3d { font-size: 32px; display: block; margin-bottom: 4px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15)); }
+        .guide-card .emoji-3d { font-size: 32px; display: block; margin-bottom: 4px; }
         .guide-card .title { font-weight: 900; font-size: 11px; margin-bottom: 2px; }
 
-        /* CAMERA & PREVIEW WORKFLOW BOX */
         .camera-box { width: 100%; max-width: 320px; height: 250px; background: #000; border-radius: 16px; overflow: hidden; margin: 0 auto 12px auto; border: 2px solid #134074; display: flex; align-items: center; justify-content: center; position: relative; }
         #webcam-video, #uploaded-img-preview { width: 100%; height: 100%; object-fit: cover; }
         #uploaded-img-preview { display: none; }
         .class-confirm-badge { position: absolute; top: 10px; left: 10px; background: rgba(11, 37, 69, 0.9); color: #ffd700; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; border: 1px solid #ffd700; z-index: 10; }
         .batch-count-badge { position: absolute; top: 10px; right: 10px; background: #2ec4b6; color: #0b2545; padding: 5px 10px; border-radius: 20px; font-size: 11px; font-weight: 900; border: 1px solid #ffffff; z-index: 10; display: none; }
 
-        .btn-modern { width: 100%; padding: 13px; border: none; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform 0.2s, background 0.2s; }
+        .btn-modern { width: 100%; padding: 13px; border: none; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform 0.2s; }
         .btn-modern:hover { transform: translateY(-2px); filter: brightness(1.05); }
         .btn-modern:active { transform: scale(0.97); }
         
@@ -203,7 +170,6 @@
         .btn-danger { background: #e71d36; color: #ffffff; }
         .btn-success { background: linear-gradient(90deg, #2ec4b6 0%, #0f9f90 100%); color: #ffffff; }
 
-        /* GALERI FOLDER HIRARKI (TAHUN > BULAN > TARIKH > KELAS) */
         .folder-filter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
         .gallery-container { display: flex; gap: 10px; overflow-x: auto; padding: 8px 0; }
         .gallery-item-box { position: relative; flex-shrink: 0; width: 85px; text-align: center; cursor: pointer; transition: transform 0.2s; }
@@ -211,14 +177,13 @@
         .gallery-img { width: 85px; height: 85px; border-radius: 10px; object-fit: cover; border: 2px solid #134074; }
         .gallery-label { font-size: 8px; font-weight: 800; color: #134074; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* MODAL / FORM BORANG PENGESAHAN DATA */
-        .confirm-form-box { background: #f8fafc; border: 2px solid #134074; border-radius: 14px; padding: 14px; margin-top: 12px; display: none; animation: fadeIn 0.3s ease; }
+        .confirm-form-box { background: #f8fafc; border: 2px solid #134074; border-radius: 14px; padding: 14px; margin-top: 12px; display: none; }
         .form-group { margin-bottom: 10px; text-align: left; }
         .form-group label { display: block; font-size: 10px; font-weight: 800; color: #0b2545; margin-bottom: 3px; text-transform: uppercase; }
         .form-control { width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 11px; font-weight: 600; outline: none; }
 
         .tab-switcher { display: flex; background: #e2e8f0; border-radius: 10px; padding: 3px; margin-bottom: 12px; }
-        .tab-btn { flex: 1; padding: 8px; text-align: center; font-size: 10px; font-weight: 800; border-radius: 8px; cursor: pointer; color: #64748b; transition: background 0.2s; }
+        .tab-btn { flex: 1; padding: 8px; text-align: center; font-size: 10px; font-weight: 800; border-radius: 8px; cursor: pointer; color: #64748b; }
         .tab-btn.active { background: #134074; color: #ffffff; }
 
         .score-summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
@@ -227,8 +192,7 @@
         .score-card .lbl { font-size: 9px; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
 
         .star-rating { display: flex; gap: 5px; justify-content: center; margin: 10px 0; }
-        .star { font-size: 28px; color: #cbd5e1; cursor: pointer; transition: transform 0.2s; }
-        .star:hover { transform: scale(1.2); }
+        .star { font-size: 28px; color: #cbd5e1; cursor: pointer; }
         .star.selected { color: #ffd700; }
 
         .ranking-table { width: 100%; border-collapse: collapse; font-size: 11px; }
@@ -237,18 +201,15 @@
         .rank-badge { display: inline-block; width: 18px; height: 18px; line-height: 18px; text-align: center; border-radius: 50%; background: #ffd700; color: #0b2545; font-weight: 900; font-size: 9px; }
         .log-list-item { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 10px; margin-bottom: 6px; font-size: 10px; }
 
-        /* BOTTOM NAV & FOOTER */
         .bottom-nav-wrapper { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 450px; z-index: 200; box-shadow: 0 -4px 15px rgba(0,0,0,0.1); transition: max-width 0.4s; }
         @media (min-width: 768px) { .bottom-nav-wrapper { max-width: 1000px; } }
         
         .bottom-nav { background: #ffffff; border-top: 1px solid #cbd5e1; display: flex; justify-content: space-around; padding: 6px 0; }
-        .nav-item { text-align: center; color: #64748b; font-size: 8.5px; cursor: pointer; flex-grow: 1; transition: color 0.2s, transform 0.2s; }
-        .nav-item:hover { color: #134074; transform: translateY(-2px); }
+        .nav-item { text-align: center; color: #64748b; font-size: 8.5px; cursor: pointer; flex-grow: 1; }
         .nav-item.active { color: #134074; font-weight: 800; }
         .nav-item .icon { font-size: 15px; margin-bottom: 2px; }
         .app-footer-fixed { background-color: #0b2545; color: #ffffff; text-align: center; padding: 6px 10px; font-size: 8px; border-top: 1px solid rgba(255,255,255,0.1); line-height: 1.4; }
 
-        /* FORMAT CETAKAN REPORT PDF / A4 PAPER */
         @media print {
             body { background: #ffffff !important; color: #000000 !important; }
             .top-bar, .bottom-nav-wrapper, .btn-modern, #screen-landing, .tab-switcher, .folder-filter-grid { display: none !important; }
@@ -272,7 +233,7 @@
                     <img src="kanak-sekolah.png" alt="Murid SKPJ" class="landing-kids-img" onerror="this.style.display='none'">
                     <img src="logo-smart-ic.png" alt="SMART i-C" class="landing-logo-smart-large" onerror="this.style.opacity='0'">
                 </div>
-                <div class="landing-title">SMART i-C V2.1</div>
+                <div class="landing-title">SMART i-C V2.2</div>
                 <div class="landing-tagline">INTELLIGENT CLASSROOM CLEANING SYSTEM</div>
                 <div class="landing-school">SEKOLAH KEBANGSAAN PETRAJAYA KUCHING<br><span class="landing-school-code">(YEA1203)</span></div>
                 <div class="landing-dev-box">
@@ -301,7 +262,7 @@
         <!-- HEADER RASMI CETAKAN LAPORAN A4 -->
         <div class="report-print-header">
             <h2 style="font-size: 18px; font-weight: 900;">SEKOLAH KEBANGSAAN PETRAJAYA KUCHING (YEA1203)</h2>
-            <h3 style="font-size: 14px; font-weight: 800; color: #134074;">LAPORAN ANALISIS TAHAP KEBERSIHAN KELAS (SMART i-C V2.1)</h3>
+            <h3 style="font-size: 14px; font-weight: 800; color: #134074;">LAPORAN ANALISIS TAHAP KEBERSIHAN KELAS (SMART i-C V2.2)</h3>
             <p style="font-size: 10px;">Jana Penuh Rekod Kebersihan Harian & Bulanan Pasukan AI Avengers</p>
         </div>
 
@@ -312,10 +273,10 @@
                 <div class="hero-sub">AI mengesan tahap kebersihan kelas melalui gambar secara pantas dan tepat.</div>
             </div>
 
-            <!-- KAD STATISTIK AUTOMATIK -->
+            <!-- KAD STATISTIK AUTOMATIK DARI SHEETS -->
             <div class="stat-banner">
                 <div>
-                    <div style="font-size: 10px; text-transform: uppercase; opacity: 0.8;">Jumlah Imbasan Selesai</div>
+                    <div style="font-size: 10px; text-transform: uppercase; opacity: 0.8;">Jumlah Imbasan Selesai (Live)</div>
                     <div style="font-size: 11px; font-weight: 700;">Keseluruhan Sistem</div>
                 </div>
                 <div class="stat-num" id="total-usage-count">142x</div>
@@ -326,7 +287,6 @@
                 <div class="btn-action-card" onclick="navigasiKe(4)"><div class="icon">📊</div><div class="label">Lihat Rekod</div></div>
             </div>
 
-            <!-- PANDUAN 3 TAHAP KEBERSIHAN -->
             <div class="section-title">Panduan Tahap Kebersihan</div>
             <div class="guide-grid">
                 <div class="guide-card guide-clean">
@@ -367,15 +327,13 @@
                 </div>
             </div>
 
-            <!-- PENEROKA GALERI BERHIRARKI (TAHUN > BULAN > TARIKH > KELAS) -->
+            <!-- PENEROKA GALERI BERHIRARKI -->
             <div class="card">
                 <div class="section-title">🔍 Peneroka Folder Galeri Kebersihan</div>
-                
                 <div class="folder-filter-grid">
                     <select id="filter-year" class="form-control" onchange="penapisHirarkiGaleri()">
                         <option value="2026">Tahun 2026</option>
                         <option value="2025">Tahun 2025</option>
-                        <option value="2024">Tahun 2024</option>
                     </select>
 
                     <select id="filter-month" class="form-control" onchange="penapisHirarkiGaleri()">
@@ -460,7 +418,6 @@
                 <div style="font-size: 12px;">Keyakinan AI (Purata <span id="res-image-count">1</span> Gambar): <span id="res-conf-val">96.5%</span></div>
             </div>
 
-            <!-- BORANG PENGESAHAN REKOD SEBELUM HANTAR -->
             <div class="confirm-form-box" id="confirm-form-panel" style="display:block;">
                 <div class="section-title" style="font-size:11px; color:#134074;">📝 Borang Pengesahan Rekod Kelas</div>
                 
@@ -528,7 +485,10 @@
             </div>
 
             <div class="card">
-                <div class="section-title" style="font-size: 10px;" id="chart-title-text">Carta Analisis Kebersihan Harian</div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                    <div class="section-title" style="font-size: 10px; margin-bottom:0;" id="chart-title-text">Carta Analisis Kebersihan Harian</div>
+                    <button style="font-size:9px; color:#134074; background:none; border:none; cursor:pointer; font-weight:800;" onclick="tarikDataLiveFromSheets()">🔄 Kemas Kini Live Sheets</button>
+                </div>
                 <canvas id="weeklyChart" height="130"></canvas>
             </div>
 
@@ -540,7 +500,7 @@
                 </table>
             </div>
 
-            <div class="section-title">Log Rekod Imbasan Terkini</div>
+            <div class="section-title">Log Rekod Imbasan Live Terkini</div>
             <div id="history-log-container"></div>
         </div>
 
@@ -573,14 +533,13 @@
             </div>
         </div>
 
-        <!-- SCREEN 6: PORTAL PENTADBIR & PENGURUSAN KELAS ADMIN -->
+        <!-- SCREEN 6: PORTAL PENTADBIR -->
         <div class="screen" id="screen-6">
             <div class="card" style="background:#0b2545; color:#fff;">
                 <div style="font-size:16px; font-weight:800; color:#ffd700;">🔒 Portal Pentadbir & Penilai</div>
                 <div style="font-size:10px; color:#00e5ff;">Akses Pengurusan Data & Laporan Terperinci</div>
             </div>
 
-            <!-- FUNGSI PADAM KELAS KHAS UNTUK ADMIN -->
             <div class="card" style="border:1px solid #fca5a5; background:#fff5f5;">
                 <div class="section-title" style="color:#991b1b;">🗑️ Pengurusan & Padam Kelas (Admin Only)</div>
                 <p style="font-size:10px; color:#7f1d1d; margin-bottom:8px;">Pilih kelas yang tersilap ditambah untuk dipadam daripada sistem:</p>
@@ -664,9 +623,26 @@
             muatGambarTersimpan();
             penapisHirarkiGaleri();
             pilihStar(5);
+            tarikDataLiveFromSheets(); // TARIK DATA LIVE DARI GOOGLE SHEETS
         };
 
-        /* KAUNTER AUTOMATIK PELAWAT & TAHUN DINAMIK */
+        /* FUNGSI TWO-WAY SYNC: TARIK DATA LIVE DARI GOOGLE SHEETS KE APPS */
+        async function tarikDataLiveFromSheets() {
+            try {
+                let res = await fetch(GAS_WEB_APP_URL);
+                let json = await res.json();
+                if (json && json.history && json.history.length > 0) {
+                    historyData = json.history;
+                    if(json.totalScans) {
+                        document.getElementById("total-usage-count").innerText = json.totalScans + "x";
+                    }
+                    renderDashboard();
+                }
+            } catch(e) {
+                console.log("Menggunakan log lokal standby.");
+            }
+        }
+
         function initAppCountersAndYear() {
             const currentYear = new Date().getFullYear();
             document.getElementById("auto-current-year").innerText = currentYear;
@@ -676,14 +652,10 @@
             localStorage.setItem("smart_ic_visitors", visitorCount);
             document.getElementById("live-visitor-count").innerText = `👁️ Jumlah Pelawat Apps: ${visitorCount.toLocaleString()}`;
 
-            let scanCount = parseInt(localStorage.getItem("smart_ic_scans")) || 142;
-            document.getElementById("total-usage-count").innerText = scanCount + "x";
-
             const todayStr = new Date().toISOString().split('T')[0];
             document.getElementById("form-tarikh-scan").value = todayStr;
         }
 
-        /* SENARAI KELAS & ADMIN DELETE MANAGER */
         function muatSenaraiKelasSystem() {
             let savedClasses = JSON.parse(localStorage.getItem("smart_ic_classlist")) || defaultClassList;
 
@@ -744,7 +716,10 @@
                 badge.innerText = "📍 Kelas: " + kelasSelected;
                 badge.style.display = "block";
             }
-            if(screenNum === 4) { renderDashboard(); }
+            if(screenNum === 4) { 
+                renderDashboard(); 
+                tarikDataLiveFromSheets();
+            }
             if(screenNum === 6) { renderAdminFeedback(); }
         }
 
@@ -952,7 +927,6 @@
             document.getElementById("current-batch-gallery-box").innerHTML = '<div style="font-size: 10px; color: #94a3b8;">Belum ada gambar ditangkap untuk kelas ini.</div>';
         }
 
-        /* PEMBETULAN AI SCORE BUG (-100% FIXED) */
         async function prosesImbasanAI() {
             if(currentBatchImages.length === 0) {
                 alert("Sila tangkap atau muat naik sekurang-kurangnya 1 gambar!");
@@ -992,7 +966,6 @@
                 }
             }
 
-            // Pengiraan skor tulen positif (Julat 70.0% - 99.8%)
             let computedScore = (highestAvg * 100).toFixed(1);
             if(isNaN(computedScore) || computedScore <= 0) {
                 computedScore = (75.0 + (Math.random() * 20)).toFixed(1);
@@ -1000,7 +973,6 @@
 
             currentConfidence = computedScore;
             
-            // Tentukan status kebersihan berdasarkan peratusan
             if(currentConfidence >= 70.0) {
                 currentStatus = "BERSIH";
             } else if(currentConfidence >= 40.0) {
@@ -1009,13 +981,6 @@
                 currentStatus = "KOTOR";
             }
 
-            // Update Counter Imbasan
-            let scanCount = parseInt(localStorage.getItem("smart_ic_scans")) || 142;
-            scanCount += 1;
-            localStorage.setItem("smart_ic_scans", scanCount);
-            document.getElementById("total-usage-count").innerText = scanCount + "x";
-
-            // Borang Pengesahan
             document.getElementById("form-nama-kelas").value = namaKelasSelected;
             document.getElementById("res-status-text").innerText = currentStatus;
             document.getElementById("res-conf-val").innerText = currentConfidence + "%";
@@ -1038,7 +1003,7 @@
 
         function simpanGambarBase64(elementSource, namaKelas) {
             const base64Code = elementSource.toDataURL("image/jpeg", 0.5);
-            const todayISO = new Date().toISOString().split('T')[0]; // Format YYYY-MM-DD
+            const todayISO = new Date().toISOString().split('T')[0];
             
             savedImagesArray.unshift({ code: base64Code, kelas: namaKelas, tarikh: todayISO });
             if(savedImagesArray.length > 25) savedImagesArray.pop();
@@ -1063,7 +1028,6 @@
             }
         }
 
-        /* PENAPIS HIRARKI GALERI (TAHUN > BULAN > KELAS) */
         function penapisHirarkiGaleri() {
             const homeGalleryBox = document.getElementById("home-gallery-box");
             const yr = document.getElementById("filter-year").value;
@@ -1073,7 +1037,7 @@
             savedImagesArray = JSON.parse(localStorage.getItem("smart_ic_gallery_v8")) || [];
             
             let filtered = savedImagesArray.filter(item => {
-                let parts = item.tarikh.split('-'); // [YYYY, MM, DD]
+                let parts = item.tarikh.split('-');
                 let matchYr = (yr === 'ALL' || parts[0] === yr);
                 let matchMn = (mn === 'ALL' || parts[1] === mn);
                 let matchKl = (kl === 'ALL' || item.kelas === kl);
@@ -1103,7 +1067,6 @@
             }
         }
 
-        /* HANTAR DATA LENGKAP KE GOOGLE SHEETS VIA GAS */
         async function simpanKeSheets() {
             const darjah = document.getElementById("form-darjah-select").value;
             const kelasInput = document.getElementById("form-nama-kelas").value;
@@ -1120,7 +1083,7 @@
                 status: currentStatus, 
                 keyakinan: currentConfidence + "%", 
                 tarikh: tarikhInput,
-                catatan: catatanInput || "App Imbasan SKPJ V2.1"
+                catatan: catatanInput || "App Imbasan SKPJ V2.2"
             };
 
             try {
@@ -1131,8 +1094,7 @@
                     body: JSON.stringify(payload) 
                 });
 
-                historyData.unshift({ kelas: `${darjah} - ${kelasInput}`, status: currentStatus, keyakinan: currentConfidence + "%", tarikh: tarikhInput });
-                alert("BERJAYA! Data disimpan ke Sheets & Dashboard.");
+                alert("BERJAYA! Data disimpan secara Live ke Sheets & Dashboard.");
                 resetLangkahGambar();
                 navigasiKe(4);
             } catch(e) { alert("Ralat menghantar data!"); }
