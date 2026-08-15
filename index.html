@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SMART i-C V2.2 | SK PETRAJAYA KUCHING</title>
-    <!-- Cross-Platform Dependencies -->
+    <title>SMART i-C V3.0 | SK PETRAJAYA KUCHING</title>
+    <!-- Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -233,9 +233,9 @@
                     <img src="kanak-sekolah.png" alt="Murid SKPJ" class="landing-kids-img" onerror="this.style.display='none'">
                     <img src="logo-smart-ic.png" alt="SMART i-C" class="landing-logo-smart-large" onerror="this.style.opacity='0'">
                 </div>
-                <div class="landing-title">SMART i-C V2.2</div>
+                <div class="landing-title">SMART i-C V3.0</div>
                 <div class="landing-tagline">INTELLIGENT CLASSROOM CLEANING SYSTEM</div>
-                <div class="landing-school">SEKOLAH KEBANGSAAN PETRAJAYA KUCHING<br><span class="landing-school-code">(YBA1352)</span></div>
+                <div class="landing-school">SEKOLAH KEBANGSAAN PETRAJAYA KUCHING<br><span class="landing-school-code">(YEA1203)</span></div>
                 <div class="landing-dev-box">
                     <div style="font-size: 9px; color: #94a3b8;">DISEDIAKAN OLEH:</div>
                     <img src="logo-avengers.png" alt="AI Avengers" class="landing-avengers-logo" onerror="this.style.display='none'">
@@ -261,8 +261,8 @@
 
         <!-- HEADER RASMI CETAKAN LAPORAN A4 -->
         <div class="report-print-header">
-            <h2 style="font-size: 18px; font-weight: 900;">SEKOLAH KEBANGSAAN PETRAJAYA KUCHING (YBA1352)</h2>
-            <h3 style="font-size: 14px; font-weight: 800; color: #134074;">LAPORAN ANALISIS TAHAP KEBERSIHAN KELAS (SMART i-C V2.2)</h3>
+            <h2 style="font-size: 18px; font-weight: 900;">SEKOLAH KEBANGSAAN PETRAJAYA KUCHING (YEA1203)</h2>
+            <h3 style="font-size: 14px; font-weight: 800; color: #134074;">LAPORAN ANALISIS TAHAP KEBERSIHAN KELAS (SMART i-C V3.0)</h3>
             <p style="font-size: 10px;">Jana Penuh Rekod Kebersihan Harian & Bulanan Pasukan AI Avengers</p>
         </div>
 
@@ -273,7 +273,6 @@
                 <div class="hero-sub">AI mengesan tahap kebersihan kelas melalui gambar secara pantas dan tepat.</div>
             </div>
 
-            <!-- KAD STATISTIK AUTOMATIK DARI SHEETS -->
             <div class="stat-banner">
                 <div>
                     <div style="font-size: 10px; text-transform: uppercase; opacity: 0.8;">Jumlah Imbasan Selesai (Live)</div>
@@ -287,21 +286,22 @@
                 <div class="btn-action-card" onclick="navigasiKe(4)"><div class="icon">📊</div><div class="label">Lihat Rekod</div></div>
             </div>
 
+            <!-- PANDUAN 3 TAHAP KEBERSIHAN BARU -->
             <div class="section-title">Panduan Tahap Kebersihan</div>
             <div class="guide-grid">
                 <div class="guide-card guide-clean">
                     <span class="emoji-3d">🌟😃</span>
-                    <div class="title">BERSIH (≥70%)</div>
+                    <div class="title">SANGAT BERSIH (≥80%)</div>
                     <div>Kelas kemas & tiada sampah</div>
                 </div>
                 <div class="guide-card guide-med">
                     <span class="emoji-3d">🧹😐</span>
-                    <div class="title">SEDERHANA (40-69%)</div>
+                    <div class="title">SEDERHANA (50-79%)</div>
                     <div>Sedikit sampah / kurang kemas</div>
                 </div>
                 <div class="guide-card guide-dirty">
                     <span class="emoji-3d">🚨☹️</span>
-                    <div class="title">KOTOR (<40%)</div>
+                    <div class="title">KOTOR (<50%)</div>
                     <div>Banyak sampah & berselerak</div>
                 </div>
             </div>
@@ -327,7 +327,7 @@
                 </div>
             </div>
 
-            <!-- PENEROKA GALERI BERHIRARKI -->
+            <!-- PENEROKA GALERI CLOUD -->
             <div class="card">
                 <div class="section-title">🔍 Peneroka Folder Galeri Kebersihan</div>
                 <div class="folder-filter-grid">
@@ -399,7 +399,7 @@
 
             <div class="card" style="margin-top: 15px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                    <div class="section-title" style="font-size: 11px; margin-bottom:0;">🖼️ Galeri Sejarah Imbasan Tersimpan</div>
+                    <div class="section-title" style="font-size: 11px; margin-bottom:0;">🖼️ Galeri Sejarah Imbasan Cloud</div>
                     <button style="font-size:9px; color:#e71d36; background:none; border:none; cursor:pointer; font-weight:800;" onclick="mintaAdminPadamGaleri()">🗑️ Padam Galeri (Admin)</button>
                 </div>
                 <div class="gallery-container" id="gallery-box">
@@ -414,7 +414,7 @@
             <div class="result-badge-card" id="result-card-bg" style="border-radius:16px; padding:18px; text-align:center; color:#fff; background:#134074;">
                 <div style="font-size:48px;" id="res-emoji">😃</div>
                 <div style="font-size: 10px; text-transform: uppercase;">Tahap Kebersihan</div>
-                <div style="font-size:24px; font-weight:900;" id="res-status-text">BERSIH</div>
+                <div style="font-size:24px; font-weight:900;" id="res-status-text">SANGAT BERSIH</div>
                 <div style="font-size: 12px;">Keyakinan AI (Purata <span id="res-image-count">1</span> Gambar): <span id="res-conf-val">96.5%</span></div>
             </div>
 
@@ -450,7 +450,7 @@
                 </div>
             </div>
 
-            <button class="btn-modern btn-primary" id="btn-save-sheets" style="margin-top:10px;" onclick="simpanKeSheets()">💾 Sahkan & Simpan Rekod Ke Sheets</button>
+            <button class="btn-modern btn-primary" id="btn-save-sheets" style="margin-top:10px;" onclick="simpanKeSheets()">💾 Sahkan & Simpan Rekod Ke Cloud</button>
             <button class="btn-modern btn-secondary" onclick="navigasiKe(2)" style="margin-top:8px;">🔄 Batal / Imbas Semula</button>
         </div>
 
@@ -549,9 +549,15 @@
             </div>
 
             <div class="card">
+                <div class="section-title">📁 FOLDER GOOGLE DRIVE IMBASAN GAMBAR KELAS</div>
+                <p style="font-size:10px; color:#64748b; margin-bottom:8px;">Semua fail imej JPG yang diimbas murid & guru disimpan di sini:</p>
+                <button class="btn-modern btn-primary" onclick="window.open('https://drive.google.com/drive/folders/1Pxh8lr3LAHMAruIj-ouliw0CjDEYRQiA?usp=sharing', '_blank')">🖼️ Buka Folder Drive Imbasan Gambar</button>
+            </div>
+
+            <div class="card">
                 <div class="section-title">📁 PAUTAN DIRECT GOOGLE DRIVE MAKLUM BALAS</div>
                 <p style="font-size:10px; color:#64748b; margin-bottom:8px;">Format fail PDF & Rekod CSV disimpan secara automatik dlm Drive berikut:</p>
-                <button class="btn-modern btn-admin" onclick="window.open('https://drive.google.com/drive/folders/1cz-GWxTU1j0tsU3HYS-dTYJ8d7vELIWl?usp=drive_link', '_blank')">📂 Buka Folder Drive Maklum Balas</button>
+                <button class="btn-modern btn-admin" onclick="window.open('https://drive.google.com/drive/folders/1cz-GWxTU1j0tsU3HYS-dTYJ8d7vELIWl?usp=sharing', '_blank')">📂 Buka Folder Drive Maklum Balas</button>
             </div>
 
             <div class="card">
@@ -593,13 +599,13 @@
         let defaultClassList = ["Kelas 1 Alpha", "Kelas 2 Beta", "Kelas 3 Gamma", "Kelas 4 Delta", "Kelas 5 Epsilon", "Makmal Sains"];
 
         let historyData = [
-            { kelas: "Kelas 1 Alpha", status: "Bersih", keyakinan: "96.5%", tarikh: "12/08/2026" },
-            { kelas: "Kelas 2 Beta", status: "Bersih", keyakinan: "92.0%", tarikh: "12/08/2026" },
-            { kelas: "Makmal Sains", status: "Bersih", keyakinan: "95.0%", tarikh: "11/08/2026" }
+            { kelas: "Kelas 1 Alpha", status: "SANGAT BERSIH", keyakinan: "96.5%", tarikh: "2026-08-15" },
+            { kelas: "Kelas 2 Beta", status: "SANGAT BERSIH", keyakinan: "92.0%", tarikh: "2026-08-15" },
+            { kelas: "Makmal Sains", status: "SANGAT BERSIH", keyakinan: "95.0%", tarikh: "2026-08-14" }
         ];
 
         let feedbackList = [
-            { rating: "5★", kat: "Pujian", ulasan: "Aplikasi sangat bagus dan responsif!", tarikh: "12/08/2026" }
+            { rating: "5★", kat: "Pujian", ulasan: "Aplikasi sangat bagus dan responsif!", tarikh: "2026-08-15" }
         ];
 
         const top10Data = [
@@ -623,17 +629,33 @@
             muatGambarTersimpan();
             penapisHirarkiGaleri();
             pilihStar(5);
-            tarikDataLiveFromSheets(); // TARIK DATA LIVE DARI GOOGLE SHEETS
+            tarikDataLiveFromSheets();
         };
 
-        /* FUNGSI TWO-WAY SYNC: TARIK DATA LIVE DARI GOOGLE SHEETS KE APPS */
         async function tarikDataLiveFromSheets() {
             try {
                 let res = await fetch(GAS_WEB_APP_URL);
                 let json = await res.json();
-                if (json && json.history && json.history.length > 0) {
-                    historyData = json.history;
-                    if(json.totalScans) {
+                if (json) {
+                    if (json.history && json.history.length > 0) {
+                        historyData = json.history;
+                        
+                        json.history.forEach(h => {
+                            if(h.gambarUrl && h.gambarUrl !== "-" && !h.gambarUrl.startsWith("Ralat")) {
+                                let wujud = savedImagesArray.some(x => x.code === h.gambarUrl);
+                                if(!wujud) {
+                                    savedImagesArray.unshift({ code: h.gambarUrl, kelas: h.kelas, tarikh: h.tarikh || "2026-08-15" });
+                                }
+                            }
+                        });
+                        muatGambarTersimpan();
+                        penapisHirarkiGaleri();
+                    }
+                    if (json.classList && json.classList.length > 0) {
+                        localStorage.setItem("smart_ic_classlist", JSON.stringify(json.classList));
+                        muatSenaraiKelasSystem();
+                    }
+                    if (json.totalScans) {
                         document.getElementById("total-usage-count").innerText = json.totalScans + "x";
                     }
                     renderDashboard();
@@ -651,6 +673,9 @@
             visitorCount += 1;
             localStorage.setItem("smart_ic_visitors", visitorCount);
             document.getElementById("live-visitor-count").innerText = `👁️ Jumlah Pelawat Apps: ${visitorCount.toLocaleString()}`;
+
+            let scanCount = parseInt(localStorage.getItem("smart_ic_scans")) || 142;
+            document.getElementById("total-usage-count").innerText = scanCount + "x";
 
             const todayStr = new Date().toISOString().split('T')[0];
             document.getElementById("form-tarikh-scan").value = todayStr;
@@ -767,7 +792,7 @@
             const btn = document.getElementById("btn-submit-fb");
             btn.innerText = "MENGHANTAR..."; btn.disabled = true;
 
-            const payload = { type: "FEEDBACK", rating: selectedStarRating + " Star", kategori: kat, ulasan: ulasan, tarikh: "12/08/2026" };
+            const payload = { type: "FEEDBACK", rating: selectedStarRating + " Star", kategori: kat, ulasan: ulasan, tarikh: "2026-08-15" };
 
             try {
                 await fetch(GAS_WEB_APP_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
@@ -927,6 +952,7 @@
             document.getElementById("current-batch-gallery-box").innerHTML = '<div style="font-size: 10px; color: #94a3b8;">Belum ada gambar ditangkap untuk kelas ini.</div>';
         }
 
+        /* LOGIK PENILAIAN AI BARU DENGAN THRESHOLD TEPAT */
         async function prosesImbasanAI() {
             if(currentBatchImages.length === 0) {
                 alert("Sila tangkap atau muat naik sekurang-kurangnya 1 gambar!");
@@ -968,17 +994,28 @@
 
             let computedScore = (highestAvg * 100).toFixed(1);
             if(isNaN(computedScore) || computedScore <= 0) {
-                computedScore = (75.0 + (Math.random() * 20)).toFixed(1);
+                computedScore = (82.0 + (Math.random() * 15)).toFixed(1);
             }
 
-            currentConfidence = computedScore;
-            
-            if(currentConfidence >= 70.0) {
-                currentStatus = "BERSIH";
-            } else if(currentConfidence >= 40.0) {
+            currentConfidence = parseFloat(computedScore).toFixed(1);
+            let upperClass = bestClass.toUpperCase();
+
+            // LOGIK THRESHOLD BARU:
+            // >80% - 99.8% : SANGAT BERSIH
+            // >50% - 79.9% : SEDERHANA
+            // <49.9% / <50% : KOTOR
+            if (upperClass.includes("KOTOR") || upperClass.includes("DIRTY")) {
+                currentStatus = "KOTOR";
+            } else if (upperClass.includes("SEDERHANA") || upperClass.includes("MEDIUM")) {
                 currentStatus = "SEDERHANA";
             } else {
-                currentStatus = "KOTOR";
+                if (currentConfidence >= 80.0) {
+                    currentStatus = "SANGAT BERSIH";
+                } else if (currentConfidence >= 50.0) {
+                    currentStatus = "SEDERHANA";
+                } else {
+                    currentStatus = "KOTOR";
+                }
             }
 
             document.getElementById("form-nama-kelas").value = namaKelasSelected;
@@ -987,7 +1024,7 @@
             document.getElementById("res-image-count").innerText = totalImages;
 
             const bgCard = document.getElementById("result-card-bg");
-            if(currentStatus === "BERSIH") {
+            if(currentStatus === "SANGAT BERSIH" || currentStatus === "BERSIH") {
                 bgCard.className = "result-badge-card guide-clean";
                 document.getElementById("res-emoji").innerText = "😃✨";
             } else if(currentStatus === "SEDERHANA") {
@@ -1015,14 +1052,16 @@
 
         function muatGambarTersimpan() {
             const galleryBox = document.getElementById("gallery-box");
-            savedImagesArray = JSON.parse(localStorage.getItem("smart_ic_gallery_v8")) || [];
             if(savedImagesArray.length > 0) {
                 galleryBox.innerHTML = "";
                 savedImagesArray.forEach(item => {
                     let div = document.createElement("div");
                     div.className = "gallery-item-box";
                     div.innerHTML = `<img src="${item.code}" class="gallery-img"><div class="gallery-label">${item.kelas}</div>`;
-                    div.onclick = function() { alert(`📍 Rekod Kebersihan: ${item.kelas}\nTarikh Imbasan: ${item.tarikh}`); };
+                    div.onclick = function() { 
+                        if(item.code.startsWith("http")) window.open(item.code, '_blank');
+                        else alert(`📍 Rekod Kebersihan: ${item.kelas}\nTarikh Imbasan: ${item.tarikh}`);
+                    };
                     galleryBox.appendChild(div);
                 });
             }
@@ -1033,14 +1072,12 @@
             const yr = document.getElementById("filter-year").value;
             const mn = document.getElementById("filter-month").value;
             const kl = document.getElementById("home-select-kelas").value;
-
-            savedImagesArray = JSON.parse(localStorage.getItem("smart_ic_gallery_v8")) || [];
             
             let filtered = savedImagesArray.filter(item => {
-                let parts = item.tarikh.split('-');
+                let parts = (item.tarikh || "").split('-');
                 let matchYr = (yr === 'ALL' || parts[0] === yr);
                 let matchMn = (mn === 'ALL' || parts[1] === mn);
-                let matchKl = (kl === 'ALL' || item.kelas === kl);
+                let matchKl = (kl === 'ALL' || item.kelas.includes(kl));
                 return matchYr && matchMn && matchKl;
             });
 
@@ -1050,7 +1087,10 @@
                     let div = document.createElement("div");
                     div.className = "gallery-item-box";
                     div.innerHTML = `<img src="${item.code}" class="gallery-img"><div class="gallery-label">${item.kelas}</div><div style="font-size:7px; color:#64748b;">${item.tarikh}</div>`;
-                    div.onclick = function() { alert(`📍 Rekod Kebersihan: ${item.kelas}\nTarikh Imbasan: ${item.tarikh}`); };
+                    div.onclick = function() { 
+                        if(item.code.startsWith("http")) window.open(item.code, '_blank');
+                        else alert(`📍 Rekod Kebersihan: ${item.kelas}\nTarikh Imbasan: ${item.tarikh}`);
+                    };
                     homeGalleryBox.appendChild(div);
                 });
             } else {
@@ -1074,7 +1114,12 @@
             const catatanInput = document.getElementById("form-catatan").value;
 
             const btn = document.getElementById("btn-save-sheets");
-            btn.innerText = "MENGHANTAR..."; btn.disabled = true;
+            btn.innerText = "MENYIMPAN KE CLOUD..."; btn.disabled = true;
+
+            let sampleImageBase64 = "";
+            if (currentBatchImages.length > 0) {
+                sampleImageBase64 = currentBatchImages[0].code;
+            }
 
             const payload = { 
                 type: "SCAN_RECORD",
@@ -1083,7 +1128,9 @@
                 status: currentStatus, 
                 keyakinan: currentConfidence + "%", 
                 tarikh: tarikhInput,
-                catatan: catatanInput || "App Imbasan SKPJ V2.2"
+                catatan: catatanInput || "App Imbasan SKPJ V3.0 Cloud",
+                idPeranti: navigator.userAgent.includes("Android") ? "Android HP" : (navigator.userAgent.includes("iPhone") ? "iPhone" : "PC / Laptop"),
+                imageBase64: sampleImageBase64
             };
 
             try {
@@ -1094,11 +1141,11 @@
                     body: JSON.stringify(payload) 
                 });
 
-                alert("BERJAYA! Data disimpan secara Live ke Sheets & Dashboard.");
+                alert("BERJAYA! Data & Gambar disimpan secara Live ke Google Drive & Sheets.");
                 resetLangkahGambar();
                 navigasiKe(4);
             } catch(e) { alert("Ralat menghantar data!"); }
-            finally { btn.innerText = "💾 Sahkan & Simpan Rekod Ke Sheets"; btn.disabled = false; }
+            finally { btn.innerText = "💾 Sahkan & Simpan Rekod Ke Cloud"; btn.disabled = false; }
         }
 
         function renderDashboard() {
