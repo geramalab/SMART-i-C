@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SMART i-C V3.0 | SK PETRAJAYA KUCHING</title>
+    <title>SMART i-C V3.0 | SK PETRAJAYA KUCHING (YBA1352)</title>
     <!-- Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
@@ -123,7 +123,6 @@
         }
         .btn-landing-start:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 22px rgba(255, 215, 0, 0.7); }
 
-        /* KAD INFOGRAFIK MODEN */
         .hero-banner { 
             background: linear-gradient(135deg, #134074 0%, #0b2545 100%); 
             color: #ffffff; 
@@ -301,7 +300,7 @@
             </div>
             <div class="top-bar-center">
                 <div class="top-bar-title">SMART i-C</div>
-                <div class="top-bar-sub">SK PETRAJAYA KUCHING</div>
+                <div class="top-bar-sub">SK PETRAJAYA KUCHING (YBA1352)</div>
             </div>
             <img src="logo-skpj.png" alt="SKPJ" class="header-logo-img" onerror="this.style.opacity='0'">
         </div>
@@ -632,7 +631,7 @@
     <script>
         const URL_MODEL_TM = "https://teachablemachine.withgoogle.com/models/8T1UNdXAx/"; 
         
-        // ⚠️ GANTIKAN DENGAN WEB APP URL DARI GOOGLE SHEET "SMART i-C Master Database" BARU KITAK
+        // PAUTAN GAS WEB APP LIVE BAHARU MILIK MASTER DATABASE KITAK
         const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzYLhJQectbDvFBbsKY8GoHTIfa1QXtT-fQ1P7slPq4REN9A4IvU3c9iS8HnaPQ3jvbNg/exec"; 
 
         let model, maxPredictions;
@@ -645,7 +644,7 @@
         let selectedStarRating = 5;
         let currentMode = 'harian';
 
-        // 24 KELAS RASMI SKPJ SECARA DEFAULT
+        // 24 KELAS RASMI SKPJ (YBA1352) SECARA DEFAULT
         let defaultClassList = [
             "1 Anggerik", "1 Bakawali", "1 Cempaka", "1 Dahlia",
             "2 Anggerik", "2 Bakawali", "2 Cempaka", "2 Dahlia",
@@ -681,7 +680,7 @@
             { rank: 10, kelas: "4 Dahlia", skor: "91.2%" }
         ];
 
-        // FUNGSI RAWATAN SKOR PERATUSAN DARI GOOGLE SHEETS
+        // FUNGSI RAWATAN SKOR PERATUSAN SUPAYA TIDAK JADI 0.827
         function formatSkorDisplay(val) {
             if(!val) return "90.0%";
             let s = val.toString().trim();
@@ -743,7 +742,7 @@
                     renderDashboard();
                 }
             } catch(e) {
-                console.log("Menggunakan log data bersedia.");
+                console.log("Menggunakan cache sistem siap sedia.");
             }
         }
 
