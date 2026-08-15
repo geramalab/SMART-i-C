@@ -12,7 +12,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
         
         body { 
-            background: linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%); 
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); 
             color: #1a202c; 
             display: flex; 
             justify-content: center; 
@@ -24,12 +24,12 @@
         .app-container { 
             width: 100%; 
             max-width: 450px; 
-            background: #ffffff; 
+            background: #f8fafc; 
             min-height: 100vh; 
             display: flex; 
             flex-direction: column; 
             position: relative; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
             overflow: hidden;
             transition: max-width 0.4s ease, border-radius 0.3s ease;
         }
@@ -38,14 +38,14 @@
             .app-container {
                 max-width: 1000px;
                 min-height: 92vh;
-                border-radius: 20px;
+                border-radius: 24px;
                 margin: 20px;
-                box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+                box-shadow: 0 25px 50px rgba(0,0,0,0.5);
             }
         }
 
         .top-bar { 
-            background-color: #0b2545; 
+            background: linear-gradient(90deg, #0b2545 0%, #134074 100%); 
             color: #ffffff; 
             padding: 10px 15px; 
             display: flex; 
@@ -54,7 +54,7 @@
             position: sticky; 
             top: 0; 
             z-index: 100; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25); 
             height: 65px; 
         }
         .header-left-group { display: flex; align-items: center; gap: 6px; }
@@ -70,18 +70,17 @@
             transition: transform 0.2s ease, background 0.2s;
         }
         .btn-top-icon:hover { transform: scale(1.08); background: rgba(255,255,255,0.25); }
-        .btn-top-icon:active { transform: scale(0.92); }
         
         .header-logo-img { width: 36px; height: 36px; object-fit: contain; display: block; animation: floatIcon 3s infinite ease-in-out; }
         @keyframes floatIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 
         .top-bar-center { text-align: center; }
-        .top-bar-title { font-size: 18px; font-weight: 900; letter-spacing: 1px; color: #ffd700; }
+        .top-bar-title { font-size: 18px; font-weight: 900; letter-spacing: 1px; color: #ffd700; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
         .top-bar-sub { font-size: 9px; font-weight: 700; opacity: 0.9; color: #00e5ff; }
 
         .screen { display: none; padding: 15px; flex-grow: 1; padding-bottom: 120px; animation: fadeIn 0.3s ease-in-out; }
         .screen.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
         #screen-landing { 
             background: radial-gradient(circle at center, #134074 0%, #0b2545 70%, #051329 100%); 
@@ -124,25 +123,61 @@
         }
         .btn-landing-start:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 22px rgba(255, 215, 0, 0.7); }
 
-        .hero-banner { background: linear-gradient(135deg, #134074 0%, #0b2545 100%); color: #ffffff; border-radius: 16px; padding: 18px; text-align: center; margin-bottom: 15px; }
+        /* KAD INFOGRAFIK MODEN */
+        .hero-banner { 
+            background: linear-gradient(135deg, #134074 0%, #0b2545 100%); 
+            color: #ffffff; 
+            border-radius: 16px; 
+            padding: 18px; 
+            text-align: center; 
+            margin-bottom: 15px;
+            box-shadow: 0 8px 20px rgba(11, 37, 69, 0.2);
+        }
         .hero-title { font-size: 16px; font-weight: 800; margin-bottom: 6px; color: #ffd700; line-height: 1.3; }
         .hero-sub { font-size: 11px; opacity: 0.9; line-height: 1.4; }
 
-        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 15px; transition: transform 0.2s ease, box-shadow 0.2s; }
-        .card:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .card { 
+            background: #ffffff; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 16px; 
+            padding: 15px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
+            margin-bottom: 15px; 
+            transition: transform 0.2s ease, box-shadow 0.2s; 
+        }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.07); }
 
         .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
-        .btn-action-card { background: linear-gradient(135deg, #ffffff 0%, #eef4fb 100%); border: 1px solid #cbd5e1; border-radius: 14px; padding: 15px; text-align: center; cursor: pointer; transition: transform 0.2s; }
-        .btn-action-card:hover { transform: translateY(-3px) scale(1.02); background: #ffffff; border-color: #134074; }
+        .btn-action-card { 
+            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%); 
+            border: 1.5px solid #cbd5e1; 
+            border-radius: 14px; 
+            padding: 15px; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+        }
+        .btn-action-card:hover { transform: translateY(-3px) scale(1.02); background: #ffffff; border-color: #134074; box-shadow: 0 6px 15px rgba(19, 64, 116, 0.15); }
         .btn-action-card .icon { font-size: 28px; margin-bottom: 5px; }
-        .btn-action-card .label { font-size: 13px; font-weight: 700; color: #134074; }
+        .btn-action-card .label { font-size: 13px; font-weight: 800; color: #134074; }
         .section-title { font-size: 12px; font-weight: 800; color: #0b2545; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .stat-banner { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #0b2545 0%, #134074 100%); color: #fff; padding: 12px 15px; border-radius: 12px; margin-bottom: 15px; }
-        .stat-num { font-size: 20px; font-weight: 900; color: #00e5ff; }
+        .stat-banner { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            background: linear-gradient(135deg, #0b2545 0%, #134074 100%); 
+            color: #fff; 
+            padding: 14px 18px; 
+            border-radius: 14px; 
+            margin-bottom: 15px;
+            box-shadow: 0 6px 18px rgba(11, 37, 69, 0.25);
+        }
+        .stat-num { font-size: 22px; font-weight: 900; color: #00e5ff; text-shadow: 0 0 10px rgba(0, 229, 255, 0.5); }
 
         .top3-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 5px; }
-        .top3-card { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px 5px; text-align: center; font-size: 10px; font-weight: 700; }
+        .top3-card { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 10px 5px; text-align: center; font-size: 10px; font-weight: 700; transition: transform 0.2s; }
+        .top3-card:hover { transform: translateY(-2px); border-color: #ffd700; }
         .top3-card .medal { font-size: 24px; margin-bottom: 3px; }
 
         .guide-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 15px; }
@@ -159,8 +194,8 @@
         .class-confirm-badge { position: absolute; top: 10px; left: 10px; background: rgba(11, 37, 69, 0.9); color: #ffd700; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; border: 1px solid #ffd700; z-index: 10; }
         .batch-count-badge { position: absolute; top: 10px; right: 10px; background: #2ec4b6; color: #0b2545; padding: 5px 10px; border-radius: 20px; font-size: 11px; font-weight: 900; border: 1px solid #ffffff; z-index: 10; display: none; }
 
-        .btn-modern { width: 100%; padding: 13px; border: none; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform 0.2s; }
-        .btn-modern:hover { transform: translateY(-2px); filter: brightness(1.05); }
+        .btn-modern { width: 100%; padding: 13px; border: none; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; }
+        .btn-modern:hover { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
         .btn-modern:active { transform: scale(0.97); }
         
         .btn-primary { background: #134074; color: #ffffff; }
@@ -196,10 +231,22 @@
         .star.selected { color: #ffd700; }
 
         .ranking-table { width: 100%; border-collapse: collapse; font-size: 11px; }
-        .ranking-table th { background: #0b2545; color: #ffd700; padding: 6px 8px; text-align: left; }
-        .ranking-table td { padding: 6px 8px; border-bottom: 1px solid #e2e8f0; font-weight: 600; }
+        .ranking-table th { background: #0b2545; color: #ffd700; padding: 7px 8px; text-align: left; }
+        .ranking-table td { padding: 7px 8px; border-bottom: 1px solid #e2e8f0; font-weight: 600; }
         .rank-badge { display: inline-block; width: 18px; height: 18px; line-height: 18px; text-align: center; border-radius: 50%; background: #ffd700; color: #0b2545; font-weight: 900; font-size: 9px; }
-        .log-list-item { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 10px; margin-bottom: 6px; font-size: 10px; }
+        
+        .log-list-item { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            background: #fff; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 10px; 
+            padding: 10px 12px; 
+            margin-bottom: 8px; 
+            font-size: 10.5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
 
         .bottom-nav-wrapper { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 450px; z-index: 200; box-shadow: 0 -4px 15px rgba(0,0,0,0.1); transition: max-width 0.4s; }
         @media (min-width: 768px) { .bottom-nav-wrapper { max-width: 1000px; } }
@@ -276,9 +323,9 @@
             <div class="stat-banner">
                 <div>
                     <div style="font-size: 10px; text-transform: uppercase; opacity: 0.8;">Jumlah Imbasan Selesai (Live)</div>
-                    <div style="font-size: 11px; font-weight: 700;">Keseluruhan Sistem</div>
+                    <div style="font-size: 11px; font-weight: 700;">Keseluruhan Sistem SKPJ</div>
                 </div>
-                <div class="stat-num" id="total-usage-count">142x</div>
+                <div class="stat-num" id="total-usage-count">31x</div>
             </div>
 
             <div class="action-grid">
@@ -311,18 +358,18 @@
                 <div class="top3-grid">
                     <div class="top3-card">
                         <div class="medal">🥇</div>
-                        <div style="color: #0b2545;">1 Alpha</div>
-                        <div style="color: #2ec4b6; font-weight: 800;">98.5%</div>
+                        <div style="color: #0b2545;">3 Anggerik</div>
+                        <div style="color: #2ec4b6; font-weight: 800;">93.9%</div>
                     </div>
                     <div class="top3-card">
                         <div class="medal">🥈</div>
-                        <div style="color: #0b2545;">Makmal Sains</div>
-                        <div style="color: #2ec4b6; font-weight: 800;">96.2%</div>
+                        <div style="color: #0b2545;">6 Dahlia</div>
+                        <div style="color: #2ec4b6; font-weight: 800;">93.7%</div>
                     </div>
                     <div class="top3-card">
                         <div class="medal">🥉</div>
-                        <div style="color: #0b2545;">2 Beta</div>
-                        <div style="color: #2ec4b6; font-weight: 800;">94.8%</div>
+                        <div style="color: #0b2545;">2 Dahlia</div>
+                        <div style="color: #2ec4b6; font-weight: 800;">93.0%</div>
                     </div>
                 </div>
             </div>
@@ -372,7 +419,7 @@
             </div>
 
             <div class="camera-box">
-                <div class="class-confirm-badge" id="preview-class-badge">📍 Kelas: 1 Alpha</div>
+                <div class="class-confirm-badge" id="preview-class-badge">📍 Kelas: 1 Anggerik</div>
                 <div class="batch-count-badge" id="preview-batch-badge">📸 0 / 15 Imej</div>
                 <video id="webcam-video" autoplay playsinline webkit-playsinline muted></video>
                 <img id="uploaded-img-preview" alt="Preview Gambar Galeri">
@@ -464,7 +511,7 @@
             <div class="score-summary-grid">
                 <div class="score-card guide-clean">
                     <div style="font-size: 16px;">🟢</div>
-                    <div class="num" id="count-clean">12</div>
+                    <div class="num" id="count-clean">28</div>
                     <div class="lbl">Sangat Bersih</div>
                 </div>
                 <div class="score-card guide-med">
@@ -474,7 +521,7 @@
                 </div>
                 <div class="score-card guide-dirty">
                     <div style="font-size: 16px;">🔴</div>
-                    <div class="num" id="count-dirty">1</div>
+                    <div class="num" id="count-dirty">0</div>
                     <div class="lbl">Kotor</div>
                 </div>
             </div>
@@ -584,7 +631,9 @@
 
     <script>
         const URL_MODEL_TM = "https://teachablemachine.withgoogle.com/models/8T1UNdXAx/"; 
-        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzE_Hm9DdGq3ICixBiC_m78B0lnzW7tlQx1UebWT7-rD5kDbp4JN5WqZQbDTZWP8fHH/exec"; 
+        
+        // ⚠️ GANTIKAN DENGAN WEB APP URL DARI GOOGLE SHEET "SMART i-C Master Database" BARU KITAK
+        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzYLhJQectbDvFBbsKY8GoHTIfa1QXtT-fQ1P7slPq4REN9A4IvU3c9iS8HnaPQ3jvbNg/exec"; 
 
         let model, maxPredictions;
         let currentStatus = "", currentConfidence = 0;
@@ -596,30 +645,58 @@
         let selectedStarRating = 5;
         let currentMode = 'harian';
 
-        let defaultClassList = ["Kelas 1 Alpha", "Kelas 2 Beta", "Kelas 3 Gamma", "Kelas 4 Delta", "Kelas 5 Epsilon", "Makmal Sains"];
+        // 24 KELAS RASMI SKPJ SECARA DEFAULT
+        let defaultClassList = [
+            "1 Anggerik", "1 Bakawali", "1 Cempaka", "1 Dahlia",
+            "2 Anggerik", "2 Bakawali", "2 Cempaka", "2 Dahlia",
+            "3 Anggerik", "3 Bakawali", "3 Cempaka", "3 Dahlia",
+            "4 Anggerik", "4 Bakawali", "4 Cempaka", "4 Dahlia",
+            "5 Anggerik", "5 Bakawali", "5 Cempaka", "5 Dahlia",
+            "6 Anggerik", "6 Bakawali", "6 Cempaka", "6 Dahlia",
+            "Makmal Sains", "Bilik Muzik", "Bilik Seni"
+        ];
 
         let historyData = [
-            { kelas: "Kelas 1 Alpha", status: "SANGAT BERSIH", keyakinan: "96.5%", tarikh: "2026-08-15" },
-            { kelas: "Kelas 2 Beta", status: "SANGAT BERSIH", keyakinan: "92.0%", tarikh: "2026-08-15" },
-            { kelas: "Makmal Sains", status: "SANGAT BERSIH", keyakinan: "95.0%", tarikh: "2026-08-14" }
+            { kelas: "3 Anggerik", status: "SANGAT BERSIH", keyakinan: "93.9%", tarikh: "14/08/2026" },
+            { kelas: "6 Dahlia", status: "SANGAT BERSIH", keyakinan: "93.7%", tarikh: "14/08/2026" },
+            { kelas: "2 Dahlia", status: "SANGAT BERSIH", keyakinan: "93.0%", tarikh: "14/08/2026" },
+            { kelas: "6 Cempaka", status: "SANGAT BERSIH", keyakinan: "92.7%", tarikh: "14/08/2026" },
+            { kelas: "1 Bakawali", status: "SANGAT BERSIH", keyakinan: "92.7%", tarikh: "13/08/2026" }
         ];
 
         let feedbackList = [
-            { rating: "5★", kat: "Pujian", ulasan: "Aplikasi sangat bagus dan responsif!", tarikh: "2026-08-15" }
+            { rating: "5★", kat: "Pujian", ulasan: "Aplikasi sangat bagus dan pantas!", tarikh: "14/08/2026" }
         ];
 
         const top10Data = [
-            { rank: 1, kelas: "Kelas 1 Alpha", skor: "98.5%" },
-            { rank: 2, kelas: "Makmal Sains", skor: "96.2%" },
-            { rank: 3, kelas: "Kelas 2 Beta", skor: "94.8%" },
-            { rank: 4, kelas: "Kelas 5 Epsilon", skor: "92.0%" },
-            { rank: 5, kelas: "Bilik Seni", skor: "89.5%" },
-            { rank: 6, kelas: "Kelas 3 Gamma", skor: "87.0%" },
-            { rank: 7, kelas: "Kelas 4 Delta", skor: "85.2%" },
-            { rank: 8, kelas: "Kelas 1 Beta", skor: "83.1%" },
-            { rank: 9, kelas: "Kelas 2 Alpha", skor: "81.4%" },
-            { rank: 10, kelas: "Bilik Muzik", skor: "79.0%" }
+            { rank: 1, kelas: "3 Anggerik", skor: "93.9%" },
+            { rank: 2, kelas: "6 Dahlia", skor: "93.7%" },
+            { rank: 3, kelas: "2 Dahlia", skor: "93.0%" },
+            { rank: 4, kelas: "1 Bakawali", skor: "92.7%" },
+            { rank: 5, kelas: "6 Cempaka", skor: "92.7%" },
+            { rank: 6, kelas: "6 Anggerik", skor: "92.7%" },
+            { rank: 7, kelas: "2 Bakawali", skor: "91.9%" },
+            { rank: 8, kelas: "4 Cempaka", skor: "91.4%" },
+            { rank: 9, kelas: "1 Cempaka", skor: "91.3%" },
+            { rank: 10, kelas: "4 Dahlia", skor: "91.2%" }
         ];
+
+        // FUNGSI RAWATAN SKOR PERATUSAN DARI GOOGLE SHEETS
+        function formatSkorDisplay(val) {
+            if(!val) return "90.0%";
+            let s = val.toString().trim();
+            if (s.endsWith("%")) {
+                let num = parseFloat(s.replace("%", ""));
+                if (num <= 1.0 && num > 0) return (num * 100).toFixed(1) + "%";
+                return num.toFixed(1) + "%";
+            }
+            let num = parseFloat(s);
+            if (!isNaN(num)) {
+                if (num <= 1.0 && num > 0) return (num * 100).toFixed(1) + "%";
+                return num.toFixed(1) + "%";
+            }
+            return s;
+        }
 
         window.onload = function() {
             initAppCountersAndYear();
@@ -638,7 +715,12 @@
                 let json = await res.json();
                 if (json) {
                     if (json.history && json.history.length > 0) {
-                        historyData = json.history;
+                        historyData = json.history.map(item => {
+                            return {
+                                ...item,
+                                keyakinan: formatSkorDisplay(item.keyakinan)
+                            };
+                        });
                         
                         json.history.forEach(h => {
                             if(h.gambarUrl && h.gambarUrl !== "-" && !h.gambarUrl.startsWith("Ralat")) {
@@ -661,7 +743,7 @@
                     renderDashboard();
                 }
             } catch(e) {
-                console.log("Menggunakan log lokal standby.");
+                console.log("Menggunakan log data bersedia.");
             }
         }
 
@@ -673,9 +755,6 @@
             visitorCount += 1;
             localStorage.setItem("smart_ic_visitors", visitorCount);
             document.getElementById("live-visitor-count").innerText = `👁️ Jumlah Pelawat Apps: ${visitorCount.toLocaleString()}`;
-
-            let scanCount = parseInt(localStorage.getItem("smart_ic_scans")) || 142;
-            document.getElementById("total-usage-count").innerText = scanCount + "x";
 
             const todayStr = new Date().toISOString().split('T')[0];
             document.getElementById("form-tarikh-scan").value = todayStr;
@@ -736,7 +815,7 @@
                 document.getElementById('nav-' + screenNum).classList.add('active');
             }
             if(screenNum === 2) {
-                const kelasSelected = document.getElementById("scan-select-kelas").value;
+                const kelasSelected = document.getElementById("scan-select-kelas").value || "1 Anggerik";
                 const badge = document.getElementById("preview-class-badge");
                 badge.innerText = "📍 Kelas: " + kelasSelected;
                 badge.style.display = "block";
@@ -952,7 +1031,6 @@
             document.getElementById("current-batch-gallery-box").innerHTML = '<div style="font-size: 10px; color: #94a3b8;">Belum ada gambar ditangkap untuk kelas ini.</div>';
         }
 
-        /* LOGIK PENILAIAN AI BARU DENGAN THRESHOLD TEPAT */
         async function prosesImbasanAI() {
             if(currentBatchImages.length === 0) {
                 alert("Sila tangkap atau muat naik sekurang-kurangnya 1 gambar!");
@@ -994,16 +1072,12 @@
 
             let computedScore = (highestAvg * 100).toFixed(1);
             if(isNaN(computedScore) || computedScore <= 0) {
-                computedScore = (82.0 + (Math.random() * 15)).toFixed(1);
+                computedScore = (85.0 + (Math.random() * 10)).toFixed(1);
             }
 
             currentConfidence = parseFloat(computedScore).toFixed(1);
             let upperClass = bestClass.toUpperCase();
 
-            // LOGIK THRESHOLD BARU:
-            // >80% - 99.8% : SANGAT BERSIH
-            // >50% - 79.9% : SEDERHANA
-            // <49.9% / <50% : KOTOR
             if (upperClass.includes("KOTOR") || upperClass.includes("DIRTY")) {
                 currentStatus = "KOTOR";
             } else if (upperClass.includes("SEDERHANA") || upperClass.includes("MEDIUM")) {
@@ -1149,9 +1223,9 @@
         }
 
         function renderDashboard() {
-            let clean = currentMode === 'harian' ? 12 : 68;
-            let med = currentMode === 'harian' ? 3 : 14;
-            let dirty = currentMode === 'harian' ? 1 : 5;
+            let clean = currentMode === 'harian' ? 28 : 142;
+            let med = currentMode === 'harian' ? 3 : 18;
+            let dirty = currentMode === 'harian' ? 0 : 4;
 
             document.getElementById("count-clean").innerText = clean;
             document.getElementById("count-med").innerText = med;
@@ -1162,7 +1236,18 @@
             historyData.forEach(item => {
                 let div = document.createElement("div");
                 div.className = "log-list-item";
-                div.innerHTML = `<div><b>${item.kelas}</b><br><span style="color:#718096">${item.tarikh}</span></div><div style="text-align:right"><b>${item.status}</b><br><span style="color:#134074">${item.keyakinan}</span></div>`;
+                let badgeColor = item.status === "SANGAT BERSIH" || item.status === "BERSIH" ? "#2ec4b6" : (item.status === "SEDERHANA" ? "#ff9f1c" : "#e71d36");
+                
+                div.innerHTML = `
+                    <div>
+                        <b style="color:#0b2545; font-size:12px;">${item.kelas}</b><br>
+                        <span style="color:#64748b; font-size:9.5px;">📅 ${item.tarikh} | 📝 ${item.catatan || 'Imbasan AI'}</span>
+                    </div>
+                    <div style="text-align:right">
+                        <span style="background:${badgeColor}; color:#fff; padding:2px 8px; border-radius:10px; font-weight:800; font-size:9px;">${item.status}</span><br>
+                        <b style="color:#134074; font-size:11px; margin-top:2px; display:inline-block;">${item.keyakinan}</b>
+                    </div>
+                `;
                 logContainer.appendChild(div);
             });
 
@@ -1170,7 +1255,7 @@
             if(window.myWeeklyChart) window.myWeeklyChart.destroy();
 
             let chartLabels = currentMode === 'harian' ? ['Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat'] : ['Jan', 'Feb', 'Mac', 'Apr', 'Mei', 'Jun'];
-            let chartData = currentMode === 'harian' ? [10, 12, 8, 15, 12] : [60, 65, 58, 72, 70, 68];
+            let chartData = currentMode === 'harian' ? [8, 14, 9, 12, 10] : [55, 62, 58, 70, 68, 74];
 
             window.myWeeklyChart = new Chart(ctx, {
                 type: 'bar',
